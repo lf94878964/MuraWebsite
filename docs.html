@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>文檔說明 — 千恋＊万花機器人</title>
+  <link rel="icon" type="image/png" href="https://images-ext-1.discordapp.net/external/qedYzKKm-vM-qF5sOOs411o40ZRV7iJqPh6niCeSyFo/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1379034361579438161/415a24c2ad4b19048f120dd9089e55f4.png?format=webp&quality=lossless" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- marked.js for Markdown parsing -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+  <!-- highlight.js for code syntax highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" id="hljs-theme-dark" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css" id="hljs-theme-light" disabled />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <style>
+    /* ============================================================
+       DOCS — GitHub Docs 風格（配合網站紫色主題）
+       ============================================================ */
+
+    /* ── 深色變數（墨色 × 玫瑰 × 金箔，呼應主站主題）── */
+    [data-theme="dark"] {
+      --d-bg:            #0c0910;
+      --d-sidebar-bg:    #0a070d;
+      --d-content-bg:    #0c0910;
+      --d-border:        rgba(235, 220, 235, 0.09);
+      --d-border-subtle: rgba(235, 220, 235, 0.06);
+      --d-text:          #f1e9e4;
+      --d-text-sub:      #b3a2b3;
+      --d-text-muted:    #756880;
+      --d-link:          #ba7a9e;
+      --d-link-hover:    #d093b3;
+      --d-sidebar-hover: rgba(186,122,158,0.08);
+      --d-sidebar-active-bg:   rgba(186,122,158,0.14);
+      --d-sidebar-active-text: #d193b3;
+      --d-sidebar-active-bar:  #c9a463;
+      --d-section-label: #8d7f92;
+      --d-code-bg:       rgba(201,164,99,0.10);
+      --d-code-border:   rgba(201,164,99,0.22);
+      --d-code-text:     #ddbb7e;
+      --d-code-block-bg: #130e1a;
+      --d-table-head:    #150f1c;
+      --d-table-stripe:  rgba(255,255,255,0.02);
+      --d-hr:            rgba(235,220,235,0.09);
+      --d-mark-bg:       rgba(201,164,99,0.32);
+      --d-blockquote-border: #46394c;
+
+      /* Alerts — muted into the ink/gold/rose family */
+      --al-note-border: #7690c9; --al-note-bg: rgba(118,144,201,0.10);  --al-note-text: #9db1e0;
+      --al-tip-border:  #6fae86; --al-tip-bg:  rgba(111,174,134,0.10);  --al-tip-text:  #8fc7a4;
+      --al-imp-border:  #ba7a9e; --al-imp-bg:  rgba(186,122,158,0.10);  --al-imp-text:  #d193b3;
+      --al-warn-border: #c9a463; --al-warn-bg: rgba(201,164,99,0.10);   --al-warn-text: #ddbb7e;
+      --al-caut-border: #d6766c; --al-caut-bg: rgba(214,118,108,0.10);  --al-caut-text: #e0938d;
+
+      /* Color blocks */
+      --cb-success-bg:rgba(111,174,134,0.10); --cb-success-border:#6fae86; --cb-success-text:#9fd4b1;
+      --cb-info-bg:   rgba(118,144,201,0.10); --cb-info-border:   #7690c9; --cb-info-text:   #aebde3;
+      --cb-warn-bg:   rgba(201,164,99,0.10);  --cb-warn-border:   #c9a463; --cb-warn-text:   #e3c98d;
+      --cb-danger-bg: rgba(214,118,108,0.10); --cb-danger-border: #d6766c; --cb-danger-text: #eaa49d;
+      --cb-spoiler-bg: rgba(235,220,235,0.05); --cb-spoiler-border: rgba(235,220,235,0.12);
+
+      /* Nav buttons */
+      --btn-bg: #171220; --btn-border: rgba(235,220,235,0.10); --btn-text: #d8cdd8;
+      --btn-hover-bg: #1e1728;
+    }
+
+    /* ── 淺色變數（宣紙 × 墨 × 金箔）── */
+    [data-theme="light"] {
+      --d-bg:            #faf6ee;
+      --d-sidebar-bg:    #f4ecdc;
+      --d-content-bg:    #faf6ee;
+      --d-border:        rgba(45,30,20,0.10);
+      --d-border-subtle: rgba(45,30,20,0.07);
+      --d-text:          #2a2119;
+      --d-text-sub:      #5b4d40;
+      --d-text-muted:    #93826f;
+      --d-link:          #954268;
+      --d-link-hover:    #793454;
+      --d-sidebar-hover: rgba(149,66,104,0.08);
+      --d-sidebar-active-bg:   rgba(149,66,104,0.09);
+      --d-sidebar-active-text: #954268;
+      --d-sidebar-active-bar:  #9a7128;
+      --d-section-label: #7a6a56;
+      --d-code-bg:       rgba(154,113,40,0.09);
+      --d-code-border:   rgba(154,113,40,0.22);
+      --d-code-text:     #7d5c20;
+      --d-code-block-bg: #f3ead9;
+      --d-table-head:    #f3ead9;
+      --d-table-stripe:  rgba(0,0,0,0.02);
+      --d-hr:            rgba(45,30,20,0.10);
+      --d-mark-bg:       rgba(154,113,40,0.30);
+      --d-blockquote-border: #d9c7a8;
+
+      --al-note-border: #4f6aa8; --al-note-bg: rgba(79,106,168,0.08);  --al-note-text: #3c5285;
+      --al-tip-border:  #3f8a5e; --al-tip-bg:  rgba(63,138,94,0.08);   --al-tip-text:  #2e6a47;
+      --al-imp-border:  #954268; --al-imp-bg:  rgba(149,66,104,0.08);  --al-imp-text:  #7a3554;
+      --al-warn-border: #9a7128; --al-warn-bg: rgba(154,113,40,0.08);  --al-warn-text: #7d5c20;
+      --al-caut-border: #a83a3a; --al-caut-bg: rgba(168,58,58,0.08);   --al-caut-text: #8a2f2f;
+
+      --cb-success-bg:rgba(63,138,94,0.08);  --cb-success-border:#3f8a5e;  --cb-success-text:#2e6a47;
+      --cb-info-bg:   rgba(79,106,168,0.08); --cb-info-border:   #4f6aa8; --cb-info-text:   #3c5285;
+      --cb-warn-bg:   rgba(154,113,40,0.08); --cb-warn-border:   #9a7128; --cb-warn-text:   #7d5c20;
+      --cb-danger-bg: rgba(168,58,58,0.08);  --cb-danger-border: #a83a3a; --cb-danger-text: #8a2f2f;
+      --cb-spoiler-bg: rgba(45,30,20,0.05);  --cb-spoiler-border: rgba(45,30,20,0.12);
+
+      --btn-bg: #f3ead9; --btn-border: rgba(45,30,20,0.12); --btn-text: #2a2119;
+      --btn-hover-bg: #ede2cc;
+    }
+
+    /* ── 佈局 ── */
+    .docs-layout {
+      display: flex;
+      min-height: 100vh;
+      padding-top: 64px;
+      background: var(--d-bg);
+      transition: background 0.3s;
+    }
+
+    /* ── 側欄 ── */
+    .docs-sidebar {
+      width: 268px;
+      flex-shrink: 0;
+      position: fixed;
+      top: 64px; left: 0; bottom: 0;
+      background: var(--d-sidebar-bg);
+      border-right: 1px solid var(--d-border);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: transform 0.28s cubic-bezier(.4,0,.2,1), background 0.3s;
+      z-index: 50;
+    }
+
+    .docs-sidebar-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 1.1rem;
+      border-bottom: 1px solid var(--d-border);
+      flex-shrink: 0;
+    }
+
+    .docs-sidebar-header h2 {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--d-text-muted);
+    }
+
+    .docs-search-wrap {
+      padding: 0.65rem 0.8rem;
+      border-bottom: 1px solid var(--d-border);
+      flex-shrink: 0;
+    }
+
+    .docs-search {
+      width: 100%;
+      background: var(--d-bg);
+      border: 1px solid var(--d-border);
+      border-radius: 6px;
+      padding: 0.38rem 0.7rem 0.38rem 2rem;
+      font-family: inherit;
+      font-size: 0.8rem;
+      color: var(--d-text);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13' viewBox='0 0 24 24' fill='none' stroke='%238b949e' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: 0.52rem center;
+    }
+    .docs-search:focus {
+      border-color: var(--d-link);
+      box-shadow: 0 0 0 3px rgba(186,122,158,0.22);
+    }
+    .docs-search::placeholder { color: var(--d-text-muted); }
+
+    .docs-nav {
+      flex: 1;
+      overflow-y: auto;
+      padding: 0.5rem 0 2rem;
+    }
+    .docs-nav::-webkit-scrollbar { width: 4px; }
+    .docs-nav::-webkit-scrollbar-thumb { background: var(--d-border); border-radius: 4px; }
+
+    /* Home link */
+    .docs-nav-home {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      width: 100%;
+      padding: 0.5rem 1rem;
+      background: none;
+      border: none;
+      font-family: inherit;
+      font-size: 0.83rem;
+      font-weight: 500;
+      color: var(--d-text-sub);
+      cursor: pointer;
+      text-align: left;
+      border-bottom: 1px solid var(--d-border-subtle);
+      margin-bottom: 0.3rem;
+      transition: color 0.2s, background 0.2s;
+    }
+    .docs-nav-home:hover { color: var(--d-text); background: var(--d-sidebar-hover); }
+    .docs-nav-home.active { color: var(--d-sidebar-active-text); font-weight: 600; }
+
+    /* Section */
+    .docs-nav-section { margin-bottom: 0.1rem; }
+
+    .docs-nav-section-title {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.5rem 1rem 0.3rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--d-section-label);
+      cursor: pointer;
+      user-select: none;
+    }
+    .docs-nav-section-title .section-arrow {
+      margin-left: auto;
+      font-size: 0.62rem;
+      transition: transform 0.2s;
+      color: var(--d-text-muted);
+    }
+    .docs-nav-section.collapsed .section-arrow { transform: rotate(-90deg); }
+
+    .docs-nav-section-items {
+      overflow: hidden;
+      transition: max-height 0.25s ease;
+    }
+    .docs-nav-section.collapsed .docs-nav-section-items { max-height: 0 !important; }
+
+    .docs-nav-item {
+      display: block;
+      width: 100%;
+      background: none;
+      border: none;
+      border-left: 2px solid transparent;
+      text-align: left;
+      font-family: inherit;
+      font-size: 0.83rem;
+      color: var(--d-text-sub);
+      padding: 0.38rem 1rem 0.38rem 1.8rem;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .docs-nav-item:hover {
+      background: var(--d-sidebar-hover);
+      color: var(--d-text);
+    }
+    .docs-nav-item.active {
+      background: var(--d-sidebar-active-bg);
+      color: var(--d-sidebar-active-text);
+      font-weight: 600;
+      border-left-color: var(--d-sidebar-active-bar);
+    }
+
+    /* ── 側欄 Toggle (Mobile) ── */
+    .docs-sidebar-toggle {
+      display: none;
+      position: fixed;
+      bottom: 1.4rem; left: 1rem;
+      z-index: 200;
+      background: var(--d-link);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 46px; height: 46px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+      align-items: center;
+      justify-content: center;
+    }
+    .docs-sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 49;
+      backdrop-filter: blur(2px);
+    }
+
+    /* ── 主內容 ── */
+    .docs-main {
+      flex: 1;
+      margin-left: 268px;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      background: var(--d-content-bg);
+      transition: background 0.3s;
+    }
+
+    /* ── TOC 面板（右側）── */
+    .docs-toc-panel {
+      position: fixed;
+      top: 64px; right: 0; bottom: 0;
+      width: 216px;
+      padding: 1.5rem 1rem 2rem 0.8rem;
+      overflow-y: auto;
+      border-left: 1px solid var(--d-border);
+      background: var(--d-sidebar-bg);
+      transition: background 0.3s;
+    }
+    .docs-toc-panel h3 {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--d-text-muted);
+      margin-bottom: 0.75rem;
+      padding-left: 0.5rem;
+    }
+    .docs-toc-list { list-style: none; border-left: 2px solid var(--d-border); }
+    .docs-toc-item {
+      font-size: 0.78rem;
+      color: var(--d-text-sub);
+      cursor: pointer;
+      padding: 0.22rem 0.6rem;
+      transition: color 0.15s;
+      border-left: 2px solid transparent;
+      margin-left: -2px;
+    }
+    .docs-toc-item:hover { color: var(--d-link); }
+    .docs-toc-item.active { color: var(--d-link); font-weight: 600; border-left-color: var(--d-link); }
+    .docs-toc-item.h3 { padding-left: 1.2rem; font-size: 0.74rem; }
+    .docs-toc-item.h4 { padding-left: 2rem;   font-size: 0.71rem; }
+
+    /* ── 內容區域 ── */
+    .docs-content-wrap {
+      flex: 1;
+      margin-right: 216px;
+      padding: 2.4rem 3rem 4rem;
+      max-width: 860px;
+    }
+
+    /* ── Breadcrumb ── */
+    .doc-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.78rem;
+      color: var(--d-text-muted);
+      margin-bottom: 1.2rem;
+    }
+    .doc-breadcrumb .bc-sep { margin: 0 0.1rem; }
+    .doc-breadcrumb .bc-section { color: var(--d-text-sub); }
+    .doc-breadcrumb .bc-page { color: var(--d-text); font-weight: 500; }
+
+    /* ── Top nav bar ── */
+    .doc-topbar {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+      padding-bottom: 1.1rem;
+      border-bottom: 1px solid var(--d-hr);
+    }
+    .doc-topbar-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.32rem 0.75rem;
+      border-radius: 6px;
+      background: var(--btn-bg);
+      border: 1px solid var(--btn-border);
+      color: var(--btn-text);
+      font-family: inherit;
+      font-size: 0.78rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .doc-topbar-btn:hover { background: var(--btn-hover-bg); border-color: var(--d-link); color: var(--d-link); }
+    .doc-topbar-btn.disabled { opacity: 0.3; pointer-events: none; }
+    .doc-topbar-spacer { flex: 1; }
+
+    /* ── Markdown body ── */
+    .doc-body {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--d-text);
+    }
+    .doc-body a { color: var(--d-link); text-decoration: underline; text-underline-offset: 2px; }
+    .doc-body a:hover { color: var(--d-link-hover); }
+
+    .doc-body h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--d-text);
+      margin: 0 0 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--d-hr);
+    }
+    .doc-body h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--d-text);
+      margin: 2rem 0 0.75rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--d-hr);
+    }
+    .doc-body h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--d-text);
+      margin: 1.5rem 0 0.5rem;
+    }
+    .doc-body h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--d-text-sub);
+      margin: 1.2rem 0 0.4rem;
+    }
+    .doc-body p { margin-bottom: 1rem; }
+    .doc-body ul, .doc-body ol { margin: 0.5rem 0 1rem 1.6rem; }
+    .doc-body li { margin-bottom: 0.25rem; }
+    .doc-body li > ul, .doc-body li > ol { margin-top: 0.25rem; }
+
+    .doc-body input[type="checkbox"] { accent-color: var(--d-link); margin-right: 0.4rem; }
+
+    /* Inline code */
+    .doc-body :not(pre) > code {
+      font-family: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Consolas, monospace;
+      font-size: 0.875em;
+      background: var(--d-code-bg);
+      color: var(--d-code-text);
+      border: 1px solid var(--d-code-border);
+      padding: 0.1em 0.4em;
+      border-radius: 4px;
+    }
+
+    /* Code blocks */
+    .doc-body pre {
+      background: var(--d-code-block-bg);
+      border: 1px solid var(--d-code-border);
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      overflow-x: auto;
+      margin: 0.8rem 0 1.2rem;
+      position: relative;
+      line-height: 1.6;
+    }
+    .doc-body pre code {
+      font-family: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Consolas, monospace;
+      background: none;
+      border: none;
+      color: inherit;
+      padding: 0;
+      font-size: 0.875rem;
+    }
+    .pre-lang-badge {
+      position: absolute;
+      top: 0.5rem; right: 0.8rem;
+      font-size: 0.65rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--d-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* Blockquote */
+    .doc-body blockquote {
+      border-left: 4px solid var(--d-blockquote-border);
+      background: transparent;
+      padding: 0.5rem 1rem;
+      margin: 0.8rem 0 1rem;
+      color: var(--d-text-sub);
+    }
+    .doc-body blockquote p { margin-bottom: 0; }
+
+    /* Tables */
+    .doc-body table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.8rem 0 1.4rem;
+      font-size: 0.9rem;
+      display: block;
+      overflow-x: auto;
+    }
+    .doc-body th {
+      background: var(--d-table-head);
+      font-weight: 600;
+      text-align: left;
+      padding: 0.55rem 0.85rem;
+      border: 1px solid var(--d-border);
+      color: var(--d-text);
+      white-space: nowrap;
+    }
+    .doc-body td {
+      padding: 0.5rem 0.85rem;
+      border: 1px solid var(--d-border);
+      color: var(--d-text-sub);
+    }
+    .doc-body tr:nth-child(even) td { background: var(--d-table-stripe); }
+
+    /* HR */
+    .doc-body hr { border: none; border-top: 1px solid var(--d-hr); margin: 2rem 0; }
+
+    /* Mark (==highlight==) */
+    .doc-body mark {
+      background: var(--d-mark-bg);
+      color: var(--d-text);
+      padding: 0.05em 0.25em;
+      border-radius: 3px;
+    }
+
+    .doc-body del { text-decoration: line-through; color: var(--d-text-sub); }
+    .doc-body ins { text-decoration: underline; text-decoration-color: var(--d-link); }
+
+    /* ── GitHub Alert 框（修正版）── */
+    .gh-alert {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      border: 1px solid;
+      border-radius: 8px;
+      padding: 0.85rem 1.1rem;
+      margin: 1rem 0 1.3rem;
+    }
+    .gh-alert-title {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .gh-alert-title .al-icon { font-size: 1rem; }
+    .gh-alert-body { font-size: 0.92rem; color: var(--d-text-sub); line-height: 1.65; }
+    .gh-alert-body p { margin-bottom: 0.3rem; }
+    .gh-alert-body p:last-child { margin-bottom: 0; }
+
+    .gh-alert.note     { background: var(--al-note-bg); border-color: var(--al-note-border); }
+    .gh-alert.tip      { background: var(--al-tip-bg);  border-color: var(--al-tip-border);  }
+    .gh-alert.important{ background: var(--al-imp-bg);  border-color: var(--al-imp-border);  }
+    .gh-alert.warning  { background: var(--al-warn-bg); border-color: var(--al-warn-border); }
+    .gh-alert.caution  { background: var(--al-caut-bg); border-color: var(--al-caut-border); }
+    .gh-alert.note      .gh-alert-title { color: var(--al-note-text); }
+    .gh-alert.tip       .gh-alert-title { color: var(--al-tip-text);  }
+    .gh-alert.important .gh-alert-title { color: var(--al-imp-text);  }
+    .gh-alert.warning   .gh-alert-title { color: var(--al-warn-text); }
+    .gh-alert.caution   .gh-alert-title { color: var(--al-caut-text); }
+
+    /* ── Color blocks (:::success etc) ── */
+    .cb-block {
+      border-left: 4px solid;
+      border-radius: 0 8px 8px 0;
+      padding: 0.75rem 1rem;
+      margin: 0.8rem 0 1.2rem;
+    }
+    .cb-block.cb-success{ background: var(--cb-success-bg); border-color: var(--cb-success-border); color: var(--cb-success-text); }
+    .cb-block.cb-info   { background: var(--cb-info-bg);    border-color: var(--cb-info-border);    color: var(--cb-info-text);    }
+    .cb-block.cb-warning{ background: var(--cb-warn-bg);    border-color: var(--cb-warn-border);    color: var(--cb-warn-text);    }
+    .cb-block.cb-danger { background: var(--cb-danger-bg);  border-color: var(--cb-danger-border);  color: var(--cb-danger-text);  }
+    .cb-block p { color: inherit; margin-bottom: 0.35rem; }
+    .cb-block p:last-child { margin-bottom: 0; }
+    .cb-block > .cb-block { margin: 0.5rem 0; }
+
+    /* Spoiler */
+    .cb-spoiler {
+      background: var(--cb-spoiler-bg);
+      border: 1px solid var(--cb-spoiler-border);
+      border-radius: 8px;
+      margin: 0.8rem 0 1.2rem;
+      overflow: hidden;
+    }
+    .cb-spoiler summary {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.6rem 1rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--d-text-sub);
+      user-select: none;
+      list-style: none;
+      transition: color 0.15s, background 0.15s;
+    }
+    .cb-spoiler summary::-webkit-details-marker { display: none; }
+    .cb-spoiler summary::before {
+      content: '▶';
+      font-size: 0.65rem;
+      transition: transform 0.2s;
+      color: var(--d-text-muted);
+    }
+    .cb-spoiler[open] summary::before { transform: rotate(90deg); }
+    .cb-spoiler[open] summary { color: var(--d-text); background: var(--d-sidebar-hover); }
+    .cb-spoiler-body {
+      padding: 0.75rem 1rem 0.9rem;
+      border-top: 1px solid var(--cb-spoiler-border);
+      color: var(--d-text-sub);
+      font-size: 0.92rem;
+    }
+    .cb-spoiler-body p:last-child { margin-bottom: 0; }
+
+    /* ── 底部導航按鈕 ── */
+    .doc-bottom-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--d-hr);
+    }
+    .doc-bottom-nav-btn {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      padding: 0.9rem 1.2rem;
+      border-radius: 8px;
+      background: var(--btn-bg);
+      border: 1px solid var(--btn-border);
+      color: var(--d-text);
+      font-family: inherit;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+      text-align: left;
+      max-width: 46%;
+      min-width: 100px;
+    }
+    .doc-bottom-nav-btn:hover { border-color: var(--d-link); background: var(--btn-hover-bg); }
+    .doc-bottom-nav-btn.disabled { opacity: 0.3; pointer-events: none; }
+    .doc-bottom-nav-btn .nav-dir { font-size: 0.71rem; color: var(--d-text-muted); font-weight: 500; }
+    .doc-bottom-nav-btn .nav-title { font-size: 0.88rem; font-weight: 600; color: var(--d-link); }
+    .doc-bottom-nav-btn.next { text-align: right; margin-left: auto; }
+
+    /* ── 首頁 ── */
+    .docs-home-hero {
+      padding: 2.5rem 0 1.8rem;
+      border-bottom: 1px solid var(--d-hr);
+      margin-bottom: 2rem;
+    }
+    .docs-home-hero h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--d-text);
+      margin-bottom: 0.5rem;
+    }
+    .docs-home-hero p { color: var(--d-text-sub); font-size: 1rem; }
+
+    .docs-home-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 0.85rem;
+    }
+    .docs-home-card {
+      background: var(--d-sidebar-bg);
+      border: 1px solid var(--d-border);
+      border-radius: 8px;
+      padding: 1.15rem 1.3rem;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+    }
+    .docs-home-card:hover {
+      border-color: var(--d-link);
+      box-shadow: 0 0 0 3px rgba(186,122,158,0.16);
+    }
+    .docs-home-card-icon { font-size: 1.5rem; margin-bottom: 0.45rem; }
+    .docs-home-card-title { font-weight: 600; color: var(--d-text); margin-bottom: 0.25rem; font-size: 0.93rem; }
+    .docs-home-card-desc { font-size: 0.8rem; color: var(--d-text-muted); }
+
+    /* ── 載入中 ── */
+    .doc-loading { padding: 4rem 0; text-align: center; color: var(--d-text-muted); }
+    .doc-loading-spinner {
+      width: 32px; height: 32px;
+      border: 3px solid var(--d-border);
+      border-top-color: var(--d-link);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      margin: 0 auto 1rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .doc-body img {
+      max-width: 100%;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      display: block;
+      margin: 0.8rem 0;
+    }
+
+    /* ── Anchor heading ── */
+    .doc-body .heading-anchor { color: inherit; text-decoration: none; }
+    .doc-body .heading-anchor:hover::after {
+      content: ' #';
+      color: var(--d-link);
+      font-size: 0.7em;
+      font-weight: 400;
+    }
+
+    /* ── HLJS 主題切換 ── */
+    [data-theme="light"] #hljs-theme-dark  { display: none; }
+    [data-theme="light"] #hljs-theme-light { display: block !important; }
+
+    /* ── RWD ── */
+    @media (max-width: 1200px) {
+      .docs-toc-panel { display: none; }
+      .docs-content-wrap { margin-right: 0; }
+    }
+    @media (max-width: 768px) {
+      .docs-sidebar { transform: translateX(-100%); width: 264px; }
+      .docs-sidebar.open { transform: translateX(0); box-shadow: 8px 0 24px rgba(0,0,0,0.4); }
+      .docs-sidebar-toggle { display: flex; }
+      .docs-sidebar-overlay.show { display: block; }
+      .docs-main { margin-left: 0; }
+      .docs-content-wrap { padding: 1.4rem 1rem 2.5rem; }
+      .doc-body h1 { font-size: 1.55rem; }
+      .doc-body h2 { font-size: 1.2rem; }
+      .doc-topbar { gap: 0.3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <img class="nav-logo" src="https://images-ext-1.discordapp.net/external/qedYzKKm-vM-qF5sOOs411o40ZRV7iJqPh6niCeSyFo/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1379034361579438161/415a24c2ad4b19048f120dd9089e55f4.png?format=webp&quality=lossless" alt="千恋＊万花" />
+      千恋＊万花機器人
+    </div>
+    <div class="nav-right">
+      <div class="nav-links" id="nav-links-desktop">
+        <a class="nav-btn" href="/home">主頁</a>
+        <a class="nav-btn" href="/rule">使用規範</a>
+        <a class="nav-btn active" href="/docs">文檔說明</a>
+        <a class="nav-btn" href="/status">當前狀態</a>
+        <a class="nav-btn" href="/cooperate">合作夥伴</a>
+        <a class="nav-btn" href="/contact">聯絡我們</a>
+      </div>
+      <a class="invite-btn-nav" href="https://discord.com/oauth2/authorize?client_id=1379034361579438161&permissions=1127517969186039&integration_type=0&scope=bot+applications.commands" target="_blank" rel="noopener">
+        邀請機器人
+      </a>
+      <button class="theme-toggle" id="themeToggle" aria-label="切換主題">
+        <span class="theme-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2.5 12h2M19.5 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg></span>
+      </button>
+      <!-- Mobile hamburger -->
+      <button class="hamburger-btn" id="hamburgerBtn" aria-label="選單">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <!-- Mobile dropdown menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a class="nav-btn" href="/home">主頁</a>
+      <a class="nav-btn" href="/rule">使用規範</a>
+      <a class="nav-btn active" href="/docs">文檔說明</a>
+      <a class="nav-btn" href="/status">當前狀態</a>
+      <a class="nav-btn" href="/cooperate">合作夥伴</a>
+      <a class="nav-btn" href="/contact">聯絡我們</a>
+      <a class="invite-btn-nav mobile-invite" href="https://discord.com/oauth2/authorize?client_id=1379034361579438161&permissions=1127517969186039&integration_type=0&scope=bot+applications.commands" target="_blank" rel="noopener">
+        邀請機器人
+      </a>
+    </div>
+  </nav>
+
+  <!-- ===== DOCS LAYOUT ===== -->
+  <div class="docs-layout">
+
+    <!-- Sidebar overlay (mobile) -->
+    <div class="docs-sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="docs-sidebar" id="docsSidebar">
+      <div class="docs-sidebar-header">
+        <h2>文檔說明</h2>
+      </div>
+      <div class="docs-search-wrap">
+        <input class="docs-search" type="text" id="docsSearch" placeholder="搜尋文檔…" autocomplete="off" />
+      </div>
+      <nav class="docs-nav" id="docsNav">
+        <!-- populated by JS -->
+      </nav>
+    </aside>
+
+    <!-- ===== MAIN ===== -->
+    <main class="docs-main">
+      <div class="docs-content-wrap">
+        <div id="docContentArea">
+          <!-- populated by JS -->
+        </div>
+      </div>
+    </main>
+
+    <!-- ===== TOC PANEL ===== -->
+    <aside class="docs-toc-panel" id="docsTocPanel">
+      <h3>本頁目錄</h3>
+      <ul class="docs-toc-list" id="docsTocList"></ul>
+    </aside>
+  </div>
+
+  <!-- Mobile sidebar toggle -->
+  <button class="docs-sidebar-toggle" id="sidebarToggle" aria-label="開啟側邊欄">☰</button>
+
+  <script>
+  // ===== THEME =====
+  (function () {
+    const SUN = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2.5 12h2M19.5 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>';
+    const MOON = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z"/></svg>';
+    const html = document.documentElement;
+    const saved = localStorage.getItem('theme') || 'dark';
+    html.setAttribute('data-theme', saved);
+    const btn = document.getElementById('themeToggle');
+    if (btn) {
+      btn.querySelector('.theme-icon').innerHTML = saved === 'dark' ? SUN : MOON;
+      btn.addEventListener('click', () => {
+        const cur = html.getAttribute('data-theme');
+        const next = cur === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        btn.querySelector('.theme-icon').innerHTML = next === 'dark' ? SUN : MOON;
+        updateHljsTheme(next);
+      });
+    }
+    updateHljsTheme(saved);
+    function updateHljsTheme(theme) {
+      document.getElementById('hljs-theme-dark').disabled = theme === 'light';
+      document.getElementById('hljs-theme-light').disabled = theme !== 'light';
+    }
+  })();
+
+  // ===== HAMBURGER MENU =====
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const mobileMenu   = document.getElementById('mobileMenu');
+  if (hamburgerBtn && mobileMenu) {
+    hamburgerBtn.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.contains('open');
+      if (isOpen) {
+        hamburgerBtn.classList.remove('open');
+        mobileMenu.classList.remove('open');
+      } else {
+        hamburgerBtn.classList.add('open');
+        mobileMenu.classList.add('open');
+      }
+    });
+    document.addEventListener('click', (e) => {
+      if (mobileMenu.classList.contains('open') &&
+          !mobileMenu.contains(e.target) &&
+          !hamburgerBtn.contains(e.target)) {
+        hamburgerBtn.classList.remove('open');
+        mobileMenu.classList.remove('open');
+      }
+    });
+  }
+
+  // ===== MOBILE SIDEBAR =====
+  const sidebar  = document.getElementById('docsSidebar');
+  const overlay  = document.getElementById('sidebarOverlay');
+  const sidToggle = document.getElementById('sidebarToggle');
+  sidToggle.addEventListener('click', () => { sidebar.classList.toggle('open'); overlay.classList.toggle('show'); });
+  overlay.addEventListener('click',   () => { sidebar.classList.remove('open'); overlay.classList.remove('show'); });
+
+  // ===== STATE =====
+  let DOC_STRUCTURE  = [];
+  let flatDocs       = [];
+  let currentDocId   = null;
+  const docHistory   = [];   // 自製瀏覽歷史（docId 陣列）
+  let manifestReady  = false; // manifest 是否已載入完成
+
+  // ─── 等待 manifest 就緒後才處理 popstate ───
+  let pendingPopDocId = null;
+
+  // ===== FLATTEN =====
+  function flattenDocs(sections) {
+    const list = [{ id: 'home', title: '文檔首頁', type: 'home' }];
+    for (const sec of sections) {
+      for (const child of (sec.children || [])) {
+        list.push({ ...child, sectionTitle: sec.title, sectionIcon: sec.icon });
+      }
+    }
+    return list;
+  }
+
+  // ===== SIDEBAR NAV =====
+  function buildNav(filter = '') {
+    const nav = document.getElementById('docsNav');
+    nav.innerHTML = '';
+    const lc = filter.toLowerCase();
+
+    const homeBtn = document.createElement('button');
+    homeBtn.className = 'docs-nav-home' + (currentDocId === 'home' ? ' active' : '');
+    homeBtn.textContent = '文檔首頁';
+    homeBtn.addEventListener('click', () => loadDoc('home'));
+    nav.appendChild(homeBtn);
+
+    for (const item of DOC_STRUCTURE) {
+      const children = (item.children || []).filter(c =>
+        !lc || c.title.toLowerCase().includes(lc) || c.title.includes(filter)
+      );
+      if (lc && children.length === 0) continue;
+
+      const section = document.createElement('div');
+      section.className = 'docs-nav-section';
+
+      const secHead = document.createElement('div');
+      secHead.className = 'docs-nav-section-title';
+      secHead.innerHTML = `${item.icon ? item.icon + ' ' : ''}${item.title}<span class="section-arrow">▼</span>`;
+      secHead.addEventListener('click', () => {
+        section.classList.toggle('collapsed');
+        const wrap = section.querySelector('.docs-nav-section-items');
+        wrap.style.maxHeight = section.classList.contains('collapsed') ? '0' : wrap.scrollHeight + 'px';
+      });
+      section.appendChild(secHead);
+
+      const wrap = document.createElement('div');
+      wrap.className = 'docs-nav-section-items';
+      wrap.style.maxHeight = '9999px';
+
+      for (const child of children) {
+        const btn = document.createElement('button');
+        btn.className = 'docs-nav-item' + (currentDocId === child.id ? ' active' : '');
+        btn.textContent = child.title;
+        // ✅ addEventListener 直接閉包捕捉 id，不用 innerHTML onclick
+        const childId = child.id;
+        btn.addEventListener('click', () => loadDoc(childId));
+        wrap.appendChild(btn);
+      }
+
+      section.appendChild(wrap);
+      nav.appendChild(section);
+    }
+  }
+
+  // ===== SEARCH =====
+  document.getElementById('docsSearch').addEventListener('input', function () {
+    buildNav(this.value);
+  });
+
+  // ===== EVENT DELEGATION for doc-body buttons =====
+  // 所有動態插入的按鈕（topbar / bottom-nav）都用 data-doc-id，
+  // 統一由 contentArea 上的 click listener 處理，完全避免 innerHTML onclick 問題
+  document.getElementById('docContentArea').addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-doc-id]');
+    if (btn) {
+      const id = btn.dataset.docId;
+      if (id === '__back__') { goBack(); }
+      else { loadDoc(id); }
+    }
+  });
+
+  // ===== MARKED =====
+  function configureMarked() {
+    const renderer = new marked.Renderer();
+    renderer.heading = function(text, level, raw) {
+      const id = raw.toLowerCase().replace(/[^\w\u4e00-\u9fff]+/g, '-').replace(/^-|-$/g, '');
+      return `<h${level} id="${id}"><a class="heading-anchor" href="#${id}">${text}</a></h${level}>`;
+    };
+    renderer.code = function(code, lang) {
+      const validLang = lang && hljs.getLanguage(lang) ? lang : null;
+      const highlighted = validLang
+        ? hljs.highlight(code, { language: validLang }).value
+        : hljs.highlightAuto(code).value;
+      const badge = lang ? `<span class="pre-lang-badge">${lang}</span>` : '';
+      return `<pre>${badge}<code class="hljs">${highlighted}</code></pre>`;
+    };
+    marked.setOptions({ renderer, gfm: true, breaks: true });
+  }
+
+  // ===== MARKDOWN EXTENSIONS =====
+  function parseMarkdownExtensions(md) {
+    // ==highlight==
+    md = md.replace(/==(.+?)==/g, '<mark>$1</mark>');
+    // ^sup^
+    md = md.replace(/\^([^\^]+)\^/g, '<sup>$1</sup>');
+    // ~sub~
+    md = md.replace(/~([^~]+)~/g, '<sub>$1</sub>');
+    // ++underline++
+    md = md.replace(/\+\+([^+]+)\+\+/g, '<ins>$1</ins>');
+
+    // GitHub Alerts: > [!NOTE]...
+    md = md.replace(
+      /^> \[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\][ \t]?([^\n]*)\n((?:^>[ \t]?[^\n]*\n?)*)/gim,
+      (match, type, customTitle, body) => {
+        const icons  = { NOTE:'', TIP:'', IMPORTANT:'', WARNING:'', CAUTION:'' };
+        const labels = { NOTE:'備註', TIP:'小提醒', IMPORTANT:'重要', WARNING:'警告', CAUTION:'危險' };
+        const cls    = type.toLowerCase();
+        const title  = customTitle.trim() || labels[type.toUpperCase()];
+        const content = body.replace(/^>[ \t]?/gm, '').trim();
+        const html   = content.split('\n').filter(l => l.trim()).map(l => marked.parseInline(l)).join('<br>');
+        return `<div class="gh-alert ${cls}"><div class="gh-alert-title">${title}</div><div class="gh-alert-body">${html}</div></div>\n\n`;
+      }
+    );
+
+    // Color blocks ::::info / :::info
+    md = parseColorBlocks(md, 4);
+    md = parseColorBlocks(md, 3);
+    return md;
+  }
+
+  function parseColorBlocks(md, colons) {
+    const c = ':'.repeat(colons);
+    const pattern = new RegExp(c + '(success|info|warning|danger|spoiler)(?:[ \\t]+([^\\n]+))?\\n([\\s\\S]*?)' + c, 'gi');
+    return md.replace(pattern, (match, type, label, content) => {
+      const trimmed = content.trim();
+      if (type.toLowerCase() === 'spoiler') {
+        const lbl = label ? label.trim() : '詳細資料';
+        return `<details class="cb-spoiler"><summary>${lbl}</summary><div class="cb-spoiler-body">\n\n${trimmed}\n\n</div></details>\n`;
+      }
+      return `<div class="cb-block cb-${type.toLowerCase()}">\n\n${trimmed}\n\n</div>\n`;
+    });
+  }
+
+  function renderMarkdown(raw) {
+    return marked.parse(parseMarkdownExtensions(raw));
+  }
+
+  // ===== LOAD DOC =====
+  async function loadDoc(id, pushHistory = true) {
+    if (pushHistory && currentDocId && currentDocId !== id) {
+      docHistory.push(currentDocId);
+    }
+    currentDocId = id;
+    sidebar.classList.remove('open');
+    overlay.classList.remove('show');
+    buildNav(document.getElementById('docsSearch').value);
+    window.scrollTo(0, 0);
+
+    const contentArea = document.getElementById('docContentArea');
+
+    // ── 首頁 ──
+    if (id === 'home') {
+      renderHome(contentArea);
+      updateToc([]);
+      history.pushState({ docId: 'home' }, '', '/docs');
+      return;
+    }
+
+    const doc = flatDocs.find(d => d.id === id);
+    if (!doc) { loadDoc('home', false); return; }
+
+    // 上下頁（排除 home）
+    const realDocs = flatDocs.filter(d => d.id !== 'home');
+    const idx  = realDocs.findIndex(d => d.id === id);
+    const prev = idx > 0                  ? realDocs[idx - 1] : null;
+    const next = idx < realDocs.length-1  ? realDocs[idx + 1] : null;
+
+    contentArea.innerHTML = `<div class="doc-loading"><div class="doc-loading-spinner"></div><p>載入中…</p></div>`;
+
+    let markdown = '';
+    try {
+      // 用絕對路徑避免 URL 深層時相對路徑錯誤
+      const resp = await fetch('/' + doc.file);
+      if (!resp.ok) throw new Error('not found');
+      markdown = await resp.text();
+    } catch (e) {
+      markdown = generateDemoContent(doc);
+    }
+
+    const rendered  = renderMarkdown(markdown);
+    const breadcrumb = doc.sectionIcon
+      ? `<div class="doc-breadcrumb"><span class="bc-section">${doc.sectionIcon} ${doc.sectionTitle}</span><span class="bc-sep">›</span><span class="bc-page">${doc.title}</span></div>`
+      : '';
+
+    // ✅ 所有按鈕用 data-doc-id，完全不用 onclick 字串
+    const btnPrev  = prev
+      ? `<button class="doc-topbar-btn" data-doc-id="${prev.id}">← ${prev.title}</button>`
+      : `<button class="doc-topbar-btn disabled" disabled>← 無上一頁</button>`;
+    const btnNext  = next
+      ? `<button class="doc-topbar-btn" data-doc-id="${next.id}">${next.title} →</button>`
+      : `<button class="doc-topbar-btn disabled" disabled>無下一頁 →</button>`;
+    const btnBtmPrev = prev
+      ? `<button class="doc-bottom-nav-btn" data-doc-id="${prev.id}"><span class="nav-dir">← 上一頁</span><span class="nav-title">${prev.title}</span></button>`
+      : `<button class="doc-bottom-nav-btn disabled" disabled><span class="nav-dir">← 上一頁</span><span class="nav-title">—</span></button>`;
+    const btnBtmNext = next
+      ? `<button class="doc-bottom-nav-btn next" data-doc-id="${next.id}"><span class="nav-dir">下一頁 →</span><span class="nav-title">${next.title}</span></button>`
+      : `<button class="doc-bottom-nav-btn next disabled" disabled><span class="nav-dir">下一頁 →</span><span class="nav-title">—</span></button>`;
+
+    contentArea.innerHTML = `
+      ${breadcrumb}
+      <div class="doc-topbar">
+        <button class="doc-topbar-btn" data-doc-id="home">主頁</button>
+        ${btnPrev}
+        ${btnNext}
+        <div class="doc-topbar-spacer"></div>
+        <button class="doc-topbar-btn" data-doc-id="__back__">↩ 返回</button>
+      </div>
+      <article class="doc-body">${rendered}</article>
+      <div class="doc-bottom-nav">${btnBtmPrev}${btnBtmNext}</div>`;
+
+    // TOC
+    const headings = [];
+    const tmp = document.createElement('div');
+    tmp.innerHTML = rendered;
+    tmp.querySelectorAll('h2,h3,h4').forEach(h => {
+      headings.push({ level: parseInt(h.tagName[1]), text: h.textContent, id: h.id });
+    });
+    updateToc(headings);
+
+    history.pushState({ docId: id }, '', `/docs/${id}`);
+  }
+
+  function goBack() {
+    if (docHistory.length > 0) {
+      loadDoc(docHistory.pop(), false);
+    } else {
+      loadDoc('home');
+    }
+  }
+
+  // ===== POPSTATE — 瀏覽器上一頁/下一頁 =====
+  window.addEventListener('popstate', (e) => {
+    const id = e.state?.docId;
+    if (!manifestReady) {
+      // manifest 還沒好，先暫存，等好了再跑
+      pendingPopDocId = id || 'home';
+      return;
+    }
+    loadDoc(id || 'home', false);
+  });
+
+  // ===== HOME =====
+  function renderHome(el) {
+    const cards = DOC_STRUCTURE.map(s => {
+      const firstId = s.children?.[0]?.id || 'home';
+      return `<div class="docs-home-card" data-doc-id="${firstId}">
+        <div class="docs-home-card-icon">${s.icon}</div>
+        <div class="docs-home-card-title">${s.title}</div>
+        <div class="docs-home-card-desc">${(s.children||[]).length} 篇文檔</div>
+      </div>`;
+    }).join('');
+    // ✅ 首頁卡片也用 data-doc-id + event delegation
+    el.innerHTML = `
+      <div class="docs-home-hero">
+        <h1>千恋＊万花 文檔說明</h1>
+        <p>歡迎使用文檔中心，從左側選擇分類，或點擊下方卡片快速跳轉。</p>
+      </div>
+      <div class="docs-home-grid">${cards}</div>`;
+  }
+
+  // ===== TOC =====
+  function updateToc(headings) {
+    const tocList = document.getElementById('docsTocList');
+    if (!headings.length) {
+      tocList.innerHTML = '<li class="docs-toc-item" style="opacity:0.4">（無目錄）</li>';
+      return;
+    }
+    tocList.innerHTML = headings.map(h =>
+      `<li class="docs-toc-item ${h.level===3?'h3':h.level===4?'h4':''}"
+           onclick="document.getElementById('${h.id}')?.scrollIntoView({behavior:'smooth'})">
+        ${h.text}</li>`
+    ).join('');
+  }
+
+  // ===== DEMO =====
+  function generateDemoContent(doc) {
+    return `# ${doc.title}
+
+> [!NOTE]說明
+> 這是示範內容。請將您的 Markdown 文檔放入 \`${doc.file}\` 以顯示實際內容。
+
+## 概覽
+
+此功能的詳細說明將在這裡顯示。
+
+## 使用方式
+
+以下是一個基本的指令範例：
+
+\`\`\`
+/指令名稱 參數1 參數2
+\`\`\`
+
+:::info
+如有任何問題，請至 Discord 支援群發問。
+:::
+
+## 常見問題
+
+| 問題 | 解答 |
+|------|------|
+| 指令沒有反應？ | 請確認機器人有足夠權限 |
+| 功能不見了？ | 可能正在維護中 |
+
+:::spoiler 查看更多細節
+這裡是更多詳細資訊，點擊展開查看。
+
+你也可以在這裡加入**粗體**、*斜體*或 ==螢光筆== 效果。
+:::
+`;
+  }
+
+  // ===== INIT =====
+  configureMarked();
+
+  document.getElementById('docContentArea').innerHTML = `
+    <div class="doc-loading"><div class="doc-loading-spinner"></div><p>載入文檔目錄中…</p></div>`;
+  document.getElementById('docsNav').innerHTML =
+    `<div style="padding:1rem 1.2rem;color:var(--d-text-muted);font-size:0.82rem">載入中…</div>`;
+
+  fetch('/doc-manifest.json?v=' + Date.now())
+    .then(r => { if (!r.ok) throw new Error('not found'); return r.json(); })
+    .then(manifest => {
+      DOC_STRUCTURE = manifest.sections || [];
+      flatDocs = flattenDocs(DOC_STRUCTURE);
+      manifestReady = true;
+      buildNav();
+
+      // GitHub Pages 的 404.html 會把路徑存在 sessionStorage，讀出來用
+      const redirectPath = sessionStorage.getItem('__docs_redirect__');
+      sessionStorage.removeItem('__docs_redirect__');
+
+      // 決定起始文檔：優先用 redirect path，其次 URL path，最後首頁
+      let startId = 'home';
+      const rawPath = redirectPath || window.location.pathname;
+      const pathParts = rawPath.replace(/^\/docs\/?/, '').split('/').filter(Boolean);
+      if (pathParts.length > 0) {
+        // 支援 URL decode（處理中文路徑）
+        const candidates = [
+          pathParts.join('/'),
+          pathParts.map(p => decodeURIComponent(p)).join('/'),
+        ];
+        for (const cand of candidates) {
+          if (flatDocs.find(d => d.id === cand)) { startId = cand; break; }
+        }
+      }
+
+      // 如果 popstate 在 manifest 之前就觸發了，用那個
+      if (pendingPopDocId) { startId = pendingPopDocId; pendingPopDocId = null; }
+
+      history.replaceState({ docId: startId }, '', startId === 'home' ? '/docs' : `/docs/${startId}`);
+      loadDoc(startId, false);
+    })
+    .catch(() => {
+      document.getElementById('docsNav').innerHTML = `
+        <div style="padding:1rem 1.2rem;color:#f85149;font-size:0.82rem">
+          找不到 doc-manifest.json<br>
+          請執行 <code style="font-size:0.78rem">node generate-manifest.js</code>
+        </div>`;
+      document.getElementById('docContentArea').innerHTML = `
+        <div style="padding:3rem 0;text-align:center;color:var(--d-text-muted)">
+          
+          <h2 style="color:var(--d-text);margin-bottom:0.5rem">尚未產生文檔目錄</h2>
+          <p>請在根目錄執行：</p>
+          <pre style="display:inline-block;margin-top:1rem;padding:0.6rem 1.2rem;background:var(--d-code-block-bg);border:1px solid var(--d-border);border-radius:8px">node generate-manifest.js</pre>
+        </div>`;
+    });
+  </script>
+
+</body>
+</html>

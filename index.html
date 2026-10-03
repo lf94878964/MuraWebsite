@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="dark">
+<head>
+
+<script>
+(function () {
+ // 1. 先還原 SPA fallback 存的原始路徑
+ const redirect = sessionStorage.redirect;
+ if (redirect) {
+   history.replaceState(null,null,redirect);
+   sessionStorage.removeItem("redirect");
+ }
+ // 2. 路徑還原後,再檢查是否為需要跳轉的特殊路徑
+ if (window.location.pathname === "/ciallo" || window.location.pathname === "/ciallo/") {
+   window.location.replace("https://youtu.be/QDia3e12czc?si=6RTzTQ9GuPi5nXlQ");
+ }
+})();
+</script>
+ 
+
+<html lang="zh-TW" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>千恋＊万花機器人</title>
+  <link rel="icon" type="image/png" href="https://images-ext-1.discordapp.net/external/qedYzKKm-vM-qF5sOOs411o40ZRV7iJqPh6niCeSyFo/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1379034361579438161/415a24c2ad4b19048f120dd9089e55f4.png?format=webp&quality=lossless" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    .penalty-duration {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4em;
+      margin-top: 0.6rem;
+      padding: 0.35em 0.85em;
+      background: var(--bg-danger);
+      border: 1px solid var(--border-danger);
+      border-radius: 6px;
+      color: var(--danger);
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    .penalty-duration-icon { font-size: 0.9em; }
+  </style>
+</head>
+<body>
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <img class="nav-logo" src="https://images-ext-1.discordapp.net/external/qedYzKKm-vM-qF5sOOs411o40ZRV7iJqPh6niCeSyFo/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1379034361579438161/415a24c2ad4b19048f120dd9089e55f4.png?format=webp&quality=lossless" alt="千恋＊万花" />
+      千恋＊万花機器人
+    </div>
+    <div class="nav-right">
+      <!-- Desktop nav links -->
+      <div class="nav-links" id="nav-links-desktop">
+        <button class="nav-btn active" data-page="home">主頁</button>
+        <button class="nav-btn" data-page="rules">使用規範</button>
+        <button class="nav-btn" onclick="window.location.href='/docs'">文檔說明</button>
+        <button class="nav-btn" data-page="status">當前狀態</button>
+        <button class="nav-btn" data-page="cooperate">合作夥伴</button>
+        <button class="nav-btn" data-page="contact">聯絡我們</button>
+      </div>
+      <a class="invite-btn-nav" href="https://discord.com/oauth2/authorize?client_id=1379034361579438161" target="_blank" rel="noopener">
+        邀請機器人
+      </a>
+      <button class="theme-toggle" id="themeToggle" aria-label="切換主題">
+        <span class="theme-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2.5 12h2M19.5 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg></span>
+      </button>
+      <!-- Mobile hamburger -->
+      <button class="hamburger-btn" id="hamburgerBtn" aria-label="選單">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <!-- Mobile dropdown menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <button class="nav-btn active" data-page="home">主頁</button>
+      <button class="nav-btn" data-page="rules">使用規範</button>
+      <button class="nav-btn" onclick="window.location.href='/docs'">文檔說明</button>
+      <button class="nav-btn" data-page="status">當前狀態</button>
+      <button class="nav-btn" data-page="cooperate">合作夥伴</button>
+      <button class="nav-btn" data-page="contact">聯絡我們</button>
+      <a class="invite-btn-nav mobile-invite" href="https://discord.com/oauth2/authorize?client_id=1379034361579438161" target="_blank" rel="noopener">
+        邀請機器人
+      </a>
+    </div>
+  </nav>
+
+  <!-- ===== PAGE: HOME ===== -->
+  <main class="page active" id="page-home">
+    <div class="hero">
+      <div class="hero-bg-blur"></div>
+      <!-- Sakura petals -->
+      <div class="sakura-container" aria-hidden="true">
+        <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+        <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+        <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+        <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-badge">Discord Bot</div>
+        <h1 class="hero-title">千恋＊万花<br /><span class="hero-title-sub">機器人</span></h1>
+        <div class="hero-divider" aria-hidden="true"><span></span><i></i><span></span></div>
+        <p class="hero-tagline">語錄、賭博、抽象、應有盡有</p>
+
+        <!-- Feature cards — scrollable anchor -->
+        <div class="hero-features" id="features-section">
+          <div class="feature-card" data-feature="quote">
+            <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 9.5c-1.4 0-2.5 1.1-2.5 2.5v1.5c0 1.4 1.1 2.5 2.5 2.5h.5v2l-2.5 2M16 9.5c-1.4 0-2.5 1.1-2.5 2.5v1.5c0 1.4 1.1 2.5 2.5 2.5h.5v2l-2.5 2"/></svg></div>
+            <div class="feature-label">發送嘎拉給木語錄</div>
+            <div class="feature-desc">隨機發送視覺小說中的精彩經典台詞，重溫感動瞬間</div>
+          </div>
+          <div class="feature-card" data-feature="casino">
+            <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="8.5" cy="8.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="8.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="8.5" cy="15.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="15.5" r="1.1" fill="currentColor" stroke="none"/></svg></div>
+            <div class="feature-label">虛擬賭博</div>
+            <div class="feature-desc">挑戰運氣，在虛擬經濟系統中大展身手</div>
+          </div>
+          <div class="feature-card" data-feature="abstract">
+            <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 4a8 8 0 1 1-6 13.3M12 8a4 4 0 1 1-3 6.7M12 12a1.2 1.2 0 1 1 0 2.4"/></svg></div>
+            <div class="feature-label">抽象互動</div>
+            <div class="feature-desc">各種出乎意料的趣味功能，讓社群充滿歡笑</div>
+          </div>
+          <div class="feature-card" data-feature="exam">
+            <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5.5" width="16" height="14.5" rx="2"/><path d="M4 9.5h16M8 3v4M16 3v4"/></svg></div>
+            <div class="feature-label">大考倒數通知</div>
+            <div class="feature-desc">會考、學測、分科等重要考試倒數提醒，讓你不錯過每一天</div>
+          </div>
+          <div class="feature-card" data-feature="marriage">
+            <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="14" r="4.5"/><circle cx="15" cy="14" r="4.5"/></svg></div>
+            <div class="feature-label">婚姻系統</div>
+            <div class="feature-desc">與心儀的成員締結虛擬婚姻，共度 Discord 上的美好時光</div>
+          </div>
+          <div class="feature-card" data-feature="achievement">
+            <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v4a5 5 0 0 1-10 0V4Z"/><path d="M7 5H4v1a4 4 0 0 0 4 4M17 5h3v1a4 4 0 0 1-4 4"/><path d="M12 13v3M9 20h6M10 17h4v3h-4z"/></svg></div>
+            <div class="feature-label">成就系統</div>
+            <div class="feature-desc">完成各種挑戰解鎖專屬成就，展現你的獨特勳章</div>
+          </div>
+          <div class="feature-card" data-feature="gay">
+            <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 17a8 8 0 0 1 16 0"/><path d="M7.5 17a4.5 4.5 0 0 1 9 0"/></svg></div>
+            <div class="feature-label">Gay 指數</div>
+            <div class="feature-desc">趣味測量你的 Gay 指數，輕鬆活絡社群氣氛</div>
+          </div>
+          <div class="feature-card" data-feature="noko">
+            <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 12 4 6v5l8 1 8-1V6l-8 6Z"/><path d="M12 12v9"/></svg></div>
+            <div class="feature-label">男娘指數</div>
+            <div class="feature-desc">測測看你的 Femboy 指數有多高，說不定你就是全群男娘王</div>
+          </div>
+        </div>
+
+        <!-- Live Firebase Stats -->
+        <div class="hero-stats" id="hero-stats">
+          <div class="hero-stat-card">
+            <div class="hero-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11 12 4l8 7"/><path d="M6 10v9h12v-9"/><path d="M10 19v-5h4v5"/></svg></div>
+            <div class="hero-stat-value" id="stat-guilds">—</div>
+            <div class="hero-stat-label">伺服器數量</div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="hero-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 19c0-2.3 1.6-4 4-4"/></svg></div>
+            <div class="hero-stat-value" id="stat-users">—</div>
+            <div class="hero-stat-label">總使用人數</div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="hero-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3 5 14h5l-1 7 8-11h-5l1-7Z"/></svg></div>
+            <div class="hero-stat-value" id="stat-commands">—</div>
+            <div class="hero-stat-label">指令使用次數</div>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <a class="cta-btn primary invite-pulse" href="https://discord.com/oauth2/authorize?client_id=1379034361579438161" target="_blank" rel="noopener">
+            立即邀請機器人
+          </a>
+          <button class="cta-btn secondary" onclick="scrollToFeatures()">了解更多功能</button>
+          <button class="cta-btn secondary" onclick="navigateTo('rules')">查看使用規範</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== FEATURES DETAIL SECTION ===== -->
+    <section class="features-detail" id="features-detail">
+      <div class="features-detail-inner">
+        <div class="fd-header">
+          <h2 class="fd-title">功能詳細介紹</h2>
+          <p class="fd-subtitle">探索千恋＊万花機器人的豐富功能</p>
+        </div>
+        <div class="fd-grid">
+
+          <div class="fd-card">
+            <div class="fd-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 9.5c-1.4 0-2.5 1.1-2.5 2.5v1.5c0 1.4 1.1 2.5 2.5 2.5h.5v2l-2.5 2M16 9.5c-1.4 0-2.5 1.1-2.5 2.5v1.5c0 1.4 1.1 2.5 2.5 2.5h.5v2l-2.5 2"/></svg></div>
+            <h3 class="fd-card-title">發送經典語錄</h3>
+            <p class="fd-card-desc">從精心整理的柚子社或其他視覺小說語錄資料庫中隨機發送經典台詞。無論是感人肺腑的告白，還是令人噴飯的搞笑對話，都在這裡等著你。使用 <code>/語錄-~</code> 系列指令或 <code>/yuzusoft</code> 指令即可召喚！</p>
+          </div>
+
+          <div class="fd-card">
+            <div class="fd-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="8.5" cy="8.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="8.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="8.5" cy="15.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="15.5" r="1.1" fill="currentColor" stroke="none"/></svg></div>
+            <h3 class="fd-card-title">虛擬賭博系統</h3>
+            <p class="fd-card-desc">完整的虛擬經濟生態，包含各式賭博遊戲（21點、10點半、喜八啦、搶銀行、百家樂）。用柚子必押注，贏取豐厚回報。公平透明的系統，嚴禁任何形式的不當行為。</p>
+          </div>
+
+          <div class="fd-card">
+            <div class="fd-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5.5" width="16" height="14.5" rx="2"/><path d="M4 9.5h16M8 3v4M16 3v4"/></svg></div>
+            <h3 class="fd-card-title">大考倒數通知</h3>
+            <p class="fd-card-desc">訂閱會考、學測、分科、統測等重要升學考試的倒數提醒。每日自動提醒，讓你清楚掌握還剩多少天，為夢想校系衝刺！</p>
+          </div>
+
+          <div class="fd-card">
+            <div class="fd-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="14" r="4.5"/><circle cx="15" cy="14" r="4.5"/></svg></div>
+            <h3 class="fd-card-title">婚姻系統</h3>
+            <p class="fd-card-desc">向心儀的伺服器成員求婚，締結虛擬婚姻關係。結婚後可享有專屬稱號與特殊互動指令，記錄你們在 Discord 上的甜蜜時光。</p>
+          </div>
+
+          <div class="fd-card">
+            <div class="fd-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v4a5 5 0 0 1-10 0V4Z"/><path d="M7 5H4v1a4 4 0 0 0 4 4M17 5h3v1a4 4 0 0 1-4 4"/><path d="M12 13v3M9 20h6M10 17h4v3h-4z"/></svg></div>
+            <h3 class="fd-card-title">成就系統</h3>
+            <p class="fd-card-desc">透過日常使用機器人的各種行為解鎖成就徽章。成就涵蓋各大功能，從語錄蒐集家到賭神，每一個成就都是你獨特歷程的見證。</p>
+          </div>
+
+          <div class="fd-card">
+            <div class="fd-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 17a8 8 0 0 1 16 0"/><path d="M7.5 17a4.5 4.5 0 0 1 9 0"/></svg></div>
+            <h3 class="fd-card-title">Gay 指數測定</h3>
+            <p class="fd-card-desc">趣味性指數測定功能，活絡社群氣氛的最佳利器。每次測出的結果都不盡相同，讓大家歡笑不斷，是下酒菜般的存在。</p>
+          </div>
+
+          <div class="fd-card">
+            <div class="fd-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 12 4 6v5l8 1 8-1V6l-8 6Z"/><path d="M12 12v9"/></svg></div>
+            <h3 class="fd-card-title">男娘指數測定</h3>
+            <p class="fd-card-desc">測測你的男娘指數！結果完全隨機，說不定你就是伺服器裡潛藏的男娘之星。輕鬆有趣的互動功能，為社群增添歡樂。</p>
+          </div>
+
+          <div class="fd-card">
+            <div class="fd-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 4a8 8 0 1 1-6 13.3M12 8a4 4 0 1 1-3 6.7M12 12a1.2 1.2 0 1 1 0 2.4"/></svg></div>
+            <h3 class="fd-card-title">抽象互動功能</h3>
+            <p class="fd-card-desc">各種難以言喻的趣味指令，讓每次使用都充滿驚喜。持續新增中，說不定下一個新功能正是你提議的那個！</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer for home page -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <a class="footer-discord-btn" href="https://discord.gg/nNn8GsF5bA" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.033.055a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+            前往 Discord 支援群
+          </a>
+          <div class="footer-born">
+            <span class="footer-born-label">機器人已誕生</span>
+            <span class="footer-born-counter" id="bornCounter">計算中...</span>
+          </div>
+        </div>
+        <div class="footer-center">
+          <p class="footer-copy">©2026 頑固苗獨分子</p>
+        </div>
+        <div class="footer-right">
+          <div class="footer-legal">
+            <p class="footer-legal-title">法律條款</p>
+            <a href="https://murasamebot.com/docs/999-%E6%B3%95%E5%BE%8B%E6%A2%9D%E6%AC%BE/1-%E6%9C%8D%E5%8B%99%E6%A2%9D%E6%AC%BE" target="_blank" rel="noopener">服務條款</a>
+            <a href="https://murasamebot.com/docs/999-%E6%B3%95%E5%BE%8B%E6%A2%9D%E6%AC%BE/2-%E9%9A%B1%E7%A7%81%E6%AC%8A%E6%94%BF%E7%AD%96" target="_blank" rel="noopener">隱私權政策</a>
+            <a href="https://murasamebot.com/docs/999-%E6%B3%95%E5%BE%8B%E6%A2%9D%E6%AC%BE/4-%E4%BD%BF%E7%94%A8%E8%A8%B1%E5%8F%AF" target="_blank" rel="noopener">使用許可</a>
+            <a href="https://murasamebot.com/docs/999-%E6%B3%95%E5%BE%8B%E6%A2%9D%E6%AC%BE/5-%E8%AA%9E%E9%8C%84%E6%8F%90%E4%BA%A4%E7%94%B3%E8%AB%8B%E6%94%BF%E7%AD%96" target="_blank" rel="noopener">語錄提交政策</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- ===== PAGE: RULES ===== -->
+  <main class="page" id="page-rules">
+    <div class="rules-container">
+      <div class="rules-header">
+        <h1 class="rules-title">使用與遊玩守則</h1>
+        <p class="rules-subtitle">千恋＊万花機器人 · 使用規範文件</p>
+        <div class="rules-meta">
+          <span class="meta-tag">自 2026 年 5 月 1 日起生效</span>
+          <span class="meta-tag">修正日期：2026 年 6 月 18 日</span>
+          <span class="meta-tag">政策版本：26.1.2</span>
+        </div>
+      </div>
+
+      <div class="rules-content">
+
+        <!-- 序言 -->
+        <section class="rules-section">
+          <h2 class="section-title">序言</h2>
+          <div class="section-body">
+            <p>感謝您使用「千恋＊万花機器人」（以下簡稱本機器人）。本機器人致力於將視覺小說的魅力與 Discord 社群互動結合，提供包含角色互動、語錄蒐集及虛擬經濟開發等多樣化功能。</p>
+            <p>鑑於經濟系統的公平性為本機器人發展之核心，任何破壞平衡的行為均將損害全體使用者的體驗。為了維護一個公平、友善且永續的遊玩環境，並保障開發團隊的智慧財產權與整體社群利益，特制定本《千恋＊万花機器人使用與遊玩守則》（以下簡稱本守則）。</p>
+            <p>本守則特別針對虛擬經濟行為規範（如：多重帳號、非法交易、自動化濫用等）訂定嚴格之處分準則。當您開始使用本機器人、參與經濟系統、轉帳或投稿內容時，即代表您已充分閱讀、理解並同意接受本守則之所有約束。</p>
+            <p>請使用者務必恪守規範，共同維護這個屬於大家的虛擬家園。在您展開這段旅程前，請詳閱以下條款。</p>
+          </div>
+        </section>
+
+        <!-- 第一條 -->
+        <section class="rules-section">
+          <div class="section-header-row">
+            <span class="article-number">第一條</span>
+            <h2 class="section-title">禁止對本機器人做出不利於發展之行為</h2>
+          </div>
+          <div class="danger-banner">
+            <span class="danger-icon" aria-hidden="true"></span>
+            <span>違反以下規則時，即觸犯本條規定，違者必定處以 <strong>機器人使用權停權</strong>。</span>
+          </div>
+
+          <div class="subsection">
+            <h3 class="subsection-title">1.1 總則</h3>
+            <ul class="rules-list">
+              <li><span class="rule-num">1.1.1</span><span class="rule-text">（試圖）利用機器人做違反法律、Discord TOS、Discord 開發者政策等規範；</span></li>
+              <li><span class="rule-num">1.1.2</span><span class="rule-text">（試圖）使本機器人受到 Discord 官方處分者；</span></li>
+              <li><span class="rule-num">1.1.3</span><span class="rule-text">（試圖）使本機器人受到非Discord官方但為本機器人宣傳平台處分者；</span></li>
+              <li><span class="rule-num">1.1.4</span><span class="rule-text">（試圖）濫用、破壞、盜用機器人、竊取 Token、竊取機器人資料。</span></li>
+            </ul>
+            <div class="penalty-duration">停權期限：10年 ～ 永久</div>
+          </div>
+
+          <div class="subsection">
+            <h3 class="subsection-title">1.2 漏洞通報義務</h3>
+            <ul class="rules-list">
+              <li><span class="rule-num">1.2.1</span><span class="rule-text">發現機器人服務之重大漏洞而知情不通報者；</span></li>
+              <li><span class="rule-num">1.2.2</span><span class="rule-text">利用漏洞牟取不當利益者。</span></li>
+            </ul>
+            <div class="penalty-duration">停權期限：3天 ～ 永久</div>
+          </div>
+
+          <div class="subsection">
+            <h3 class="subsection-title">1.3 尊重智慧財產權</h3>
+            <ul class="rules-list">
+              <li><span class="rule-num">1.3.1</span><span class="rule-text">未經開發團隊同意，參考、借鑑或抄襲開發團隊所屬服務條款、機器人服務或文案者；</span></li>
+              <li><span class="rule-num">1.3.2</span><span class="rule-text">未經開發團隊同意，（試圖）反編譯或逆向工程機器人的 API 或程式行為者；</span></li>
+              <li><span class="rule-num">1.3.3</span><span class="rule-text">其他侵害機器人智慧財產權之行為人；</span></li>
+              <li><span class="rule-num">1.3.4</span><span class="rule-text">經合作方通知或公告，有參考、借鑑或抄襲合作方之文案、排版或機器人，而嚴重損害合作方智慧財產權利者。</span></li>
+            </ul>
+            <div class="penalty-duration">停權期限：10年 ～ 永久</div>
+          </div>
+
+          <details class="glossary-block">
+            <summary>名詞解釋</summary>
+            <ul class="glossary-list">
+              <li><strong>1.1.1 條的法律：</strong>中華民國法律。</li>
+              <li><strong>1.1.1 條的 Discord TOS：</strong>包含 <a href="https://discord.com/terms" target="_blank" rel="noopener">Discord 服務條款</a>、<a href="https://discord.com/guidelines" target="_blank" rel="noopener">Discord 社群守則</a>。</li>
+              <li><strong>1.1.1 條的 Discord 開發者政策：</strong>包含 <a href="https://support-dev.discord.com/hc/zh-tw/articles/8562894815383" target="_blank" rel="noopener">Discord 開發人員服務條款</a>、<a href="https://support-dev.discord.com/hc/zh-tw/articles/8563934450327" target="_blank" rel="noopener">Discord 開發人員政策</a>等。</li>
+              <li><strong>1.3.1 條的開發團隊：</strong>此指僅為開發者本人有權是否同意。</li>
+              <li><strong>1.3.1 條的服務條款：</strong>機器人所有的政策文件，包含但不限於：《千恋＊万花機器人服務條款》、《千恋＊万花機器人隱私權政策》、《千恋＊万花機器人使用許可》、《千恋＊万花機器人使勇與遊玩守則》與廢止或修改前的政策文件等。</li>
+              <li><strong>1.3.1 條的文案：</strong>包含但不限於機器人宣傳文、支援群公告或介紹之文章等。</li>
+            </ul>
+          </details>
+        </section>
+
+        <!-- 第二條 -->
+        <section class="rules-section">
+          <div class="section-header-row">
+            <span class="article-number">第二條</span>
+            <h2 class="section-title">禁止不當經濟行為</h2>
+          </div>
+          <div class="danger-banner">
+            <span class="danger-icon" aria-hidden="true"></span>
+            <span>違反以下規則時，即觸犯本條規定，違者得處 <strong>機器人使用權停權</strong>、<strong>罰款</strong>、<strong>警告</strong>等。若涉及到小帳、交易雙方等，一併適用。</span>
+          </div>
+
+          <div class="subsection">
+            <h3 class="subsection-title">2.1 禁止一切形式的遊戲外交易（RMT）</h3>
+            <ul class="rules-list">
+              <li><span class="rule-num">2.1.1</span><span class="rule-text">經檢舉或主動調查（系統異常偵測等亦同），發現存在於遊戲外交易（包含但不限於：口頭開玩笑的、私訊交易、現金交易等），處機器人使用權停權並沒收所有資產。</span></li>
+              <li><span class="rule-num">2.1.2</span><span class="rule-text">本條適用於交易雙方或提出交易者。</span></li>
+              <li><span class="rule-num">2.1.3</span><span class="rule-text">經明確證據指出有遊戲外交易者，不得申訴。</span></li>
+              <li><span class="rule-num">2.1.4</span><span class="rule-text">觸犯本條者開發團隊沒有補償義務。</span></li>
+            </ul>
+            <div class="penalty-duration">停權期限：10年 ～ 永久</div>
+          </div>
+
+          <div class="subsection">
+            <h3 class="subsection-title">2.2 禁止多重帳號遊玩經濟系統</h3>
+            <ul class="rules-list">
+              <li><span class="rule-num">2.2.1</span><span class="rule-text">每位玩家遊玩本機器人經濟系統終身僅限擁有一個帳號。任何形式的操作分身帳號（小帳）遊玩經濟系統均嚴格禁止。</span></li>
+              <li><span class="rule-num">2.2.2</span><span class="rule-text">違者主帳連同小帳處機器人使用權停權並沒收所有資產。</span></li>
+              <li><span class="rule-num">2.2.3</span><span class="rule-text">經開發團隊合理懷疑行為人疑似觸犯本款規定者，亦同。</span></li>
+              <li><span class="rule-num">2.2.4</span><span class="rule-text">非經濟系統的指令不受本款規定限制。</span></li>
+            </ul>
+            <div class="penalty-duration">停權期限：3天 ～ 永久，得併科罰款自身財產 10% ～ 100% 或指定金額</div>
+          </div>
+
+          <div class="subsection">
+            <h3 class="subsection-title">2.3 禁止不公平的資源集中</h3>
+            <ul class="rules-list">
+              <li><span class="rule-num">2.3.1</span><span class="rule-text">禁止透過任何非公平交易的手段，將經濟系統之資源（貨幣等）單向且不對等地集中於特定帳號，包含以下範例：
+                <ul class="sub-list">
+                  <li>以各種名義長期、大量、單向無償的資源轉移於特定帳號等</li>
+                  <li>創建或利用任何小帳獲取資源，再將其轉移給主帳號。（同時違反2.2款規定）</li>
+                </ul>
+              </span></li>
+              <li><span class="rule-num">2.3.2</span><span class="rule-text">違者操作者與特定帳號處機器人使用權停權並沒收所有資產。</span></li>
+            </ul>
+            <div class="penalty-duration">停權期限：3天 ～ 永久，得併科罰款自身財產 10% ～ 100% 或指定金額</div>
+          </div>
+
+          <div class="subsection">
+            <h3 class="subsection-title">2.4 禁止自動化濫用或使用 SelfBot 操作</h3>
+            <ul class="rules-list">
+              <li><span class="rule-num">2.4.1</span><span class="rule-text">嚴禁使用自動機器人（SelfBot）、連點器、自動農場工具或任何其他自動化遊戲方式。</span></li>
+              <li><span class="rule-num">2.4.2</span><span class="rule-text">違者依情節輕重處經濟系統停權或機器人使用權停權，並沒收所有資產。</span></li>
+            </ul>
+            <div class="penalty-duration">停權期限：14天 ～ 永久，得併科罰款自身財產 10% ～ 100% 或指定金額</div>
+          </div>
+
+          <div class="subsection">
+            <h3 class="subsection-title">2.5 轉帳指令備註禁止輸入不當字詞</h3>
+            <ul class="rules-list">
+              <li><span class="rule-num">2.5.1</span><span class="rule-text">違者該轉帳交易無效，其金額強制沒收。</span></li>
+              <li><span class="rule-num">2.5.2</span><span class="rule-text">且轉帳人依情節輕重處經濟系統停權或機器人使用權停權，並沒收所有資產。</span></li>
+            </ul>
+            <div class="penalty-duration">停權期限：1天 ～ 永久，得併科罰款自身財產 10% ～ 50% 或指定金額</div>
+          </div>
+        </section>
+
+        <!-- 第三條 -->
+        <section class="rules-section">
+          <div class="section-header-row">
+            <span class="article-number">第三條</span>
+            <h2 class="section-title">禁止惡意投稿語錄行為</h2>
+          </div>
+          <div class="danger-banner">
+            <span class="danger-icon" aria-hidden="true"></span>
+            <span>違反以下規則時，即觸犯本條規定，違者必定 <strong>機器人使用權停權</strong>。並且開發團隊已處理過類似鳥事多次，違反本條者不得申訴。</span>
+          </div>
+
+          <div class="subsection">
+            <h3 class="subsection-title">3.1 禁止惡意投稿行為</h3>
+            <p class="subsection-intro">使用 <code>/語錄申請</code> 時，違反以下任一規定，即視為惡意投稿，違者必定 <strong>機器人使用權停權</strong>。</p>
+            <ul class="rules-list">
+              <li><span class="rule-num">3.1.1</span><span class="rule-text">多次申請含有H scene畫面的語錄申請者</span></li>
+              <li><span class="rule-num">3.1.2</span><span class="rule-text">申請否決後，仍屢次申請該語錄之截圖者</span></li>
+              <li><span class="rule-num">3.1.3</span><span class="rule-text">重複投稿高度相似語錄之圖片</span></li>
+              <li><span class="rule-num">3.1.4</span><span class="rule-text">利用申請語錄指令洗後台者</span></li>
+              <li><span class="rule-num">3.1.5</span><span class="rule-text">明顯投稿與視覺小說無關的語錄或圖片</span></li>
+            </ul>
+            <div class="penalty-duration">停權期限：7天 ～ 永久</div>
+          </div>
+        </section>
+
+        <!-- 第四條 -->
+        <section class="rules-section">
+          <div class="section-header-row">
+            <span class="article-number">第四條</span>
+            <h2 class="section-title">特殊行為處罰</h2>
+          </div>
+          <div class="danger-banner">
+            <span class="danger-icon" aria-hidden="true"></span>
+            <span>違反以下規則時，即觸犯本條規定，違者必定 <strong>機器人使用權停權</strong>。</span>
+          </div>
+
+          <div class="subsection">
+            <h3 class="subsection-title">4.1 支援群違規特殊處罰</h3>
+            <ul class="rules-list">
+              <li><span class="rule-num">4.1.1</span><span class="rule-text">（試圖）對機器人支援群發動鬧事或透過鬧事被停權者加入支援群；</span></li>
+              <li><span class="rule-num">4.1.2</span><span class="rule-text">違反機器人支援群群規遭到停權者；</span></li>
+              <li><span class="rule-num">4.1.3</span><span class="rule-text">觸發支援群被盜帳號偵測系統者。</span></li>
+            </ul>
+            <div class="penalty-duration">停權期限：7天 ～ 永久</div>
+          </div>
+
+          <div class="subsection">
+            <h3 class="subsection-title">4.2 惡意攻擊機器人行為特殊處罰</h3>
+            <ul class="rules-list">
+              <li><span class="rule-num">4.2.1</span><span class="rule-text">有騷擾（包含未經同意加好友）、侮辱、辱罵、造謠開發團隊或其機器人之行為或前科者；</span></li>
+              <li><span class="rule-num">4.2.2</span><span class="rule-text">頻繁私訊機器人之行為經警告後仍持續之；</span></li>
+              <li><span class="rule-num">4.2.3</span><span class="rule-text">惡意私訊機器人行為；</span></li>
+              <li><span class="rule-num">4.2.4</span><span class="rule-text">於開發者所在伺服器犯下惡意行為，經開發者評估應予以停止機器人使用權為適當者；</span></li>
+              <li><span class="rule-num">4.2.5</span><span class="rule-text">違反《千恋＊万花機器人使用許可》第二條限制部分；</span></li>
+              <li><span class="rule-num">4.2.6</span><span class="rule-text">透過炸群或其他方式惡意刷機器人紀錄後台者。</span></li>
+            </ul>
+            <div class="penalty-duration">停權期限：7天 ～ 永久</div>
+          </div>
+
+          <div class="subsection">
+            <h3 class="subsection-title">4.3 欺騙開發團隊</h3>
+            <ul class="rules-list">
+              <li><span class="rule-num">4.3.1</span><span class="rule-text">申訴提交虛假證據或作偽證；</span></li>
+              <li><span class="rule-num">4.3.2</span><span class="rule-text">申請補償時提交虛假的證據；</span></li>
+              <li><span class="rule-num">4.3.3</span><span class="rule-text">欺騙開發團隊的；</span></li>
+              <li><span class="rule-num">4.3.4</span><span class="rule-text">罰款義務人逾時未繳納者。</span></li>
+            </ul>
+            <div class="penalty-duration">停權期限：7天 ～ 永久</div>
+          </div>
+
+          <div class="subsection">
+            <h3 class="subsection-title">4.4 規避懲處</h3>
+            <ul class="rules-list">
+              <li><span class="rule-num">4.4.1</span><span class="rule-text">被停權者使用子帳戶規避機器人處罰；</span></li>
+              <li><span class="rule-num">4.4.2</span><span class="rule-text">被停權者子帳戶，經開發者確定予以預防性停權。</span></li>
+            </ul>
+            <div class="penalty-duration">停權期限：10年 ～ 永久，且主帳號的停權期限延長至永久</div>
+          </div>
+
+          <div class="subsection">
+            <h3 class="subsection-title">4.5 惡意催更</h3>
+            <ul class="rules-list">
+              <li><span class="rule-num">4.5.1</span><span class="rule-text">多次重複催促或有明確的威脅或勒索行為來要求開發者更新者。</span></li>
+            </ul>
+            <div class="penalty-duration">停權期限：1天 ～ 永久，或警告處分</div>
+          </div>
+        </section>
+
+
+
+        <!-- 附則 A -->
+        <section class="rules-section appendix">
+          <div class="section-header-row">
+            <span class="article-number appendix-tag">附則【A】</span>
+            <h2 class="section-title">處罰</h2>
+          </div>
+          <div class="subsection">
+           <ul class="rules-list">
+              <li><span class="rule-num">A.1</span><span class="rule-text">刑罰針對個人或伺服器有不同之刑罰處分：</span></li>
+            </ul>
+            
+            <h3 class="subsection-title">對個人帳號</h3>
+            <div class="penalty-grid">
+              <div class="penalty-item"><span class="penalty-name">停止機器人使用權</span><span class="penalty-desc">剝奪使用或遊玩機器人之權利</span></div>
+              <div class="penalty-item"><span class="penalty-name">經濟系統停權</span><span class="penalty-desc">剝奪遊玩經濟系統有關指令之權利</span></div>
+              <div class="penalty-item"><span class="penalty-name">機器人支援群停權</span><span class="penalty-desc">剝奪加入與留存支援群之權利</span></div>
+              <div class="penalty-item"><span class="penalty-name">沒收資產</span><span class="penalty-desc">沒收經濟系統剩餘之所有財產</span></div>
+              <div class="penalty-item"><span class="penalty-name">清空電磁紀錄</span><span class="penalty-desc">清空該帳號所有的電磁紀錄</span></div>
+              <div class="penalty-item"><span class="penalty-name">罰款</span><span class="penalty-desc">裁罰一定金額為處罰</span></div>
+              <div class="penalty-item"><span class="penalty-name">警告</span><span class="penalty-desc">對情節輕微者處警告，滿兩次者處停止機器人使用權</span></div>
+            </div>
+            <h3 class="subsection-title" style="margin-top:1.2rem;">對伺服器</h3>
+            <div class="penalty-grid">
+              <div class="penalty-item"><span class="penalty-name">令機器人退出伺服器</span><span class="penalty-desc">退出指定伺服器</span></div>
+              <div class="penalty-item"><span class="penalty-name">伺服器黑名單</span><span class="penalty-desc">偵測到機器人加入黑單伺服器時自動退出</span></div>
+            </div>
+          </div>
+          <ul class="rules-list" style="margin-top:1rem;">
+            <li><span class="rule-num">A.2</span><span class="rule-text">處分執行後，開發團隊不負擔保留原始電磁紀錄以供申訴之義務。</span></li>
+            <li><span class="rule-num">A.3</span><span class="rule-text">處分執行完畢後三年內有累犯行為者，加重處罰。</span></li>
+            <li><span class="rule-num">A.4</span><span class="rule-text">刑之裁量權由開發團隊指定，各條款下面「停權期限」僅列最低停權期限與最高停權期限為供參考用。</span></li>
+          </ul>
+        </section>
+
+        <!-- 附則 B -->
+        <section class="rules-section appendix">
+          <div class="section-header-row">
+            <span class="article-number appendix-tag">附則【B】</span>
+            <h2 class="section-title">申訴</h2>
+          </div>
+          <div class="subsection">
+            <ul class="rules-list">
+              <li><span class="rule-num">B.1</span><span class="rule-text">遭受處分後，所有人無以下任一情況者，均可以申訴：
+                <ul class="sub-list">
+                  <li>處分時間已逾 14 日</li>
+                  <li>處分原因加註「不可申訴」之類關鍵字</li>
+                  <li>處分原因為本守則第 1.1、1.3.1、1.3.2、3.1、4.1.1、4.1.2、4.2（不含 4.2.4）、4.3 條款（包含其子條款）其一</li>
+                  <li>有明確證據指出違反本守則第 2.1 條款</li>
+                  <li>申訴人非當事人</li>
+                </ul>
+              </span></li>
+            <ul class="rules-list">
+              <li><span class="rule-num">B.2</span><span class="rule-text">申訴應前往機器人支援群的票務開單頻道開單申訴。</span></li>
+              <li><span class="rule-num">B.3</span><span class="rule-text">申訴時有 B.1 條款列出不可申訴之條件之一者，應駁回申訴。</span></li>
+              <li><span class="rule-num">B.4</span><span class="rule-text">開發團隊有權維持原處分、修改原處分、廢棄原處分或駁回申訴。
+                <ul class="sub-list">
+                  <li><strong>B.4.1</strong>　為了減少客服行政人員壓力，有以下情況之一的冤案申訴案件，舉證責任人為申訴當事人：
+                    <ul class="sub-list">
+                      <li>處分原因為 2.1、2.2 或 2.3 條款其一</li>
+                      <li>依據 4.2.4 條款遭到處分者</li>
+                    </ul>
+                  </li>
+                  <li><strong>B.4.2</strong>　若承認該案件行為為申訴人所行為之，則是否核准其申訴或修改原處分取決於申訴人申訴當時的態度與情節輕重程度，此申訴案件最終解釋權為開發者。</li>
+                  <li><strong>B.4.3</strong>　以下申訴理由並非正當的申訴理由，採用此原因申訴者高機率被駁回申訴：
+                    <ul class="sub-list">
+                      <li>「我不知道有這個規範」</li>
+                      <li>「這個帳號是我的兄弟姐妹」</li>
+                      <li>「我沒有做這個事情」（然後沒有附上說明或證據）</li>
+                      <li>「這個是 XXX 教唆我做的」</li>
+                      <li>「我的帳號被人盜用了！」</li>
+                      <li>「我花了很多時間／金錢，所以你不能封我」</li>
+                    </ul>
+                  </li>
+                </ul>
+              </span></li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 附則 C -->
+        <section class="rules-section appendix">
+          <div class="section-header-row">
+            <span class="article-number appendix-tag">附則【C】</span>
+            <h2 class="section-title">聲明</h2>
+          </div>
+          <ul class="rules-list">
+            <li><span class="rule-num">C.1</span><span class="rule-text">開發團隊保有解釋權與處分權；開發者保有最終解釋權、懲處最終處分權。</span></li>
+            <li><span class="rule-num">C.2</span><span class="rule-text">於機器人支援群公告之規則，與本守則具有同等效力。</span></li>
+            <li><span class="rule-num">C.3</span><span class="rule-text">使用、遊玩本機器人或有服務條款序言與第十六條【接受條款】之情形者，均視為已閱讀並且同意本守則。</span></li>
+            <li><span class="rule-num">C.4</span><span class="rule-text">本守則修正時應公告於支援群，若生效後仍符合服務條款序言與第十六條之情形者，視為無異議接受修正後守則。</span></li>
+          </ul>
+        </section>
+
+        <!-- 附則 D -->
+        <section class="rules-section appendix">
+          <div class="section-header-row">
+            <span class="article-number appendix-tag">附則【D】</span>
+            <h2 class="section-title">施行日期</h2>
+          </div>
+          <ul class="rules-list">
+            <li><span class="rule-num">D.1</span><span class="rule-text">本守則自 2026 年 5 月 1 日起施行，並同步廢止《千恋＊万花機器人服務條款》第七至十條、《千恋＊万花機器人經濟系統遊玩政策》與修正《千恋＊万花機器人語錄提交政策》第五條。</span></li>
+            <li><span class="rule-num">D.2</span><span class="rule-text">本守則生效前已作出處分，繼續適用。本守則生效後原依據服務條款處分的申訴案件適用原服務條款規定。</span></li>
+          </ul>
+        </section>
+
+      </div><!-- end rules-content -->
+    </div><!-- end rules-container -->
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <a class="footer-discord-btn" href="https://discord.gg/nNn8GsF5bA" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.033.055a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+            前往 Discord 支援群
+          </a>
+          <div class="footer-born">
+            <span class="footer-born-label">機器人已誕生</span>
+            <span class="footer-born-counter" id="bornCounter2">計算中...</span>
+          </div>
+        </div>
+        <div class="footer-center">
+          <p class="footer-copy">©2026 頑固苗獨分子</p>
+        </div>
+        <div class="footer-right">
+          <div class="footer-legal">
+            <p class="footer-legal-title">法律條款</p>
+            <a href="https://murasamebot.com/docs/999-%E6%B3%95%E5%BE%8B%E6%A2%9D%E6%AC%BE/1-%E6%9C%8D%E5%8B%99%E6%A2%9D%E6%AC%BE" target="_blank" rel="noopener">服務條款</a>
+            <a href="https://murasamebot.com/docs/999-%E6%B3%95%E5%BE%8B%E6%A2%9D%E6%AC%BE/2-%E9%9A%B1%E7%A7%81%E6%AC%8A%E6%94%BF%E7%AD%96" target="_blank" rel="noopener">隱私權政策</a>
+            <a href="https://murasamebot.com/docs/999-%E6%B3%95%E5%BE%8B%E6%A2%9D%E6%AC%BE/4-%E4%BD%BF%E7%94%A8%E8%A8%B1%E5%8F%AF" target="_blank" rel="noopener">使用許可</a>
+            <a href="https://murasamebot.com/docs/999-%E6%B3%95%E5%BE%8B%E6%A2%9D%E6%AC%BE/5-%E8%AA%9E%E9%8C%84%E6%8F%90%E4%BA%A4%E7%94%B3%E8%AB%8B%E6%94%BF%E7%AD%96" target="_blank" rel="noopener">語錄提交政策</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- ===== PAGE: COOPERATE ===== -->
+  <main class="page" id="page-cooperate">
+    <div class="coop-container">
+      <div class="coop-header">
+        <h1 class="coop-title">合作夥伴</h1>
+        <p class="coop-subtitle">與千恋＊万花機器人攜手合作的優質 Discord 社群</p>
+      </div>
+      <div class="coop-grid" id="coop-grid">
+        <!-- JS will populate this -->
+        <div class="coop-loading">
+          <div class="coop-spinner"></div>
+          <p>載入合作夥伴中...</p>
+        </div>
+      </div>
+    </div>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <a class="footer-discord-btn" href="https://discord.gg/nNn8GsF5bA" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.033.055a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+            前往 Discord 支援群
+          </a>
+          <div class="footer-born">
+            <span class="footer-born-label">機器人已誕生</span>
+            <span class="footer-born-counter" id="bornCounter3">計算中...</span>
+          </div>
+        </div>
+        <div class="footer-center">
+          <p class="footer-copy">©2026 頑固苗獨分子</p>
+        </div>
+        <div class="footer-right">
+          <div class="footer-legal">
+            <p class="footer-legal-title">法律條款</p>
+            <a href="https://murasamebot.com/docs/999-%E6%B3%95%E5%BE%8B%E6%A2%9D%E6%AC%BE/1-%E6%9C%8D%E5%8B%99%E6%A2%9D%E6%AC%BE" target="_blank" rel="noopener">服務條款</a>
+            <a href="https://murasamebot.com/docs/999-%E6%B3%95%E5%BE%8B%E6%A2%9D%E6%AC%BE/2-%E9%9A%B1%E7%A7%81%E6%AC%8A%E6%94%BF%E7%AD%96" target="_blank" rel="noopener">隱私權政策</a>
+            <a href="https://murasamebot.com/docs/999-%E6%B3%95%E5%BE%8B%E6%A2%9D%E6%AC%BE/4-%E4%BD%BF%E7%94%A8%E8%A8%B1%E5%8F%AF" target="_blank" rel="noopener">使用許可</a>
+            <a href="https://murasamebot.com/docs/999-%E6%B3%95%E5%BE%8B%E6%A2%9D%E6%AC%BE/5-%E8%AA%9E%E9%8C%84%E6%8F%90%E4%BA%A4%E7%94%B3%E8%AB%8B%E6%94%BF%E7%AD%96" target="_blank" rel="noopener">語錄提交政策</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- ===== PAGE: CONTACT ===== -->
+  <main class="page" id="page-contact">
+    <div class="contact-container">
+      <div class="contact-card">
+        <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 6h14a1.5 1.5 0 0 1 1.5 1.5v7A1.5 1.5 0 0 1 19 16H9l-4.5 4V7.5A1.5 1.5 0 0 1 5 6Z"/></svg></div>
+        <h1 class="contact-title">聯絡我們</h1>
+        <p class="contact-desc">有任何問題、建議或申訴，歡迎加入我們的 Discord 支援群，我們會盡快為您服務。</p>
+        <a class="discord-btn" href="https://discord.gg/nNn8GsF5bA" target="_blank" rel="noopener">
+          <svg class="discord-logo" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.033.055a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+          </svg>
+          加入 Discord 支援群
+        </a>
+        <p class="contact-hint">點擊上方按鈕即可加入我們的 Discord 伺服器</p>
+      </div>
+    </div>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <a class="footer-discord-btn" href="https://discord.gg/nNn8GsF5bA" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.033.055a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+            前往 Discord 支援群
+          </a>
+          <div class="footer-born">
+            <span class="footer-born-label">機器人已誕生</span>
+            <span class="footer-born-counter" id="bornCounter4">計算中...</span>
+          </div>
+        </div>
+        <div class="footer-center">
+          <p class="footer-copy">©2026 頑固苗獨分子</p>
+        </div>
+        <div class="footer-right">
+          <div class="footer-legal">
+            <p class="footer-legal-title">法律條款</p>
+            <a href="https://murasamebot.com/docs/999-%E6%B3%95%E5%BE%8B%E6%A2%9D%E6%AC%BE/1-%E6%9C%8D%E5%8B%99%E6%A2%9D%E6%AC%BE" target="_blank" rel="noopener">服務條款</a>
+            <a href="https://murasamebot.com/docs/999-%E6%B3%95%E5%BE%8B%E6%A2%9D%E6%AC%BE/2-%E9%9A%B1%E7%A7%81%E6%AC%8A%E6%94%BF%E7%AD%96" target="_blank" rel="noopener">隱私權政策</a>
+            <a href="https://murasamebot.com/docs/999-%E6%B3%95%E5%BE%8B%E6%A2%9D%E6%AC%BE/4-%E4%BD%BF%E7%94%A8%E8%A8%B1%E5%8F%AF" target="_blank" rel="noopener">使用許可</a>
+            <a href="https://murasamebot.com/docs/999-%E6%B3%95%E5%BE%8B%E6%A2%9D%E6%AC%BE/5-%E8%AA%9E%E9%8C%84%E6%8F%90%E4%BA%A4%E7%94%B3%E8%AB%8B%E6%94%BF%E7%AD%96" target="_blank" rel="noopener">語錄提交政策</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- ===== PAGE: STATUS ===== -->
+  <main class="page" id="page-status">
+    <div class="status-container">
+      <div class="status-header">
+        <div class="status-title-row">
+          <h1 class="status-title">機器人狀態</h1>
+          <div class="status-badge-wrap">
+            <span class="status-dot" id="status-dot"></span>
+            <span class="status-badge-text" id="status-badge-text">載入中...</span>
+          </div>
+        </div>
+        <div class="status-meta-row">
+          <span class="status-meta-item" id="status-last-update">最後更新：—</span>
+          <span class="status-meta-item" id="status-version">版本：—</span>
+          <span class="status-refresh-btn" id="status-refresh-btn" onclick="fetchBotStats(true)">手動更新</span>
+        </div>
+      </div>
+
+      <!-- Loading / Error state -->
+      <div class="status-loading" id="status-loading">
+        <div class="coop-spinner"></div>
+        <p>正在連線至 Firebase...</p>
+      </div>
+      <div class="status-error" id="status-error" style="display:none">
+        <span class="status-error-icon" aria-hidden="true"></span>
+        <p id="status-error-msg">無法取得資料，請稍後再試。</p>
+      </div>
+
+      <!-- Main stats -->
+      <div class="status-grid" id="status-grid" style="display:none">
+
+        <!-- Bot Identity -->
+        <div class="status-section">
+          <h2 class="status-section-title">機器人資訊</h2>
+          <div class="status-card-group">
+            <div class="status-info-card">
+              <img class="status-avatar" id="sd-avatar" src="" alt="bot avatar" />
+              <div class="status-info-body">
+                <div class="status-info-name" id="sd-name">—</div>
+                <div class="status-info-id">ID：<span id="sd-id">—</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Usage stats -->
+        <div class="status-section">
+          <h2 class="status-section-title">使用統計</h2>
+          <div class="status-tiles">
+            <div class="status-tile">
+              <div class="status-tile-val" id="sd-guilds">—</div>
+              <div class="status-tile-label">伺服器數量</div>
+            </div>
+            <div class="status-tile">
+              <div class="status-tile-val" id="sd-user-total">—</div>
+              <div class="status-tile-label">總使用人數</div>
+            </div>
+            <div class="status-tile">
+              <div class="status-tile-val" id="sd-user-guild">—</div>
+              <div class="status-tile-label">伺服器使用人數</div>
+            </div>
+            <div class="status-tile">
+              <div class="status-tile-val" id="sd-user-install">—</div>
+              <div class="status-tile-label">個人安裝人數</div>
+            </div>
+            <div class="status-tile">
+              <div class="status-tile-val" id="sd-command">—</div>
+              <div class="status-tile-label">指令使用次數</div>
+            </div>
+            <div class="status-tile">
+              <div class="status-tile-val" id="sd-command-count">—</div>
+              <div class="status-tile-label">指令數量</div>
+            </div>
+            <div class="status-tile">
+              <div class="status-tile-val" id="sd-ban-users">—</div>
+              <div class="status-tile-label">停權帳號總數</div>
+            </div>
+            <div class="status-tile">
+              <div class="status-tile-val" id="sd-ban-servers">—</div>
+              <div class="status-tile-label">黑單社群總數</div>
+            </div>
+            <div class="status-tile">
+              <div class="status-tile-val" id="sd-total-quotes">—</div>
+              <div class="status-tile-label">所有語錄總數</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="status-section">
+          <h2 class="status-section-title">經濟統計</h2>
+          <div class="status-tiles">
+            <div class="status-tile">
+              <div class="status-tile-val" id="sd-yuzu-i">—</div>
+              <div class="status-tile-label">柚子幣總發出量</div>
+            </div>
+            <div class="status-tile">
+              <div class="status-tile-val" id="sd-yuzu-b">—</div>
+              <div class="status-tile-label">柚子幣總回收量</div>
+            </div>
+            <div class="status-tile">
+              <div class="status-tile-val" id="sd-yuzu-c">—</div>
+              <div class="status-tile-label">柚子幣總流通量</div>
+            </div>
+            <div class="status-tile">
+              <div class="status-tile-val" id="sd-silly-i">—</div>
+              <div class="status-tile-label">傻幣總發出量</div>
+            </div>
+            <div class="status-tile">
+              <div class="status-tile-val" id="sd-silly-b">—</div>
+              <div class="status-tile-label">傻幣總回收量</div>
+            </div>
+            <div class="status-tile">
+              <div class="status-tile-val" id="sd-silly-c">—</div>
+              <div class="status-tile-label">傻幣總流通量</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- System stats -->
+        <div class="status-section">
+          <h2 class="status-section-title">系統資訊</h2>
+          <div class="status-rows">
+            <div class="status-row">
+              <span class="status-row-label">分片數量</span>
+              <span class="status-row-val" id="sd-shard">—</span>
+            </div>
+            <div class="status-row">
+              <span class="status-row-label">重啟次數</span>
+              <span class="status-row-val" id="sd-restart">—</span>
+            </div>
+            <div class="status-row">
+              <span class="status-row-label">備份編碼</span>
+              <span class="status-row-val" id="sd-backup">—</span>
+            </div>
+            <div class="status-row">
+              <span class="status-row-label">備份版本號</span>
+              <span class="status-row-val" id="sd-backup-ver">—</span>
+            </div>
+            <div class="status-row">
+              <span class="status-row-label">機器人版本</span>
+              <span class="status-row-val" id="sd-ver">—</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end status-grid -->
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <a class="footer-discord-btn" href="https://discord.gg/nNn8GsF5bA" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.033.055a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+            前往 Discord 支援群
+          </a>
+          <div class="footer-born">
+            <span class="footer-born-label">機器人已誕生</span>
+            <span class="footer-born-counter" id="bornCounter5">計算中...</span>
+          </div>
+        </div>
+        <div class="footer-center">
+          <p class="footer-copy">©2026 頑固苗獨分子</p>
+        </div>
+        <div class="footer-right">
+          <div class="footer-legal">
+            <p class="footer-legal-title">法律條款</p>
+            <a href="https://murasamebot.com/docs/999-%E6%B3%95%E5%BE%8B%E6%A2%9D%E6%AC%BE/1-%E6%9C%8D%E5%8B%99%E6%A2%9D%E6%AC%BE" target="_blank" rel="noopener">服務條款</a>
+            <a href="https://murasamebot.com/docs/999-%E6%B3%95%E5%BE%8B%E6%A2%9D%E6%AC%BE/2-%E9%9A%B1%E7%A7%81%E6%AC%8A%E6%94%BF%E7%AD%96" target="_blank" rel="noopener">隱私權政策</a>
+            <a href="https://murasamebot.com/docs/999-%E6%B3%95%E5%BE%8B%E6%A2%9D%E6%AC%BE/4-%E4%BD%BF%E7%94%A8%E8%A8%B1%E5%8F%AF" target="_blank" rel="noopener">使用許可</a>
+            <a href="https://murasamebot.com/docs/999-%E6%B3%95%E5%BE%8B%E6%A2%9D%E6%AC%BE/5-%E8%AA%9E%E9%8C%84%E6%8F%90%E4%BA%A4%E7%94%B3%E8%AB%8B%E6%94%BF%E7%AD%96" target="_blank" rel="noopener">語錄提交政策</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+<script src="/script.js" defer></script>
+</body>
+</html>

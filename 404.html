@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <title>重新導向中…</title>
+  <script>
+    // GitHub Pages 不支援 SPA 路由，所有找不到的路徑都會落到這裡。
+    // 我們把原本的路徑存進 sessionStorage，然後導回 docs.html，
+    // docs.html 的 INIT 會讀取 __docs_redirect__ 來決定要顯示哪份文檔。
+    (function () {
+      var path = window.location.pathname;
+      // /docs 開頭 → 導向 docs.html，由 docs.html 的 INIT 決定顯示哪份文檔
+      if (path.startsWith('/docs')) {
+        sessionStorage.setItem('__docs_redirect__', path);
+        window.location.replace('/docs.html');
+      } else {
+        // 其他 SPA 路徑（/home、/rule、/status、/cooperate、/contact 等）
+        // 把路徑存進 sessionStorage，讓 index.html 的路由恢復正確分頁
+        sessionStorage.setItem('redirect', path);
+        window.location.replace('/');
+      }
+    })();
+  </script>
+</head>
+<body>
+  <p style="font-family:sans-serif;color:#8b949e;text-align:center;padding:4rem">重新導向中…</p>
+</body>
+</html>

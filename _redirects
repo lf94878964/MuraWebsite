@@ -1,0 +1,6 @@
+/home       /  200
+/rule       /  200
+/status     /  200
+/cooperate  /  200
+/contact    /  200
+/docs/*     /docs  200
