@@ -1,5 +1,6 @@
 import { subscribe } from '../core/stats.js';
 import { animateTo, fmt } from '../core/format.js';
+import { mountReviews } from './reviews.js';
 
 export function mount(root) {
   const guilds = root.querySelector('#stat-guilds');
@@ -9,7 +10,9 @@ export function mount(root) {
   const state = root.querySelector('#live-state');
   const version = root.querySelector('#live-version');
 
-  return subscribe((data, err) => {
+  const stopReviews = mountReviews(root);
+
+  const stopStats = subscribe((data, err) => {
     if (!data) {
       if (err && state) state.textContent = '連線失敗';
       return;
@@ -23,4 +26,6 @@ export function mount(root) {
     if (state) state.textContent = online ? '運行中' : data.status || '未知';
     if (version) version.textContent = data.version ? `v${String(data.version).replace(/^v/i, '')}` : '—';
   });
+
+  return () => { stopStats(); stopReviews(); };
 }

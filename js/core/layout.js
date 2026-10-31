@@ -30,9 +30,6 @@ function bornText() {
 }
 
 function footerHTML() {
-  const startYear = 2025;
-  const currentYear = new Date().getFullYear();
-  const yearText = currentYear > startYear ? `${startYear}-${currentYear}` : `${startYear}`;
   return `
   <footer class="site-footer">
     <div class="footer-inner">
@@ -44,7 +41,7 @@ function footerHTML() {
         </div>
       </div>
       <div class="footer-center">
-        <p class="footer-copy">©${yearText} 頑固苗獨分子</p>
+        <p class="footer-copy">©2026 頑固苗獨分子</p>
       </div>
       <div class="footer-right">
         <p class="mono-label">法律條款</p>

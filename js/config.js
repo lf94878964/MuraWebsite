@@ -12,6 +12,9 @@ export const SUPPORT_URL = 'https://discord.gg/nNn8GsF5bA';
 
 export const FIREBASE_URL = 'https://murasame-5c56a-default-rtdb.firebaseio.com/bot_stats.json';
 
+// 評論資料 API（Cloudflare Worker，見 dcapi-worker/）
+export const REVIEWS_API = 'https://dcapi.murasamebot.com/reviews.json';
+
 // 機器人誕生時間：2025-06-02 09:50:13 (UTC+8)。用 Date.UTC 避免 Safari 的 ISO 字串解析問題。
 export const BORN_UTC = Date.UTC(2025, 5, 2, 1, 50, 13);
 
