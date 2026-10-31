@@ -1,0 +1,81 @@
+<section class="page page-status">
+  <div class="status-container">
+    <header class="status-header">
+      <p class="mono-label">SYSTEM STATUS</p>
+      <div class="status-title-row">
+        <h1 class="status-title">機器人狀態</h1>
+        <span class="status-badge-wrap">
+          <span class="status-dot" id="status-dot"></span>
+          <span id="status-badge-text">載入中…</span>
+        </span>
+      </div>
+      <div class="status-meta-row">
+        <span class="status-meta-item" id="status-last-update">最後更新　—</span>
+        <span class="status-meta-item" id="status-version">版本　—</span>
+        <button class="btn btn-glass btn-sm" id="status-refresh-btn" type="button">手動更新</button>
+      </div>
+    </header>
+
+    <div class="status-loading" id="status-loading">
+      <div class="spinner"></div>
+      <p>正在取得資料…</p>
+    </div>
+    <div class="status-error" id="status-error" style="display:none">
+      <span class="danger-icon" aria-hidden="true"></span>
+      <p id="status-error-msg">無法取得資料，請稍後再試。</p>
+    </div>
+
+    <div class="status-grid" id="status-grid" style="display:none">
+
+      <section class="status-section">
+        <h2 class="status-section-title">機器人資訊</h2>
+        <div class="status-info-card">
+          <img class="status-avatar" id="sd-avatar" src="" alt="" width="64" height="64" />
+          <div class="status-info-body">
+            <div class="status-info-name" id="sd-name">—</div>
+            <div class="status-info-id">ID　<span id="sd-id">—</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="status-section">
+        <h2 class="status-section-title">使用統計</h2>
+        <div class="status-tiles">
+          <div class="status-tile"><div class="status-tile-val" id="sd-guilds">—</div><div class="status-tile-label">伺服器數量</div></div>
+          <div class="status-tile"><div class="status-tile-val" id="sd-user-total">—</div><div class="status-tile-label">總使用人數</div></div>
+          <div class="status-tile"><div class="status-tile-val" id="sd-user-guild">—</div><div class="status-tile-label">伺服器使用人數</div></div>
+          <div class="status-tile"><div class="status-tile-val" id="sd-user-install">—</div><div class="status-tile-label">個人安裝人數</div></div>
+          <div class="status-tile"><div class="status-tile-val" id="sd-command">—</div><div class="status-tile-label">指令使用次數</div></div>
+          <div class="status-tile"><div class="status-tile-val" id="sd-command-count">—</div><div class="status-tile-label">指令數量</div></div>
+          <div class="status-tile"><div class="status-tile-val" id="sd-ban-users">—</div><div class="status-tile-label">停權帳號總數</div></div>
+          <div class="status-tile"><div class="status-tile-val" id="sd-ban-servers">—</div><div class="status-tile-label">黑單社群總數</div></div>
+          <div class="status-tile"><div class="status-tile-val" id="sd-total-quotes">—</div><div class="status-tile-label">所有語錄總數</div></div>
+        </div>
+      </section>
+
+      <section class="status-section">
+        <h2 class="status-section-title">經濟統計</h2>
+        <div class="status-tiles">
+          <div class="status-tile"><div class="status-tile-val" id="sd-yuzu-i">—</div><div class="status-tile-label">柚子幣總發出量</div></div>
+          <div class="status-tile"><div class="status-tile-val" id="sd-yuzu-b">—</div><div class="status-tile-label">柚子幣總回收量</div></div>
+          <div class="status-tile"><div class="status-tile-val" id="sd-yuzu-c">—</div><div class="status-tile-label">柚子幣總流通量</div></div>
+          <div class="status-tile"><div class="status-tile-val" id="sd-silly-i">—</div><div class="status-tile-label">傻幣總發出量</div></div>
+          <div class="status-tile"><div class="status-tile-val" id="sd-silly-b">—</div><div class="status-tile-label">傻幣總回收量</div></div>
+          <div class="status-tile"><div class="status-tile-val" id="sd-silly-c">—</div><div class="status-tile-label">傻幣總流通量</div></div>
+        </div>
+      </section>
+
+      <section class="status-section">
+        <h2 class="status-section-title">系統資訊</h2>
+        <div class="status-rows">
+          <div class="status-row"><span class="status-row-label">分片數量</span><span class="status-row-val" id="sd-shard">—</span></div>
+          <div class="status-row"><span class="status-row-label">重啟次數</span><span class="status-row-val" id="sd-restart">—</span></div>
+          <div class="status-row"><span class="status-row-label">備份編碼</span><span class="status-row-val" id="sd-backup">—</span></div>
+          <div class="status-row"><span class="status-row-label">備份版本號</span><span class="status-row-val" id="sd-backup-ver">—</span></div>
+          <div class="status-row"><span class="status-row-label">機器人版本</span><span class="status-row-val" id="sd-ver">—</span></div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</section>

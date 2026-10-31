@@ -1,0 +1,79 @@
+/* HOME */
+.hero {
+  position: relative; overflow: hidden;
+  min-height: calc(100vh - var(--nav-h));
+  display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr); gap: 3rem; align-items: center;
+  max-width: 1160px; margin: 0 auto; padding: 4rem 1.5rem;
+}
+/* 點陣背景 + 粉色光源，淡化到邊緣 */
+.page-home::before {
+  content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 50% at 18% 12%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%),
+    radial-gradient(circle, var(--grid-dot) 1px, transparent 1.3px) 0 0 / 26px 26px;
+  -webkit-mask-image: linear-gradient(#000 55%, transparent 100%);
+  mask-image: linear-gradient(#000 55%, transparent 100%);
+  height: 100vh;
+}
+.page-home { position: relative; }
+
+.eyebrow {
+  display: inline-flex; align-items: center; gap: .6rem;
+  font-family: var(--font-mono); font-size: .72rem; letter-spacing: .18em; color: var(--accent);
+  margin-bottom: 1.4rem;
+}
+.eyebrow-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); animation: blink 2s ease-in-out infinite; }
+@keyframes blink { 50% { opacity: .35; } }
+
+.hero-title {
+  font-size: clamp(2.8rem, 7vw, 5.2rem); font-weight: 800; line-height: 1.08; letter-spacing: -.02em;
+}
+.hero-title-sub {
+  display: block;
+  background: linear-gradient(95deg, var(--accent-hi), var(--accent) 60%, #ff5c8a);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.hero-tagline { margin: 1.4rem 0 2.2rem; font-size: clamp(1rem, 2vw, 1.2rem); color: var(--text-2); font-weight: 300; letter-spacing: .06em; }
+
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem; }
+
+.hero-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 2.4rem; max-width: 560px; }
+.hero-tags a {
+  display: inline-block; font-size: .78rem; color: var(--text-2); text-decoration: none;
+  padding: .28rem .8rem; border-radius: 99px; border: 1px solid var(--line);
+  transition: color var(--t), border-color var(--t), background var(--t);
+}
+.hero-tags a:hover { color: var(--accent); border-color: var(--accent-line); background: var(--accent-soft); }
+
+/* 右側即時面板 */
+.live-panel {
+  border-radius: 18px; padding: 1.3rem 1.4rem;
+  background: var(--glass); border: 1px solid var(--glass-line);
+  -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08), 0 20px 60px -30px var(--accent-glow);
+}
+.live-head, .live-foot { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.live-state-wrap { display: inline-flex; align-items: center; gap: .5rem; font-size: .8rem; color: var(--text-2); }
+.live-rows { margin: 1.1rem 0; }
+.live-rows > div { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding: .85rem 0; border-top: 1px solid var(--line); }
+.live-rows dt { font-size: .82rem; color: var(--text-3); }
+.live-rows dd { font-family: var(--font-mono); font-size: 1.55rem; font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; line-height: 1.1; }
+.live-foot { border-top: 1px solid var(--line); padding-top: .9rem; font-size: .78rem; color: var(--text-3); }
+.live-foot a { color: var(--text-2); text-decoration: none; }
+.live-foot a:hover { color: var(--accent); }
+
+/* 功能詳細 */
+.features { border-top: 1px solid var(--line); background: var(--bg-1); padding: 5rem 1.5rem; scroll-margin-top: var(--nav-h); }
+.features-inner { max-width: 1060px; margin: 0 auto; }
+.fd-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+.fd-card { position: relative; background: var(--bg-1); padding: 1.7rem 1.5rem 1.8rem; transition: background var(--t); }
+.fd-card:hover { background: var(--bg-2); }
+.fd-card::after { content: ''; position: absolute; left: 0; top: 0; height: 2px; width: 0; background: var(--accent); transition: width .35s var(--ease); }
+.fd-card:hover::after { width: 100%; }
+.fd-idx { font-family: var(--font-mono); font-size: .72rem; color: var(--accent); letter-spacing: .1em; }
+.fd-card h3 { margin: .7rem 0 .55rem; font-size: 1.02rem; font-weight: 700; }
+.fd-card p { font-size: .875rem; color: var(--text-2); line-height: 1.75; }
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; padding: 2.5rem 1.2rem 3rem; gap: 2rem; min-height: 0; }
+}

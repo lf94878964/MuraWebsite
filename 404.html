@@ -4,25 +4,28 @@
   <meta charset="UTF-8" />
   <title>重新導向中…</title>
   <script>
-    // GitHub Pages 不支援 SPA 路由，所有找不到的路徑都會落到這裡。
-    // 我們把原本的路徑存進 sessionStorage，然後導回 docs.html，
-    // docs.html 的 INIT 會讀取 __docs_redirect__ 來決定要顯示哪份文檔。
+    // GitHub Pages 不支援 SPA 路由，找不到的路徑都會落到這裡。
+    // 這裡把原始網址（路徑 + 查詢 + hash）存起來，再導回對應的入口頁：
+    //   /docs...  → docs.html（由 js/docs/app.js 讀取 __docs_redirect__ 決定顯示哪份文檔與章節）
+    //   其他      → index.html（由 index.html 內嵌腳本還原網址，中控依路徑切換頁面）
     (function () {
-      var path = window.location.pathname;
-      // /docs 開頭 → 導向 docs.html，由 docs.html 的 INIT 決定顯示哪份文檔
-      if (path.startsWith('/docs')) {
-        sessionStorage.setItem('__docs_redirect__', path);
-        window.location.replace('/docs.html');
-      } else {
-        // 其他 SPA 路徑（/home、/rule、/status、/cooperate、/contact 等）
-        // 把路徑存進 sessionStorage，讓 index.html 的路由恢復正確分頁
-        sessionStorage.setItem('redirect', path);
-        window.location.replace('/');
+      var path = location.pathname;
+      var full = path + location.search + location.hash;
+      try {
+        if (path.indexOf('/docs') === 0) {
+          sessionStorage.setItem('__docs_redirect__', full);
+          location.replace('/docs.html');
+        } else {
+          sessionStorage.setItem('redirect', full);
+          location.replace('/');
+        }
+      } catch (e) {
+        location.replace(path.indexOf('/docs') === 0 ? '/docs.html' : '/');
       }
     })();
   </script>
 </head>
-<body>
-  <p style="font-family:sans-serif;color:#8b949e;text-align:center;padding:4rem">重新導向中…</p>
+<body style="margin:0;background:#000;color:#6e6e76;font:14px/1.6 ui-monospace,Menlo,Consolas,monospace;display:grid;place-items:center;min-height:100vh">
+  <p>redirecting…</p>
 </body>
 </html>
