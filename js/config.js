@@ -15,6 +15,12 @@ export const FIREBASE_URL = 'https://murasame-5c56a-default-rtdb.firebaseio.com/
 // 評論資料 API（Cloudflare Worker，見 dcapi-worker/）
 export const REVIEWS_API = 'https://dcapi.murasamebot.com/reviews.json';
 
+// 訪客計數器 API（同一個 Worker，見 dcapi-worker/）
+export const VISITS_API = 'https://dcapi.murasamebot.com';
+
+// 網站網址與預設分享圖（圖片放在 /image/）。SEO 產生器與 Discord 嵌入也讀這裡。
+export const SITE_URL = 'https://murasamebot.com';
+
 // 機器人誕生時間：2025-06-02 09:50:13 (UTC+8)。用 Date.UTC 避免 Safari 的 ISO 字串解析問題。
 export const BORN_UTC = Date.UTC(2025, 5, 2, 1, 50, 13);
 
@@ -30,7 +36,11 @@ export const LEGAL = [
 export const NAV = [
   { key: 'home',      label: '主頁',     path: '/home',      spa: true },
   { key: 'rules',     label: '使用規範', path: '/rule',      spa: true },
-  { key: 'docs',      label: '文檔說明', path: '/docs',      href: '/docs.html' },
+  { key: 'docs',      label: '文檔說明', path: '/docs' },
+  { key: 'tools',     label: '小工具',   path: '/tools',     spa: true,
+    children: [
+      { key: 'military', label: '兵役計算機', desc: '身高體重與疾病判定體位', path: '/tools/military', spa: true },
+    ] },
   { key: 'status',    label: '當前狀態', path: '/status',    spa: true },
   { key: 'cooperate', label: '合作夥伴', path: '/cooperate', spa: true },
   { key: 'contact',   label: '聯絡我們', path: '/contact',   spa: true },
@@ -43,5 +53,7 @@ export const ROUTES = {
   rules:     { path: '/rule',      title: '使用規範', fragment: '/pages/rules.html',     css: '/css/rules.css',     module: null },
   status:    { path: '/status',    title: '當前狀態', fragment: '/pages/status.html',    css: '/css/status.css',    module: '/js/pages/status.js' },
   cooperate: { path: '/cooperate', title: '合作夥伴', fragment: '/pages/cooperate.html', css: '/css/cooperate.css', module: '/js/pages/cooperate.js' },
+  tools:     { path: '/tools',     title: '小工具',   fragment: '/pages/tools.html',     css: '/css/tools.css',     module: null },
+  military:  { path: '/tools/military', title: '兵役計算機', nav: 'tools', fragment: '/pages/military.html', css: '/css/military.css', module: '/js/pages/military.js' },
   contact:   { path: '/contact',   title: '聯絡我們', fragment: '/pages/contact.html',   css: '/css/contact.css',   module: null },
 };

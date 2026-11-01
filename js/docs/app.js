@@ -1,6 +1,6 @@
 // 文檔頁中控：目錄(manifest)、路由、側欄、章節目錄、錨點跳轉
 import { mountChrome } from '../core/layout.js';
-import { SITE_NAME } from '../config.js';
+import { SITE_NAME, SITE_URL } from '../config.js';
 import { toast, escapeHtml, copyText } from '../core/ui.js';
 import { renderMarkdown } from './markdown.js';
 
@@ -13,6 +13,17 @@ const scrim = $('#docsScrim');
 const fab = $('#docsFab');
 const search = $('#docsSearch');
 const progress = $('#docsProgress');
+
+/** 同步 canonical（Google 會執行 JS；Discord 等不執行的爬蟲讀的是 build-seo 產生的各篇靜態頁） */
+function syncCanonical(id) {
+  let el = document.head.querySelector('link[rel="canonical"]');
+  if (!el) {
+    el = document.createElement('link');
+    el.rel = 'canonical';
+    document.head.appendChild(el);
+  }
+  el.href = SITE_URL + docUrl(id);
+}
 
 const NAV_OFFSET = 64 + 24; // 導覽列高度 + 呼吸空間，要與 CSS 的 scroll-margin-top 一致
 
@@ -187,6 +198,7 @@ async function jumpToHeading(id, { copy = false } = {}) {
 function renderHome() {
   currentId = 'home';
   document.title = `文檔說明 — ${SITE_NAME}`;
+  syncCanonical('home');
   content.innerHTML = `
     <header class="docs-hero">
       <p class="mono-label">DOCUMENTATION</p>
@@ -282,6 +294,7 @@ async function renderDoc(id) {
     </nav>`;
 
   document.title = `${doc.title} — 文檔說明 — ${SITE_NAME}`;
+  syncCanonical(id);
   content.querySelectorAll('.doc-body img').forEach((img) => (img.loading = 'lazy'));
 
   const list = [...content.querySelectorAll('.doc-body h2, .doc-body h3, .doc-body h4')].map((el) => ({

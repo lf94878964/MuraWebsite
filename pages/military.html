@@ -1,0 +1,49 @@
+<section class="page page-military">
+  <div class="mil-wrap">
+    <header class="mil-head">
+      <p class="mono-label">TOOL / 01</p>
+      <h1>兵役計算機</h1>
+      <p class="mil-sub">依國防部《體位區分標準》修正草案（10/31 施行新制），由身高體重與疾病狀況判定常備役、替代役或免役。所有計算都在你的瀏覽器內完成，不會上傳任何資料。</p>
+    </header>
+
+    <div class="mil-grid">
+      <div class="mil-main">
+        <section class="mil-card" aria-labelledby="mil-s1">
+          <h2 id="mil-s1"><span class="mil-step">01</span>身高體重</h2>
+          <div class="mil-fields">
+            <label class="fld"><span>身高（公分 cm）</span>
+              <input id="mil-h" type="text" inputmode="decimal" autocomplete="off" placeholder="例如 170 或 170.5" maxlength="6" /></label>
+            <label class="fld"><span>體重（公斤 kg）</span>
+              <input id="mil-w" type="text" inputmode="decimal" autocomplete="off" placeholder="例如 65 或 65.5" maxlength="6" /></label>
+          </div>
+          <div id="mil-body-out" class="mil-note" aria-live="polite"></div>
+        </section>
+
+        <section class="mil-card" aria-labelledby="mil-s2">
+          <h2 id="mil-s2"><span class="mil-step">02</span>選擇疾病<small>沒有可跳過</small></h2>
+          <div class="mil-tools">
+            <input id="mil-q" type="search" autocomplete="off" placeholder="搜尋：近視、高血壓、氣喘、膝、57…（空白分隔多個關鍵字）" />
+            <select id="mil-cat" aria-label="依分類篩選"></select>
+          </div>
+          <p class="mil-count" id="mil-count"></p>
+          <div class="dz-list" id="mil-list" role="group" aria-label="疾病清單"></div>
+          <div class="dz-chosen" id="mil-chosen"></div>
+        </section>
+
+        <section class="mil-card" id="mil-forms-card" aria-labelledby="mil-s3" hidden>
+          <h2 id="mil-s3"><span class="mil-step">03</span>填寫狀況</h2>
+          <div id="mil-forms" class="fc-stack"></div>
+        </section>
+      </div>
+
+      <aside class="mil-result" aria-label="判定結果">
+        <div id="mil-out"></div>
+        <div class="mil-actions">
+          <button class="btn btn-glass btn-sm" id="mil-reset" type="button">全部重設</button>
+          <a class="btn btn-glass btn-sm" href="/docs/11-%E8%A8%88%E7%AE%97%E6%A9%9F/2-%E5%85%B5%E5%BD%B9%E8%A8%88%E7%AE%97%E6%A9%9F">使用教學</a>
+        </div>
+        <p class="mil-disclaimer">依國防部《體位區分標準》修正草案（10/31 施行新制）計算，僅供參考；實際體位以徵兵檢查醫師及體位審查結果為準。</p>
+      </aside>
+    </div>
+  </div>
+</section>

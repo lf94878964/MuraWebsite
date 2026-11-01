@@ -2,17 +2,31 @@
 import { NAV, LOGO_URL, SITE_NAME, SUPPORT_URL, LEGAL, BORN_UTC } from '../config.js';
 import { DISCORD_ICON, inviteButton, isModifiedClick } from './ui.js';
 import { getTheme, toggleTheme } from './theme.js';
+import { loadVisits, formatVisits } from './visits.js';
 
 const ICON_SUN =
   '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2.5 12h2M19.5 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>';
 const ICON_MOON =
   '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z"/></svg>';
 
-function linkHTML(item, active, spa) {
+function linkHTML(item, active, spa, mobile = false) {
   const isActive = item.key === active;
-  return (
+  const a =
     `<a class="nav-link${isActive ? ' active' : ''}" href="${item.href || item.path}" data-key="${item.key}"` +
-    `${spa && item.spa ? ' data-spa' : ''}${isActive ? ' aria-current="page"' : ''}>${item.label}</a>`
+    `${spa && item.spa ? ' data-spa' : ''}${isActive ? ' aria-current="page"' : ''}>${item.label}</a>`;
+  if (!item.children) return a;
+
+  const kids = item.children
+    .map(
+      (c) =>
+        `<a class="nav-sub" role="menuitem" href="${c.href || c.path}" data-key="${c.key}"${spa && c.spa ? ' data-spa' : ''}>` +
+        `<span class="nav-sub-name">${c.label}</span>${c.desc ? `<span class="nav-sub-desc">${c.desc}</span>` : ''}</a>`
+    )
+    .join('');
+  if (mobile) return `${a}<div class="nav-sub-list">${kids}</div>`;
+  return (
+    `<div class="nav-item has-menu">${a}` +
+    `<div class="nav-menu glass" role="menu" aria-label="${item.label}">${kids}</div></div>`
   );
 }
 
@@ -45,6 +59,8 @@ function footerHTML() {
       </div>
       <div class="footer-center">
         <p class="footer-copy">©${yearText} 頑固苗獨分子</p>
+        <p class="footer-rights">All Rights Reserved.</p>
+        <p class="footer-visits"><span class="mono-label">累計造訪</span> <span class="visit-counter" aria-live="polite">—</span></p>
       </div>
       <div class="footer-right">
         <p class="mono-label">法律條款</p>
@@ -81,7 +97,7 @@ export function mountChrome({ active = null, footer = true, spa = false, onNavig
       </div>
     </nav>
     <div class="mobile-menu" id="mobileMenu">
-      ${NAV.map((n) => linkHTML(n, active, spa)).join('')}
+      ${NAV.map((n) => linkHTML(n, active, spa, true)).join('')}
       ${inviteButton('lg')}
     </div>`;
 
@@ -110,7 +126,10 @@ export function mountChrome({ active = null, footer = true, spa = false, onNavig
     if (menu.classList.contains('open') && !menu.contains(e.target) && !burger.contains(e.target)) setMenu(false);
   });
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') setMenu(false);
+    if (e.key === 'Escape') {
+      setMenu(false);
+      document.activeElement?.closest?.('.has-menu') && document.activeElement.blur();
+    }
   });
   window.addEventListener('resize', () => {
     if (window.innerWidth > 960) setMenu(false);
@@ -124,7 +143,15 @@ export function mountChrome({ active = null, footer = true, spa = false, onNavig
       e.preventDefault();
       onNavigate(a.dataset.key);
     }
-    if (a.classList.contains('nav-link') || a.classList.contains('nav-brand')) setMenu(false);
+    if (a.classList.contains('nav-link') || a.classList.contains('nav-brand') || a.classList.contains('nav-sub')) {
+      setMenu(false);
+      document.activeElement?.blur?.(); // 讓桌機的下拉選單在點擊後收起
+    }
+  });
+
+  // ---- 訪客計數（所有頁面都登記；有頁尾才顯示） ----
+  loadVisits().then((n) => {
+    document.querySelectorAll('.visit-counter').forEach((el) => (el.textContent = formatVisits(n)));
   });
 
   // ---- 頁尾計時器 ----

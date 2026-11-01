@@ -4,6 +4,7 @@
 // 頁面模組可匯出 mount(root, ctx)，並回傳清理函式（離開頁面時自動呼叫）。
 import { ROUTES, SITE_NAME } from '../config.js';
 import { inviteButton, isModifiedClick, escapeHtml } from './ui.js';
+import { applyHead } from '../seo.js';
 
 const textCache = new Map();
 const cssLoaded = new Map();
@@ -50,7 +51,8 @@ function hydrate(root) {
   });
 }
 
-function setTitle(route) {
+function setTitle(route, key) {
+  if (key && applyHead(key) !== false && document.title) return;
   document.title = route.title ? `${route.title} — ${SITE_NAME}` : SITE_NAME;
 }
 
@@ -100,7 +102,10 @@ export async function go(key, { push = true, replace = false, scroll = true } = 
     console.error(failure);
     renderError(root, failure, key);
   } else {
-    root.innerHTML = html;
+    // 靜態預渲染（scripts/build-seo.mjs 產生）的頁面第一次載入時直接沿用，避免整頁重畫閃一下
+    if (root.dataset.pre === key && currentKey === null) delete root.dataset.pre;
+    else root.innerHTML = html;
+    delete root.dataset.pre;
     hydrate(root);
     if (mod && typeof mod.mount === 'function') {
       const out = mod.mount(root, { go });
@@ -109,7 +114,7 @@ export async function go(key, { push = true, replace = false, scroll = true } = 
   }
 
   currentKey = key;
-  setTitle(route);
+  setTitle(route, key);
   if (push && key !== keyFromLocation()) history.pushState({ page: key }, '', route.path);
   else if (replace || push) history.replaceState({ page: key }, '', route.path);
   if (scroll) window.scrollTo({ top: 0, behavior: 'instant' });
