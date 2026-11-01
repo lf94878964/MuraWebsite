@@ -1,4 +1,4 @@
 # Cloudflare Pages 轉址（第一個符合的規則生效）
 /ciallo https://www.youtube.com/watch?v=QDia3e12czc 302
 /ciallo/ https://www.youtube.com/watch?v=QDia3e12czc 302
-/docs/* /docs.html 200
+/docs/* /docs 200
