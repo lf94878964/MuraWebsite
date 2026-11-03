@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#000000" />
+  <!-- seo:start -->
+  <title>計算機 — 千恋＊万花機器人</title>
+  <meta name="description" content="網頁版數學計算機，與 Discord 機器人使用同一個 SymPy 引擎：支援純量、向量、矩陣、極限、積分、級數、數論與統計函數，並附詳細計算步驟；計算在瀏覽器內完成。" />
+  <link rel="canonical" href="https://murasamebot.com/tools/calculator" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="千恋＊万花機器人" />
+  <meta property="og:locale" content="zh_TW" />
+  <meta property="og:title" content="計算機 — 千恋＊万花機器人" />
+  <meta property="og:description" content="網頁版數學計算機，與 Discord 機器人使用同一個 SymPy 引擎：支援純量、向量、矩陣、極限、積分、級數、數論與統計函數，並附詳細計算步驟；計算在瀏覽器內完成。" />
+  <meta property="og:url" content="https://murasamebot.com/tools/calculator" />
+  <meta property="og:image" content="https://images-ext-1.discordapp.net/external/qedYzKKm-vM-qF5sOOs411o40ZRV7iJqPh6niCeSyFo/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1379034361579438161/415a24c2ad4b19048f120dd9089e55f4.png?format=webp&amp;quality=lossless" />
+  <meta property="og:image:alt" content="千恋＊万花機器人" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="計算機 — 千恋＊万花機器人" />
+  <meta name="twitter:description" content="網頁版數學計算機，與 Discord 機器人使用同一個 SymPy 引擎：支援純量、向量、矩陣、極限、積分、級數、數論與統計函數，並附詳細計算步驟；計算在瀏覽器內完成。" />
+  <meta name="twitter:image" content="https://images-ext-1.discordapp.net/external/qedYzKKm-vM-qF5sOOs411o40ZRV7iJqPh6niCeSyFo/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1379034361579438161/415a24c2ad4b19048f120dd9089e55f4.png?format=webp&amp;quality=lossless" />
+  <script id="discord:component-embed" type="application/vnd.discord.component-embed+json">{"component":{"type":17,"accent_color":16743586,"components":[{"type":9,"components":[{"type":10,"content":"## 計算機\n支援純量、向量、矩陣、微積分、數論與統計函數，並附詳細計算步驟。\n-# 計算在瀏覽器內完成，與機器人 /計算機 使用同一個引擎。"}],"accessory":{"type":11,"media":{"url":"https://images-ext-1.discordapp.net/external/qedYzKKm-vM-qF5sOOs411o40ZRV7iJqPh6niCeSyFo/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1379034361579438161/415a24c2ad4b19048f120dd9089e55f4.png?format=webp\u0026quality=lossless"}}},{"type":14,"divider":true,"spacing":1},{"type":1,"components":[{"type":2,"style":5,"label":"邀請機器人","url":"https://discord.com/oauth2/authorize?client_id=1379034361579438161\u0026permissions=1127517969186039\u0026integration_type=0\u0026scope=bot+applications.commands"},{"type":2,"style":5,"label":"加入支援群","url":"https://discord.gg/nNn8GsF5bA"},{"type":2,"style":5,"label":"開啟網頁","url":"https://murasamebot.com/tools/calculator"}]}]}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"計算機","url":"https://murasamebot.com/tools/calculator","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","inLanguage":"zh-TW","description":"網頁版數學計算機，與 Discord 機器人使用同一個 SymPy 引擎：支援純量、向量、矩陣、極限、積分、級數、數論與統計函數，並附詳細計算步驟；計算在瀏覽器內完成。","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://murasamebot.com/"},{"@type":"ListItem","position":2,"name":"計算機","item":"https://murasamebot.com/tools/calculator"}]}</script>
+  <!-- seo:end -->
+  <link rel="icon" type="image/png" href="https://images-ext-1.discordapp.net/external/qedYzKKm-vM-qF5sOOs411o40ZRV7iJqPh6niCeSyFo/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1379034361579438161/415a24c2ad4b19048f120dd9089e55f4.png?format=webp&quality=lossless" />
+  <script>
+    (function () {
+      // 1. 套用主題（放在最前面，避免閃白）
+      try { document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark'); } catch (e) {}
+      // 2. 還原 404.html 暫存的原始路徑
+      try {
+        var r = sessionStorage.getItem('redirect');
+        if (r) { history.replaceState(null, '', r); sessionStorage.removeItem('redirect'); }
+      } catch (e) {}
+      // 3. 彩蛋路徑（正式轉址由 _redirects 處理；這裡是備援，例如本機預覽時）
+      var p = location.pathname.replace(/\/+$/, '');
+      if (p === '/ciallo') location.replace('https://www.youtube.com/watch?v=QDia3e12czc');
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/base.css" />
+  <!-- page-css -->
+  <link rel="stylesheet" href="/css/calculator.css" />
+</head>
+<body>
+  <div id="site-nav"></div>
+  <main id="view" aria-live="polite" data-pre="calculator"><section class="page page-calculator">
+  <div class="calc-wrap">
+    <header class="calc-head">
+      <p class="mono-label">TOOL / 02</p>
+      <h1>計算機</h1>
+      <p class="calc-sub">與機器人 <code>/計算機</code> 指令使用同一個 SymPy 引擎：支援純量、向量、矩陣，以及極限、積分、級數、數論與統計函數，並附上詳細計算步驟。所有計算都在你的瀏覽器內完成，不會上傳任何資料。</p>
+    </header>
+
+    <div class="calc-grid">
+      <div class="calc-main">
+        <section class="calc-card" aria-labelledby="calc-s1">
+          <h2 id="calc-s1"><span class="calc-step">01</span>輸入算式</h2>
+          <form id="calc-form" class="calc-form" autocomplete="off">
+            <label class="fld"><span>算式</span>
+              <input id="calc-in" type="text" spellcheck="false" autocapitalize="off" autocorrect="off" enterkeyhint="go"
+                placeholder="例如 sin(30)+2^2、[1,2,3]+[4,5,6]、lim (x→0) sin(x)/x" maxlength="400" /></label>
+            <div class="calc-keys" id="calc-keys" role="group" aria-label="常用符號"></div>
+            <div class="calc-opts">
+              <label class="fld"><span>模式</span>
+                <select id="calc-mode">
+                  <option value="">自動偵測</option>
+                  <option value="scalar">純量</option>
+                  <option value="vector">向量</option>
+                  <option value="matrix">矩陣</option>
+                  <option value="determinant">行列式</option>
+                  <option value="permanent">積和式</option>
+                  <option value="diagonal">對角線</option>
+                </select></label>
+              <label class="fld"><span>角度單位</span>
+                <select id="calc-angle">
+                  <option value="radian">弧度</option>
+                  <option value="degree">角度</option>
+                </select></label>
+            </div>
+            <label class="fld" id="calc-vars-wrap" hidden><span>替換值<em>算式中的 ? 會依序換成這些值，用逗號分隔</em></span>
+              <input id="calc-vars" type="text" spellcheck="false" placeholder="例如 1,4,5" maxlength="200" /></label>
+            <div class="calc-actions">
+              <button class="btn btn-primary" id="calc-go" type="submit">計算</button>
+              <button class="btn btn-glass" id="calc-clear" type="button">清除</button>
+              <a class="btn btn-glass" href="/docs/11-%E8%A8%88%E7%AE%97%E6%A9%9F/1-%E8%A8%88%E7%AE%97%E6%A9%9F">使用教學</a>
+              <span class="calc-engine" id="calc-engine" aria-live="polite"></span>
+            </div>
+          </form>
+          <p class="calc-hint">提示：輸入含 <code>[ ]</code> 會自動切成向量／矩陣；行列式、積和式、對角線請在「模式」選擇後直接輸入矩陣。微積分裡請寫 <code>6*x^2</code>，不要寫 <code>6x^2</code>。</p>
+        </section>
+
+        <section class="calc-card" id="calc-result-card" aria-labelledby="calc-s2" hidden>
+          <h2 id="calc-s2"><span class="calc-step">02</span>計算結果</h2>
+          <div id="calc-result" aria-live="polite"></div>
+        </section>
+      </div>
+
+      <aside class="calc-ref" aria-labelledby="calc-ref-h">
+        <div class="calc-ref-head">
+          <h2 id="calc-ref-h">可用函數<small id="calc-ref-count"></small></h2>
+          <p>點一下範例就會帶入並計算；右側的 ＋ 只把函數名稱插入輸入欄。</p>
+          <input id="calc-ref-q" type="search" autocomplete="off" spellcheck="false" placeholder="搜尋函數：sin、階乘、質數、矩陣…" />
+        </div>
+        <div class="calc-ref-list" id="calc-ref-list"></div>
+      </aside>
+    </div>
+  </div>
+</section>
+</main>
+  <div id="site-footer"></div>
+  <noscript><p style="padding:6rem 1.5rem;text-align:center">此網站需要啟用 JavaScript。</p></noscript>
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>

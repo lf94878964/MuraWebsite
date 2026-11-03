@@ -1,0 +1,1287 @@
+{
+ "groups": [
+  {
+   "id": "basic",
+   "title": "基礎與進階運算",
+   "items": [
+    {
+     "name": "sqrt(x)",
+     "alias": [
+      "√x",
+      "√(…)"
+     ],
+     "desc": "平方根 √x",
+     "ex": "sqrt(16)",
+     "out": "4"
+    },
+    {
+     "name": "isqrt(n)",
+     "desc": "整數平方根 ⌊√n⌋（僅限非負整數）",
+     "ex": "isqrt(17)",
+     "out": "4"
+    },
+    {
+     "name": "cbrt(x)",
+     "alias": [
+      "∛x"
+     ],
+     "desc": "立方根 ∛x",
+     "ex": "cbrt(27)",
+     "out": "3"
+    },
+    {
+     "name": "fourthroot(x)",
+     "alias": [
+      "∜x"
+     ],
+     "desc": "四次方根 x^(1/4)",
+     "ex": "fourthroot(81)",
+     "out": "3"
+    },
+    {
+     "name": "root(x, n)",
+     "desc": "任意次方根 x^(1/n)；n 為奇數時支援負數輸入",
+     "ex": "root(-32,5)",
+     "out": "-2"
+    },
+    {
+     "name": "pow(x, y)",
+     "alias": [
+      "x^y",
+      "x**y"
+     ],
+     "desc": "冪次 x^y",
+     "ex": "pow(2,10)",
+     "out": "1024"
+    },
+    {
+     "name": "exp(x)",
+     "desc": "自然指數 eˣ",
+     "ex": "exp(0)",
+     "out": "1"
+    },
+    {
+     "name": "abs(x)",
+     "alias": [
+      "Abs(x)",
+      "|x|"
+     ],
+     "desc": "絕對值",
+     "ex": "abs(-5)",
+     "out": "5"
+    },
+    {
+     "name": "sign(x)",
+     "alias": [
+      "sgn(x)"
+     ],
+     "desc": "正負號：x>0 為 1、x=0 為 0、x<0 為 -1",
+     "ex": "sign(-7)",
+     "out": "-1"
+    },
+    {
+     "name": "hypot(a, b)",
+     "desc": "斜邊長 √(a²+b²)",
+     "ex": "hypot(3,4)",
+     "out": "5"
+    },
+    {
+     "name": "dist(p, q)",
+     "desc": "兩點間的歐幾里得距離 √(Σ(pᵢ−qᵢ)²)",
+     "ex": "dist([0,0],[3,4])",
+     "out": "5"
+    },
+    {
+     "name": "mod(a, b)",
+     "alias": [
+      "a mod b",
+      "a%b"
+     ],
+     "desc": "取餘數",
+     "ex": "mod(10,3)",
+     "out": "1"
+    },
+    {
+     "name": "random(a, b)",
+     "desc": "在 a～b 之間隨機取一個數（精確有理數，支援小數如 random(0.5,2.5)）",
+     "ex": "random(1,6)",
+     "out": "1～6 之間的隨機整數"
+    }
+   ]
+  },
+  {
+   "id": "log",
+   "title": "對數函數",
+   "note": "注意：log(x) 只給一個引數時，底數是 10（與 log10、lg 相同）；要自然對數請用 ln(x)。",
+   "items": [
+    {
+     "name": "ln(x)",
+     "desc": "自然對數 ln x（底為 e）",
+     "ex": "ln(e)",
+     "out": "1"
+    },
+    {
+     "name": "log10(x)",
+     "alias": [
+      "lg(x)",
+      "log(x)"
+     ],
+     "desc": "以 10 為底 log₁₀x",
+     "ex": "log10(1000)",
+     "out": "3"
+    },
+    {
+     "name": "log2(x)",
+     "alias": [
+      "lb(x)"
+     ],
+     "desc": "以 2 為底 log₂x",
+     "ex": "log2(8)",
+     "out": "3"
+    },
+    {
+     "name": "log(x, y)",
+     "desc": "以 x 為底、對 y 取對數：log_x(y) = ln y ÷ ln x",
+     "ex": "log(2,8)",
+     "out": "3"
+    },
+    {
+     "name": "logN(y)",
+     "alias": [
+      "log5(25)"
+     ],
+     "desc": "底數直接寫在函數名稱後面（N 為 2 與 10 以外的整數）",
+     "ex": "log5(25)",
+     "out": "2"
+    }
+   ]
+  },
+  {
+   "id": "trig",
+   "title": "三角函數",
+   "note": "輸入角度會依「角度單位」換算（弧度／角度）；點選範例時會自動切到合適的單位。",
+   "items": [
+    {
+     "name": "sin(x)",
+     "desc": "正弦",
+     "ex": "sin(30)",
+     "angle": "degree",
+     "out": "1/2"
+    },
+    {
+     "name": "cos(x)",
+     "desc": "餘弦",
+     "ex": "cos(60)",
+     "angle": "degree",
+     "out": "1/2"
+    },
+    {
+     "name": "tan(x)",
+     "alias": [
+      "tg(x)"
+     ],
+     "desc": "正切 sin x ÷ cos x",
+     "ex": "tan(45)",
+     "angle": "degree",
+     "out": "1"
+    },
+    {
+     "name": "csc(x)",
+     "alias": [
+      "cosec(x)"
+     ],
+     "desc": "餘割 1 ÷ sin x",
+     "ex": "csc(30)",
+     "angle": "degree",
+     "out": "2"
+    },
+    {
+     "name": "sec(x)",
+     "desc": "正割 1 ÷ cos x",
+     "ex": "sec(60)",
+     "angle": "degree",
+     "out": "2"
+    },
+    {
+     "name": "cot(x)",
+     "alias": [
+      "ctg(x)"
+     ],
+     "desc": "餘切 cos x ÷ sin x",
+     "ex": "cot(45)",
+     "angle": "degree",
+     "out": "1"
+    }
+   ]
+  },
+  {
+   "id": "atrig",
+   "title": "反三角函數",
+   "note": "輸出的角度會依「角度單位」換算。",
+   "items": [
+    {
+     "name": "asin(x)",
+     "alias": [
+      "arcsin(x)"
+     ],
+     "desc": "反正弦",
+     "ex": "asin(1/2)",
+     "angle": "degree",
+     "out": "30"
+    },
+    {
+     "name": "acos(x)",
+     "alias": [
+      "arccos(x)"
+     ],
+     "desc": "反餘弦",
+     "ex": "acos(0)",
+     "angle": "degree",
+     "out": "90"
+    },
+    {
+     "name": "atan(x)",
+     "alias": [
+      "arctan(x)"
+     ],
+     "desc": "反正切",
+     "ex": "atan(1)",
+     "angle": "degree",
+     "out": "45"
+    },
+    {
+     "name": "acsc(x)",
+     "alias": [
+      "arccsc(x)"
+     ],
+     "desc": "反餘割",
+     "ex": "acsc(2)",
+     "angle": "degree",
+     "out": "30"
+    },
+    {
+     "name": "asec(x)",
+     "alias": [
+      "arcsec(x)"
+     ],
+     "desc": "反正割",
+     "ex": "asec(2)",
+     "angle": "degree",
+     "out": "60"
+    },
+    {
+     "name": "acot(x)",
+     "alias": [
+      "arccot(x)"
+     ],
+     "desc": "反餘切",
+     "ex": "acot(1)",
+     "angle": "degree",
+     "out": "45"
+    }
+   ]
+  },
+  {
+   "id": "hav",
+   "title": "半正矢族與古典三角函數",
+   "items": [
+    {
+     "name": "versin(x)",
+     "desc": "正矢 1 − cos x",
+     "ex": "versin(60)",
+     "angle": "degree",
+     "out": "1/2"
+    },
+    {
+     "name": "vercosin(x)",
+     "desc": "餘正矢 1 + cos x",
+     "ex": "vercosin(60)",
+     "angle": "degree",
+     "out": "3/2"
+    },
+    {
+     "name": "coversin(x)",
+     "desc": "餘矢 1 − sin x",
+     "ex": "coversin(30)",
+     "angle": "degree",
+     "out": "1/2"
+    },
+    {
+     "name": "covercosin(x)",
+     "desc": "1 + sin x",
+     "ex": "covercosin(30)",
+     "angle": "degree",
+     "out": "3/2"
+    },
+    {
+     "name": "haversin(x)",
+     "desc": "半正矢 (1 − cos x) ÷ 2 = sin²(x/2)",
+     "ex": "haversin(60)",
+     "angle": "degree",
+     "out": "1/4"
+    },
+    {
+     "name": "havercosin(x)",
+     "desc": "(1 + cos x) ÷ 2",
+     "ex": "havercosin(60)",
+     "angle": "degree",
+     "out": "3/4"
+    },
+    {
+     "name": "hacoversin(x)",
+     "desc": "(1 − sin x) ÷ 2",
+     "ex": "hacoversin(30)",
+     "angle": "degree",
+     "out": "1/4"
+    },
+    {
+     "name": "hacovercosin(x)",
+     "desc": "(1 + sin x) ÷ 2",
+     "ex": "hacovercosin(30)",
+     "angle": "degree",
+     "out": "3/4"
+    },
+    {
+     "name": "exsec(x)",
+     "desc": "外正割 sec x − 1",
+     "ex": "exsec(60)",
+     "angle": "degree",
+     "out": "1"
+    },
+    {
+     "name": "excsc(x)",
+     "desc": "外餘割 csc x − 1",
+     "ex": "excsc(30)",
+     "angle": "degree",
+     "out": "1"
+    },
+    {
+     "name": "crd(x)",
+     "desc": "弦長 2·sin(x/2)（單位圓上圓心角 x 所對的弦長）",
+     "ex": "crd(60)",
+     "angle": "degree",
+     "out": "1"
+    }
+   ]
+  },
+  {
+   "id": "hyper",
+   "title": "雙曲函數",
+   "note": "與角度單位無關，恆以弧度概念運算。",
+   "items": [
+    {
+     "name": "sinh(x)",
+     "desc": "雙曲正弦 (eˣ − e⁻ˣ) ÷ 2",
+     "ex": "sinh(0)",
+     "out": "0"
+    },
+    {
+     "name": "cosh(x)",
+     "desc": "雙曲餘弦 (eˣ + e⁻ˣ) ÷ 2",
+     "ex": "cosh(0)",
+     "out": "1"
+    },
+    {
+     "name": "tanh(x)",
+     "desc": "雙曲正切 sinh x ÷ cosh x",
+     "ex": "tanh(0)",
+     "out": "0"
+    },
+    {
+     "name": "coth(x)",
+     "desc": "雙曲餘切 cosh x ÷ sinh x",
+     "ex": "coth(oo)",
+     "out": "1"
+    },
+    {
+     "name": "sech(x)",
+     "desc": "雙曲正割 1 ÷ cosh x",
+     "ex": "sech(0)",
+     "out": "1"
+    },
+    {
+     "name": "csch(x)",
+     "desc": "雙曲餘割 1 ÷ sinh x",
+     "ex": "csch(oo)",
+     "out": "0"
+    },
+    {
+     "name": "asinh(x)",
+     "alias": [
+      "arsinh(x)",
+      "arcsinh(x)"
+     ],
+     "desc": "反雙曲正弦 ln(x + √(x²+1))",
+     "ex": "asinh(0)",
+     "out": "0"
+    },
+    {
+     "name": "acosh(x)",
+     "alias": [
+      "arcosh(x)",
+      "arccosh(x)"
+     ],
+     "desc": "反雙曲餘弦 ln(x + √(x²−1))，x ≥ 1",
+     "ex": "acosh(1)",
+     "out": "0"
+    },
+    {
+     "name": "atanh(x)",
+     "alias": [
+      "artanh(x)",
+      "arctanh(x)"
+     ],
+     "desc": "反雙曲正切 ½·ln((1+x) ÷ (1−x))，|x| < 1",
+     "ex": "atanh(0)",
+     "out": "0"
+    }
+   ]
+  },
+  {
+   "id": "angle",
+   "title": "角度與弧度轉換",
+   "items": [
+    {
+     "name": "degrees(x)",
+     "alias": [
+      "deg(x)"
+     ],
+     "desc": "弧度轉角度：x × 180 ÷ π",
+     "ex": "degrees(pi)",
+     "out": "180"
+    },
+    {
+     "name": "radians(x)",
+     "desc": "角度轉弧度：x × π ÷ 180（注意 rad(x) 是質因數之積，不是這個）",
+     "ex": "radians(180)",
+     "out": "π"
+    }
+   ]
+  },
+  {
+   "id": "round",
+   "title": "取整與數值處理",
+   "items": [
+    {
+     "name": "floor(x)",
+     "alias": [
+      "⌊x⌋"
+     ],
+     "desc": "向下取整",
+     "ex": "floor(-2.5)",
+     "out": "-3"
+    },
+    {
+     "name": "ceil(x)",
+     "alias": [
+      "ceiling(x)",
+      "⌈x⌉"
+     ],
+     "desc": "向上取整",
+     "ex": "ceil(2.1)",
+     "out": "3"
+    },
+    {
+     "name": "trunc(x)",
+     "desc": "截斷小數（往 0 取整）",
+     "ex": "trunc(-2.9)",
+     "out": "-2"
+    },
+    {
+     "name": "round(x)",
+     "desc": "四捨五入至整數（恰為 .5 時進到偶數：round(2.5)=2、round(3.5)=4）",
+     "ex": "round(3.7)",
+     "out": "4"
+    },
+    {
+     "name": "round(x, n)",
+     "desc": "四捨五入至小數點後 n 位",
+     "ex": "round(2.567,2)",
+     "out": "2.57"
+    }
+   ]
+  },
+  {
+   "id": "comb",
+   "title": "階乘與組合數學",
+   "items": [
+    {
+     "name": "factorial(x)",
+     "alias": [
+      "x!"
+     ],
+     "desc": "n! = n × (n−1) × … × 1，0! = 1（引數上限 500）",
+     "ex": "5!",
+     "out": "120"
+    },
+    {
+     "name": "double_factorial(x)",
+     "alias": [
+      "factorial2(x)",
+      "x!!"
+     ],
+     "desc": "雙階乘 n × (n−2) × (n−4) × …，0!! = 1",
+     "ex": "7!!",
+     "out": "105"
+    },
+    {
+     "name": "multifactorial(x, k)",
+     "alias": [
+      "x!^(k)",
+      "x!!!"
+     ],
+     "desc": "k 重階乘：n × (n−k) × (n−2k) × … 直到 ≥ 1",
+     "ex": "7!^(3)",
+     "out": "28"
+    },
+    {
+     "name": "subfactorial(x)",
+     "alias": [
+      "!x"
+     ],
+     "desc": "子階乘（錯排數）：n 個元素完全錯位的排列數",
+     "ex": "!4",
+     "out": "9"
+    },
+    {
+     "name": "H(x)",
+     "alias": [
+      "hyperfactorial(x)"
+     ],
+     "desc": "超階乘 1¹ × 2² × 3³ × … × nⁿ",
+     "ex": "H(3)",
+     "out": "108"
+    },
+    {
+     "name": "sf(x)",
+     "alias": [
+      "superfactorial(x)"
+     ],
+     "desc": "超階乘（superfactorial）1! × 2! × … × n!",
+     "ex": "sf(4)",
+     "out": "288"
+    },
+    {
+     "name": "primorial(x)",
+     "alias": [
+      "x#"
+     ],
+     "desc": "質數階乘：不超過 n 的所有質數之積",
+     "ex": "7#",
+     "out": "210"
+    },
+    {
+     "name": "comb(n, k)",
+     "alias": [
+      "C(n, k)"
+     ],
+     "desc": "組合數 C(n,k) = n! ÷ (k!(n−k)!)",
+     "ex": "C(5,2)",
+     "out": "10"
+    },
+    {
+     "name": "perm(n, k)",
+     "alias": [
+      "P(n, k)"
+     ],
+     "desc": "排列數 P(n,k) = n! ÷ (n−k)!",
+     "ex": "P(5,2)",
+     "out": "20"
+    },
+    {
+     "name": "H(n, k)",
+     "alias": [
+      "h(n, k)"
+     ],
+     "desc": "重複組合 H(n,k) = C(n+k−1, k)（H 依引數個數自動判斷）",
+     "ex": "H(3,2)",
+     "out": "6"
+    }
+   ]
+  },
+  {
+   "id": "number",
+   "title": "數論函數",
+   "items": [
+    {
+     "name": "gcd(a, b, …)",
+     "desc": "最大公因數（可多個引數）",
+     "ex": "gcd(12,18)",
+     "out": "6"
+    },
+    {
+     "name": "lcm(a, b, …)",
+     "desc": "最小公倍數（可多個引數）",
+     "ex": "lcm(4,6)",
+     "out": "12"
+    },
+    {
+     "name": "d(n)",
+     "alias": [
+      "τ(n)",
+      "divisor_count(n)"
+     ],
+     "desc": "因數個數",
+     "ex": "d(12)",
+     "out": "6"
+    },
+    {
+     "name": "σ(n)",
+     "alias": [
+      "divisor_sigma(n)"
+     ],
+     "desc": "因數和",
+     "ex": "σ(12)",
+     "out": "28"
+    },
+    {
+     "name": "σ(n, k)",
+     "alias": [
+      "divisor_sigma(n, k)"
+     ],
+     "desc": "所有因數的 k 次方和",
+     "ex": "σ(12,2)",
+     "out": "210"
+    },
+    {
+     "name": "ω(n)",
+     "alias": [
+      "prime_omega(n)"
+     ],
+     "desc": "相異質因數個數",
+     "ex": "ω(12)",
+     "out": "2"
+    },
+    {
+     "name": "Ω(n)",
+     "alias": [
+      "prime_bigomega(n)"
+     ],
+     "desc": "含重數的質因數個數",
+     "ex": "Ω(12)",
+     "out": "3"
+    },
+    {
+     "name": "rad(n)",
+     "alias": [
+      "radical(n)"
+     ],
+     "desc": "根基：相異質因數之積",
+     "ex": "rad(12)",
+     "out": "6"
+    },
+    {
+     "name": "μ(n)",
+     "alias": [
+      "mobius(n)"
+     ],
+     "desc": "莫比烏斯函數：有平方因數為 0，否則為 (−1)ᵏ",
+     "ex": "μ(30)",
+     "out": "-1"
+    },
+    {
+     "name": "λ(n)",
+     "alias": [
+      "liouville(n)"
+     ],
+     "desc": "劉維爾函數 (−1)^Ω(n)",
+     "ex": "λ(12)",
+     "out": "-1"
+    },
+    {
+     "name": "φ(n)",
+     "alias": [
+      "totient(n)"
+     ],
+     "desc": "歐拉函數：1～n 中與 n 互質的個數",
+     "ex": "φ(12)",
+     "out": "4"
+    },
+    {
+     "name": "π(n)",
+     "alias": [
+      "prime_pi(n)"
+     ],
+     "desc": "不超過 n 的質數個數",
+     "ex": "π(10)",
+     "out": "4"
+    },
+    {
+     "name": "F(n)",
+     "alias": [
+      "fib(n)",
+      "fibonacci(n)"
+     ],
+     "desc": "費波那契數列第 n 項：F(1)=F(2)=1",
+     "ex": "F(10)",
+     "out": "55"
+    }
+   ]
+  },
+  {
+   "id": "special",
+   "title": "高階／工程數學",
+   "items": [
+    {
+     "name": "gamma(x)",
+     "desc": "伽瑪函數 Γ(x)；正整數時 Γ(n) = (n−1)!",
+     "ex": "gamma(5)",
+     "out": "24"
+    },
+    {
+     "name": "erf(x)",
+     "desc": "誤差函數 (2 ÷ √π) ∫₀ˣ e^(−t²) dt",
+     "ex": "erf(0)",
+     "out": "0"
+    }
+   ]
+  },
+  {
+   "id": "stat",
+   "title": "統計函數",
+   "note": "以多個純量引數呼叫；變異數／標準差為樣本版本（分母 n−1），四分位數採線性內插。範例資料為 1, 2, 3, 4。",
+   "items": [
+    {
+     "name": "min(a, b, …)",
+     "desc": "最小值",
+     "ex": "min(1,2,3,4)",
+     "out": "1"
+    },
+    {
+     "name": "max(a, b, …)",
+     "desc": "最大值",
+     "ex": "max(1,2,3,4)",
+     "out": "4"
+    },
+    {
+     "name": "avg(a, b, …)",
+     "alias": [
+      "mean(…)"
+     ],
+     "desc": "平均數",
+     "ex": "avg(1,2,3,4)",
+     "out": "5/2"
+    },
+    {
+     "name": "med(a, b, …)",
+     "desc": "中位數",
+     "ex": "med(1,2,3,4)",
+     "out": "5/2"
+    },
+    {
+     "name": "mode(a, b, …)",
+     "desc": "眾數（可能有多個，回傳向量）",
+     "ex": "mode(1,1,2)",
+     "out": "1"
+    },
+    {
+     "name": "var(a, b, …)",
+     "desc": "樣本變異數 Σ(xᵢ−x̄)² ÷ (n−1)",
+     "ex": "var(1,2,3,4)",
+     "out": "5/3"
+    },
+    {
+     "name": "sd(a, b, …)",
+     "desc": "樣本標準差",
+     "ex": "sd(1,2,3,4)",
+     "out": "sqrt(15)/3"
+    },
+    {
+     "name": "ppmcc(x₁…xₙ, y₁…yₙ)",
+     "alias": [
+      "pccs(…)"
+     ],
+     "desc": "皮爾森相關係數；前半為 X 組、後半為 Y 組，須為偶數個",
+     "ex": "ppmcc(1,2,3,2,4,6)",
+     "out": "1"
+    },
+    {
+     "name": "zscore(a, b, …)",
+     "alias": [
+      "z-score(…)"
+     ],
+     "desc": "Z 分數 (xᵢ − x̄) ÷ s（回傳向量）",
+     "ex": "zscore(1,2,3,4)",
+     "out": "[-3*sqrt(15)/10, -sqrt(15)/10, sqrt(15)/10, 3*sqrt(15)/10]"
+    },
+    {
+     "name": "cv(a, b, …)",
+     "desc": "變異係數 s ÷ x̄",
+     "ex": "cv(1,2,3,4)",
+     "out": "2*sqrt(15)/15"
+    },
+    {
+     "name": "qd1(a, b, …)",
+     "desc": "第一四分位數 Q1（線性內插）",
+     "ex": "qd1(1,2,3,4)",
+     "out": "7/4"
+    },
+    {
+     "name": "qd2(a, b, …)",
+     "desc": "第二四分位數（中位數）",
+     "ex": "qd2(1,2,3,4)",
+     "out": "5/2"
+    },
+    {
+     "name": "qd3(a, b, …)",
+     "desc": "第三四分位數 Q3",
+     "ex": "qd3(1,2,3,4)",
+     "out": "13/4"
+    },
+    {
+     "name": "qd4(a, b, …)",
+     "desc": "第四四分位數（最大值）",
+     "ex": "qd4(1,2,3,4)",
+     "out": "4"
+    },
+    {
+     "name": "iqr(a, b, …)",
+     "desc": "四分位距 Q3 − Q1",
+     "ex": "iqr(1,2,3,4)",
+     "out": "3/2"
+    },
+    {
+     "name": "asym(a, b, …)",
+     "desc": "不對稱性（母體偏度），至少三個數值",
+     "ex": "asym(1,2,3,10)",
+     "out": "18*sqrt(2)/25"
+    }
+   ]
+  },
+  {
+   "id": "const",
+   "title": "常數",
+   "items": [
+    {
+     "name": "pi",
+     "alias": [
+      "π",
+      "𝝅"
+     ],
+     "desc": "圓周率 ≈ 3.14159…",
+     "ex": "pi",
+     "out": "π"
+    },
+    {
+     "name": "e",
+     "desc": "自然對數的底 ≈ 2.71828…",
+     "ex": "e",
+     "out": "e"
+    },
+    {
+     "name": "tau",
+     "alias": [
+      "τ"
+     ],
+     "desc": "2π（τ 後面接括號時是因數個數函數）",
+     "ex": "tau",
+     "out": "2π"
+    },
+    {
+     "name": "inf",
+     "alias": [
+      "oo",
+      "∞"
+     ],
+     "desc": "無限大",
+     "ex": "oo",
+     "out": "∞"
+    },
+    {
+     "name": "i",
+     "alias": [
+      "I",
+      "3i"
+     ],
+     "desc": "虛數單位（可寫 3+4i）",
+     "ex": "(1+2i)*(3-i)",
+     "out": "5 + 5i"
+    }
+   ]
+  },
+  {
+   "id": "calculus",
+   "title": "微積分",
+   "note": "算式主體會延伸到所在括號結束；請用 6*x^2，不要寫 6x^2。",
+   "items": [
+    {
+     "name": "lim (x→a) f(x)",
+     "alias": [
+      "limit(f, x, a)",
+      "極限"
+     ],
+     "desc": "極限；左右極限不一致會報錯",
+     "ex": "lim (x→0) sin(x)/x",
+     "out": "1"
+    },
+    {
+     "name": "lim (x→a+) f(x)",
+     "alias": [
+      "lim (x→a-) f(x)"
+     ],
+     "desc": "單側極限",
+     "ex": "lim (x→0+) 1/x",
+     "out": "∞"
+    },
+    {
+     "name": "lim (x→∞) f(x)",
+     "desc": "無窮極限",
+     "ex": "lim (x→∞) (1+1/x)^x",
+     "out": "e"
+    },
+    {
+     "name": "∫(a to b) f(x) dx",
+     "alias": [
+      "integrate(f, x, a, b)"
+     ],
+     "desc": "定積分；區間內發散會報錯",
+     "ex": "∫(0 to pi) sin(x) dx",
+     "out": "2"
+    },
+    {
+     "name": "∫ f(x) dx",
+     "alias": [
+      "integrate(f, x)"
+     ],
+     "desc": "不定積分（不附 +C）",
+     "ex": "∫ 2*x dx",
+     "out": "x^2"
+    },
+    {
+     "name": "Σ(n=a to b) f(n)",
+     "alias": [
+      "∑",
+      "summation(f, n, a, b)"
+     ],
+     "desc": "級數；上界可為 ∞（發散會報錯）",
+     "ex": "Σ(n=1 to 100) n",
+     "out": "5050"
+    },
+    {
+     "name": "Σ(n=1 to ∞) f(n)",
+     "desc": "無窮級數（需收斂）",
+     "ex": "Σ(n=0 to ∞) 1/2^n",
+     "out": "2"
+    },
+    {
+     "name": "∏(n=a to b) f(n)",
+     "alias": [
+      "product(f, n, a, b)"
+     ],
+     "desc": "連乘",
+     "ex": "∏(n=1 to 6) n",
+     "out": "720"
+    }
+   ]
+  },
+  {
+   "id": "vector",
+   "title": "向量函式",
+   "note": "輸入含 [ ] 時會自動切換成向量／矩陣模式。",
+   "items": [
+    {
+     "name": "dot(v1, v2)",
+     "desc": "內積 a₁b₁ + a₂b₂ + …",
+     "ex": "dot([1,2,3],[4,5,6])",
+     "out": "32"
+    },
+    {
+     "name": "cross(v1, v2)",
+     "desc": "外積（僅限 3 維）",
+     "ex": "cross([1,0,0],[0,1,0])",
+     "out": "[0, 0, 1]"
+    },
+    {
+     "name": "norm(v)",
+     "alias": [
+      "v.norm()"
+     ],
+     "desc": "長度 √(a₁²+…+aₙ²)",
+     "ex": "norm([3,4])",
+     "out": "5"
+    },
+    {
+     "name": "normalize(v)",
+     "desc": "單位化 a ÷ ‖a‖（零向量會報錯）",
+     "ex": "normalize([3,4])",
+     "out": "[3/5, 4/5]"
+    },
+    {
+     "name": "angle(v1, v2)",
+     "desc": "夾角 arccos(a·b ÷ (‖a‖‖b‖))，依角度單位輸出",
+     "ex": "angle([1,0],[0,1])",
+     "angle": "degree",
+     "out": "90"
+    },
+    {
+     "name": "projection(v1, v2)",
+     "desc": "v1 在 v2 上的投影向量",
+     "ex": "projection([3,4],[1,0])",
+     "out": "[3, 0]"
+    },
+    {
+     "name": "distance(v1, v2)",
+     "alias": [
+      "v1.distance(v2)"
+     ],
+     "desc": "兩點距離 ‖a−b‖",
+     "ex": "distance([0,0],[3,4])",
+     "out": "5"
+    },
+    {
+     "name": "v1 + v2",
+     "alias": [
+      "v1 - v2"
+     ],
+     "desc": "向量加減（逐元素）",
+     "ex": "[1,2,3]+[4,5,6]",
+     "out": "[5, 7, 9]"
+    },
+    {
+     "name": "k * v",
+     "desc": "純量乘法",
+     "ex": "2*[1,2,3]",
+     "out": "[2, 4, 6]"
+    },
+    {
+     "name": "v.T",
+     "desc": "轉置",
+     "ex": "[1,2,3].T",
+     "out": "[1, 2, 3]"
+    },
+    {
+     "name": "v.applyfunc(f)",
+     "desc": "對每個元素套用純量函數",
+     "ex": "[1,4,9].applyfunc(sqrt)",
+     "out": "[1, 2, 3]"
+    }
+   ]
+  },
+  {
+   "id": "matrix",
+   "title": "矩陣函式",
+   "note": "行列式、積和式、對角線可在「模式」直接選，只輸入矩陣即可。",
+   "items": [
+    {
+     "name": "A * B",
+     "alias": [
+      "A + B",
+      "A - B"
+     ],
+     "desc": "矩陣乘法（加減為逐元素）",
+     "ex": "[[1,2],[3,4]]*[[5,6],[7,8]]",
+     "out": "[[19, 22], [43, 50]]"
+    },
+    {
+     "name": "A ** n",
+     "desc": "矩陣冪（A 連乘 n 次）",
+     "ex": "[[1,2],[3,4]]**2",
+     "out": "[[7, 10], [15, 22]]"
+    },
+    {
+     "name": "A.T",
+     "desc": "轉置",
+     "ex": "[[1,2],[3,4]].T",
+     "out": "[[1, 3], [2, 4]]"
+    },
+    {
+     "name": "A.inv()",
+     "desc": "反矩陣",
+     "ex": "[[1,2],[3,4]].inv()",
+     "out": "[[-2, 1], [3/2, -1/2]]"
+    },
+    {
+     "name": "A.det()",
+     "desc": "行列式（模式選「行列式」可直接輸入矩陣）",
+     "ex": "[[1,2],[3,4]].det()",
+     "out": "-2"
+    },
+    {
+     "name": "A.per()",
+     "desc": "積和式（模式選「積和式」可直接輸入矩陣）",
+     "ex": "[[1,2],[3,4]].per()",
+     "out": "10"
+    },
+    {
+     "name": "A.diagonal()",
+     "desc": "對角線（模式選「對角線」可直接輸入矩陣）",
+     "ex": "[[1,2],[3,4]].diagonal()",
+     "out": "[1, 4]"
+    },
+    {
+     "name": "A.rank()",
+     "desc": "秩",
+     "ex": "[[1,2],[3,4]].rank()",
+     "out": "2"
+    },
+    {
+     "name": "A.trace()",
+     "desc": "跡（對角線元素和）",
+     "ex": "[[1,2],[3,4]].trace()",
+     "out": "5"
+    },
+    {
+     "name": "A.norm()",
+     "desc": "矩陣範數",
+     "ex": "[[1,2],[3,4]].norm()",
+     "out": "√30"
+    },
+    {
+     "name": "A.eigenvals()",
+     "desc": "特徵值",
+     "ex": "[[2,0],[0,3]].eigenvals()",
+     "out": "{2: 1, 3: 1}"
+    },
+    {
+     "name": "A.nullspace()",
+     "desc": "零空間（Ax = 0 的解空間）",
+     "ex": "[[1,2],[2,4]].nullspace()",
+     "out": "[-2, 1]"
+    },
+    {
+     "name": "A.columnspace()",
+     "desc": "行空間",
+     "ex": "[[1,2],[2,4]].columnspace()",
+     "out": "[1, 2]"
+    },
+    {
+     "name": "A.LUdecomposition()",
+     "desc": "LU 分解 A = LU",
+     "ex": "[[1,2],[3,4]].LUdecomposition()"
+    },
+    {
+     "name": "A.QRdecomposition()",
+     "desc": "QR 分解 A = QR",
+     "ex": "[[1,0],[0,1]].QRdecomposition()"
+    },
+    {
+     "name": "A.diagonalize()",
+     "desc": "對角化 A = PDP⁻¹",
+     "ex": "[[2,0],[0,3]].diagonalize()"
+    },
+    {
+     "name": "A.jordan_form()",
+     "desc": "若爾當標準形",
+     "ex": "[[2,0],[0,3]].jordan_form()"
+    },
+    {
+     "name": "A.solve(b)",
+     "desc": "解線性方程組 Ax = b",
+     "ex": "[[1,2],[3,4]].solve([[5],[6]])",
+     "out": "[-4, 9/2]"
+    },
+    {
+     "name": "A.pinv()",
+     "desc": "偽逆（Moore–Penrose）",
+     "ex": "[[1,2],[3,4]].pinv()",
+     "out": "[[-2, 1], [3/2, -1/2]]"
+    },
+    {
+     "name": "A.applyfunc(f)",
+     "desc": "對每個元素套用純量函數",
+     "ex": "[[1,4],[9,16]].applyfunc(sqrt)",
+     "out": "[[1, 2], [3, 4]]"
+    },
+    {
+     "name": "Matrix.eye(n)",
+     "desc": "n 階單位矩陣",
+     "ex": "Matrix.eye(2)",
+     "out": "[[1, 0], [0, 1]]"
+    },
+    {
+     "name": "Matrix.zeros(m, n)",
+     "desc": "m×n 零矩陣",
+     "ex": "Matrix.zeros(2,3)",
+     "out": "[[0, 0, 0], [0, 0, 0]]"
+    },
+    {
+     "name": "Matrix.ones(m, n)",
+     "desc": "m×n 全 1 矩陣",
+     "ex": "Matrix.ones(2,2)",
+     "out": "[[1, 1], [1, 1]]"
+    }
+   ]
+  },
+  {
+   "id": "syntax",
+   "title": "輸入符號與語法",
+   "note": "這些寫法會在計算前自動轉換，全形字元也會先轉成半形。",
+   "items": [
+    {
+     "name": "x²",
+     "alias": [
+      "x³",
+      "2¹⁰"
+     ],
+     "desc": "上標數字當次方（等同 x^2）",
+     "ex": "2¹⁰",
+     "out": "1024"
+    },
+    {
+     "name": "x°",
+     "desc": "度（°）：一律換算成弧度",
+     "ex": "90°",
+     "out": "π/2"
+    },
+    {
+     "name": "x%",
+     "desc": "百分比 x÷100（後面直接接運算符號時視為取餘數）",
+     "ex": "50%",
+     "out": "1/2"
+    },
+    {
+     "name": "½  ⅕  ¾",
+     "alias": [
+      "2½"
+     ],
+     "desc": "分數字元；整數緊接分數字元視為帶分數",
+     "ex": "2½",
+     "out": "5/2"
+    },
+    {
+     "name": "2π",
+     "alias": [
+      "3τ",
+      "2e"
+     ],
+     "desc": "數字貼著常數視為相乘",
+     "ex": "2π",
+     "out": "2π"
+    },
+    {
+     "name": "4(2)",
+     "alias": [
+      "(2)4",
+      "(1+2)(3+4)"
+     ],
+     "desc": "括號隱式乘法",
+     "ex": "(1+2)(3+4)",
+     "out": "21"
+    },
+    {
+     "name": "0x1F",
+     "alias": [
+      "0b101",
+      "0o17"
+     ],
+     "desc": "十六／二／八進位字面值，自動轉為十進位",
+     "ex": "0x1F",
+     "out": "31"
+    },
+    {
+     "name": "12,345",
+     "desc": "千分位逗號自動移除",
+     "ex": "12,345+1",
+     "out": "12346"
+    },
+    {
+     "name": "?",
+     "desc": "佔位符：依序用「替換值」欄位的數字取代（逗號分隔；範例帶入的替換值為 3,4）",
+     "ex": "1+?+?",
+     "vars": "3,4",
+     "out": "8"
+    }
+   ]
+  }
+ ]
+}

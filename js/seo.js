@@ -48,6 +48,13 @@ export const PAGES = {
     image: 'military',
     embed: '輸入身高體重並勾選疾病，依國防部《體位區分標準》修正草案（10/31 施行新制）判定常備役、替代役或免役。\n-# 僅供參考，實際體位以徵兵檢查醫師及體位審查結果為準。',
   },
+  calculator: {
+    path: '/tools/calculator',
+    title: `計算機${SEO_SUFFIX}`,
+    desc: '網頁版數學計算機，與 Discord 機器人使用同一個 SymPy 引擎：支援純量、向量、矩陣、極限、積分、級數、數論與統計函數，並附詳細計算步驟；計算在瀏覽器內完成。',
+    image: 'calculator',
+    embed: '支援純量、向量、矩陣、微積分、數論與統計函數，並附詳細計算步驟。\n-# 計算在瀏覽器內完成，與機器人 /計算機 使用同一個引擎。',
+  },
   status: {
     path: '/status',
     title: `當前狀態${SEO_SUFFIX}`,

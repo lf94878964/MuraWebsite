@@ -366,7 +366,24 @@ kbd {
 .nav-sub-name { font-size: .88rem; font-weight: 600; }
 .nav-sub-desc { font-size: .75rem; color: var(--text-3); }
 .nav-sub:hover .nav-sub-name { color: var(--accent); }
+.nav-sub.active .nav-sub-name { color: var(--accent); }
+/* 手機選單：小工具 = 連結 + 右側 v 展開鈕；子選單預設收合，按 v 才展開 */
+.mobile-menu .m-row { display: flex; align-items: stretch; gap: .3rem; }
+.mobile-menu .m-row .nav-link { flex: 1; min-width: 0; }
+.m-toggle {
+  position: relative; flex-shrink: 0; width: 46px; cursor: pointer; border-radius: 10px;
+  color: var(--text-2); background: transparent; border: 0; transition: color var(--t), background var(--t);
+}
+.m-toggle:hover, .m-toggle[aria-expanded="true"] { color: var(--accent); background: var(--accent-soft); }
+.m-toggle span {
+  position: absolute; top: 50%; left: 50%; width: 8px; height: 8px; margin: -6px 0 0 -4px;
+  border-right: 1.8px solid currentColor; border-bottom: 1.8px solid currentColor;
+  transform: rotate(45deg); transition: transform var(--t);
+}
+.m-toggle[aria-expanded="true"] span { transform: rotate(225deg) translate(-2px, -2px); }
 .mobile-menu .nav-sub-list { display: grid; gap: 2px; margin: 0 0 .3rem 1rem; padding-left: .8rem; border-left: 1px solid var(--accent-line); }
+.mobile-menu .nav-sub-list[hidden] { display: none; }
+.mobile-menu .nav-sub-list:not([hidden]) { animation: drop .2s var(--ease); }
 .mobile-menu .nav-sub { padding: .55rem .8rem; }
 
 /* ───── 頁面容器 ───── */
@@ -395,9 +412,21 @@ kbd {
 .footer-right { display: grid; gap: .3rem; justify-items: end; }
 .footer-right a { font-size: .8rem; color: var(--text-3); text-decoration: none; transition: color var(--t); }
 .footer-right a:hover { color: var(--accent); }
+/* 手機：第一列「加入支援群」靠左、「法律條款」靠右；其下置中「版權宣告 + 累計造訪」，最後是「機器人已誕生」 */
 @media (max-width: 720px) {
-  .footer-inner { grid-template-columns: 1fr; }
-  .footer-right { justify-items: start; }
+  .footer-inner {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "support legal" "center center" "born born";
+    gap: 1.4rem 1rem; align-items: start;
+  }
+  .footer-left { display: contents; }
+  .footer-left > .btn { grid-area: support; justify-self: start; }
+  .footer-right { grid-area: legal; justify-items: end; text-align: right; }
+  .footer-center { grid-area: center; padding-top: 1.2rem; border-top: 1px solid var(--line); }
+  .footer-born { grid-area: born; justify-items: center; text-align: center; }
+}
+@media (max-width: 380px) {
+  .footer-left > .btn { white-space: normal; text-align: left; line-height: 1.4; }
 }
 
 /* ───── 區塊標題（多頁共用） ───── */

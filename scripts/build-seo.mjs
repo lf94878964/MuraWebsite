@@ -164,6 +164,7 @@ const routeFiles = {
   rules: 'rule.html',
   tools: 'tools.html',
   military: 'tools/military.html',
+  calculator: 'tools/calculator.html',
   status: 'status.html',
   cooperate: 'cooperate.html',
   contact: 'contact.html',
@@ -179,6 +180,19 @@ for (const [key, file] of Object.entries(routeFiles)) {
       '@context': 'https://schema.org',
       '@type': 'WebApplication',
       name: '兵役計算機',
+      url: abs(p.path),
+      applicationCategory: 'UtilitiesApplication',
+      operatingSystem: 'Any',
+      inLanguage: 'zh-TW',
+      description: p.desc,
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'TWD' },
+    });
+  }
+  if (key === 'calculator') {
+    schema.unshift({
+      '@context': 'https://schema.org',
+      '@type': 'WebApplication',
+      name: '計算機',
       url: abs(p.path),
       applicationCategory: 'UtilitiesApplication',
       operatingSystem: 'Any',

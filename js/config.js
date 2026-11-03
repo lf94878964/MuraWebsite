@@ -37,11 +37,12 @@ export const NAV = [
   { key: 'home',      label: '主頁',     path: '/home',      spa: true },
   { key: 'rules',     label: '使用規範', path: '/rule',      spa: true },
   { key: 'docs',      label: '文檔說明', path: '/docs' },
+  { key: 'status',    label: '當前狀態', path: '/status',    spa: true },
   { key: 'tools',     label: '小工具',   path: '/tools',     spa: true,
     children: [
-      { key: 'military', label: '兵役計算機', desc: '身高體重與疾病判定體位', path: '/tools/military', spa: true },
+      { key: 'military',   label: '兵役計算機', desc: '身高體重與疾病判定體位', path: '/tools/military', spa: true },
+      { key: 'calculator', label: '計算機',     desc: '純量、向量、矩陣與微積分', path: '/tools/calculator', spa: true },
     ] },
-  { key: 'status',    label: '當前狀態', path: '/status',    spa: true },
   { key: 'cooperate', label: '合作夥伴', path: '/cooperate', spa: true },
   { key: 'contact',   label: '聯絡我們', path: '/contact',   spa: true },
 ];
@@ -55,5 +56,6 @@ export const ROUTES = {
   cooperate: { path: '/cooperate', title: '合作夥伴', fragment: '/pages/cooperate.html', css: '/css/cooperate.css', module: '/js/pages/cooperate.js' },
   tools:     { path: '/tools',     title: '小工具',   fragment: '/pages/tools.html',     css: '/css/tools.css',     module: null },
   military:  { path: '/tools/military', title: '兵役計算機', nav: 'tools', fragment: '/pages/military.html', css: '/css/military.css', module: '/js/pages/military.js' },
+  calculator: { path: '/tools/calculator', title: '計算機', nav: 'tools', fragment: '/pages/calculator.html', css: '/css/calculator.css', module: '/js/pages/calculator.js' },
   contact:   { path: '/contact',   title: '聯絡我們', fragment: '/pages/contact.html',   css: '/css/contact.css',   module: null },
 };

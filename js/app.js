@@ -9,4 +9,4 @@ const chrome = mountChrome({
   onNavigate: (key) => go(key),
 });
 
-start({ onRoute: (key) => chrome.setActive(ROUTES[key]?.nav || key) });
+start({ onRoute: (key) => chrome.setActive(ROUTES[key]?.nav || key, key) });

@@ -23,7 +23,15 @@ function linkHTML(item, active, spa, mobile = false) {
         `<span class="nav-sub-name">${c.label}</span>${c.desc ? `<span class="nav-sub-desc">${c.desc}</span>` : ''}</a>`
     )
     .join('');
-  if (mobile) return `${a}<div class="nav-sub-list">${kids}</div>`;
+  if (mobile) {
+    // 手機選單：點「小工具」文字前往總覽頁；點右邊的 v 才展開子選單（預設收合）
+    const id = `mnav-${item.key}`;
+    return (
+      `<div class="m-row">${a}` +
+      `<button class="m-toggle" type="button" aria-expanded="false" aria-controls="${id}" aria-label="展開${item.label}選單"><span aria-hidden="true"></span></button></div>` +
+      `<div class="nav-sub-list" id="${id}" hidden>${kids}</div>`
+    );
+  }
   return (
     `<div class="nav-item has-menu">${a}` +
     `<div class="nav-menu glass" role="menu" aria-label="${item.label}">${kids}</div></div>`
@@ -115,13 +123,30 @@ export function mountChrome({ active = null, footer = true, spa = false, onNavig
   // ---- 手機選單 ----
   const burger = document.getElementById('navBurger');
   const menu = document.getElementById('mobileMenu');
+  const collapseSubs = () => {
+    menu.querySelectorAll('.m-toggle').forEach((b) => {
+      b.setAttribute('aria-expanded', 'false');
+      b.setAttribute('aria-label', b.getAttribute('aria-label').replace('收合', '展開'));
+      document.getElementById(b.getAttribute('aria-controls'))?.setAttribute('hidden', '');
+    });
+  };
   const setMenu = (open) => {
+    if (!open) collapseSubs();
     menu.classList.toggle('open', open);
     burger.classList.toggle('open', open);
     burger.setAttribute('aria-expanded', String(open));
     document.body.classList.toggle('no-scroll', open);
   };
   burger.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
+  menu.addEventListener('click', (e) => {
+    const t = e.target.closest('.m-toggle');
+    if (!t) return;
+    const open = t.getAttribute('aria-expanded') !== 'true';
+    t.setAttribute('aria-expanded', String(open));
+    t.setAttribute('aria-label', t.getAttribute('aria-label').replace(open ? '展開' : '收合', open ? '收合' : '展開'));
+    const list = document.getElementById(t.getAttribute('aria-controls'));
+    if (list) list.toggleAttribute('hidden', !open);
+  });
   document.addEventListener('click', (e) => {
     if (menu.classList.contains('open') && !menu.contains(e.target) && !burger.contains(e.target)) setMenu(false);
   });
@@ -163,13 +188,14 @@ export function mountChrome({ active = null, footer = true, spa = false, onNavig
   }
 
   return {
-    setActive(key) {
+    setActive(key, sub = null) {
       document.querySelectorAll('.nav-link').forEach((el) => {
         const on = el.dataset.key === key;
         el.classList.toggle('active', on);
         if (on) el.setAttribute('aria-current', 'page');
         else el.removeAttribute('aria-current');
       });
+      document.querySelectorAll('.nav-sub').forEach((el) => el.classList.toggle('active', el.dataset.key === sub));
     },
   };
 }
