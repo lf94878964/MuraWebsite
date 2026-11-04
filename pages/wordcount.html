@@ -1,0 +1,41 @@
+<section class="page page-wordcount">
+  <div class="tk-wrap">
+    <header class="tk-head">
+      <p class="mono-label">TOOL / 03</p>
+      <h1>字數計算機</h1>
+      <p class="tk-sub">貼上或輸入文字，即時統計總字數、字元數、中文字數、英文單字、數字、標點、行數與段落等。選取一段文字時，統計會自動切換成只算選取範圍。所有計算都在你的瀏覽器內完成，不會上傳任何資料。</p>
+    </header>
+
+    <div class="tk-stack">
+      <section class="tk-card" aria-labelledby="wc-s1">
+        <h2 id="wc-s1"><span class="tk-step">01</span>輸入文字<small id="wc-scope"></small></h2>
+        <div class="tk-row" role="toolbar" aria-label="文字操作">
+          <button class="tk-chip" id="wc-copy" type="button">複製純文字</button>
+          <button class="tk-chip" id="wc-paste" type="button">貼上</button>
+          <button class="tk-chip danger" id="wc-clear" type="button">清空</button>
+          <button class="tk-chip" id="wc-undo" type="button" disabled>復原</button>
+        </div>
+        <textarea id="wc-text" rows="12" spellcheck="false" placeholder="在這裡輸入或貼上文字…"></textarea>
+        <div class="tk-row" role="toolbar" aria-label="整理文字">
+          <span class="tk-hint">整理：</span>
+          <button class="tk-chip" type="button" data-fix="spaces">清除多餘空格</button>
+          <button class="tk-chip" type="button" data-fix="blank-merge">合併連續空行</button>
+          <button class="tk-chip" type="button" data-fix="blank-all">刪除所有空行</button>
+          <button class="tk-chip" type="button" data-fix="trim">去除每行頭尾空白</button>
+        </div>
+        <div class="wc-hero" id="wc-hero" aria-live="polite"></div>
+      </section>
+
+      <section class="tk-card" aria-labelledby="wc-s2">
+        <h2 id="wc-s2"><span class="tk-step">02</span>詳細統計</h2>
+        <div id="wc-detail" class="wc-detail"></div>
+        <p class="tk-hint">「總字數」= 漢字 + 假名 + 韓文字 + 英文單字 + 數字串，算法接近 Word。字元數以 Unicode 字元計，一個 emoji 或組合字可能佔多個字元；「字形數」則是畫面上看到的單位數。</p>
+      </section>
+
+      <section class="tk-card" aria-labelledby="wc-s3">
+        <h2 id="wc-s3"><span class="tk-step">03</span>字元頻率 <small>前 10 名（不含空白）</small></h2>
+        <div id="wc-freq" class="wc-freq"></div>
+      </section>
+    </div>
+  </div>
+</section>

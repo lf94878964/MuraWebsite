@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#000000" />
+  <!-- seo:start -->
+  <title>Unix時間戳 — 千恋＊万花機器人</title>
+  <meta name="description" content="線上 Unix 時間戳轉換工具：即時顯示目前時間戳，支援秒、毫秒、微秒、奈秒與任意時區的雙向轉換，並可一鍵複製 Discord 時間戳格式。" />
+  <link rel="canonical" href="https://murasamebot.com/tools/timestamp" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="千恋＊万花機器人" />
+  <meta property="og:locale" content="zh_TW" />
+  <meta property="og:title" content="Unix時間戳 — 千恋＊万花機器人" />
+  <meta property="og:description" content="線上 Unix 時間戳轉換工具：即時顯示目前時間戳，支援秒、毫秒、微秒、奈秒與任意時區的雙向轉換，並可一鍵複製 Discord 時間戳格式。" />
+  <meta property="og:url" content="https://murasamebot.com/tools/timestamp" />
+  <meta property="og:image" content="https://images-ext-1.discordapp.net/external/qedYzKKm-vM-qF5sOOs411o40ZRV7iJqPh6niCeSyFo/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1379034361579438161/415a24c2ad4b19048f120dd9089e55f4.png?format=webp&amp;quality=lossless" />
+  <meta property="og:image:alt" content="千恋＊万花機器人" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Unix時間戳 — 千恋＊万花機器人" />
+  <meta name="twitter:description" content="線上 Unix 時間戳轉換工具：即時顯示目前時間戳，支援秒、毫秒、微秒、奈秒與任意時區的雙向轉換，並可一鍵複製 Discord 時間戳格式。" />
+  <meta name="twitter:image" content="https://images-ext-1.discordapp.net/external/qedYzKKm-vM-qF5sOOs411o40ZRV7iJqPh6niCeSyFo/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1379034361579438161/415a24c2ad4b19048f120dd9089e55f4.png?format=webp&amp;quality=lossless" />
+  <script id="discord:component-embed" type="application/vnd.discord.component-embed+json">{"component":{"type":17,"accent_color":16743586,"components":[{"type":9,"components":[{"type":10,"content":"## Unix時間戳\n即時 Unix 時間戳、日期雙向轉換，並可一鍵複製 Discord 時間戳格式。"}],"accessory":{"type":11,"media":{"url":"https://images-ext-1.discordapp.net/external/qedYzKKm-vM-qF5sOOs411o40ZRV7iJqPh6niCeSyFo/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1379034361579438161/415a24c2ad4b19048f120dd9089e55f4.png?format=webp\u0026quality=lossless"}}},{"type":14,"divider":true,"spacing":1},{"type":1,"components":[{"type":2,"style":5,"label":"邀請機器人","url":"https://discord.com/oauth2/authorize?client_id=1379034361579438161\u0026permissions=1127517969186039\u0026integration_type=0\u0026scope=bot+applications.commands"},{"type":2,"style":5,"label":"加入支援群","url":"https://discord.gg/nNn8GsF5bA"},{"type":2,"style":5,"label":"開啟網頁","url":"https://murasamebot.com/tools/timestamp"}]}]}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Unix時間戳","url":"https://murasamebot.com/tools/timestamp","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","inLanguage":"zh-TW","description":"線上 Unix 時間戳轉換工具：即時顯示目前時間戳，支援秒、毫秒、微秒、奈秒與任意時區的雙向轉換，並可一鍵複製 Discord 時間戳格式。","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://murasamebot.com/"},{"@type":"ListItem","position":2,"name":"Unix時間戳","item":"https://murasamebot.com/tools/timestamp"}]}</script>
+  <!-- seo:end -->
+  <link rel="icon" type="image/png" href="https://images-ext-1.discordapp.net/external/qedYzKKm-vM-qF5sOOs411o40ZRV7iJqPh6niCeSyFo/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1379034361579438161/415a24c2ad4b19048f120dd9089e55f4.png?format=webp&quality=lossless" />
+  <script>
+    (function () {
+      // 1. 套用主題（放在最前面，避免閃白）
+      try { document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark'); } catch (e) {}
+      // 2. 還原 404.html 暫存的原始路徑
+      try {
+        var r = sessionStorage.getItem('redirect');
+        if (r) { history.replaceState(null, '', r); sessionStorage.removeItem('redirect'); }
+      } catch (e) {}
+      // 3. 彩蛋路徑（正式轉址由 _redirects 處理；這裡是備援，例如本機預覽時）
+      var p = location.pathname.replace(/\/+$/, '');
+      if (p === '/ciallo') location.replace('https://www.youtube.com/watch?v=QDia3e12czc');
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/base.css" />
+  <!-- page-css -->
+  <link rel="stylesheet" href="/css/timestamp.css" />
+</head>
+<body>
+  <div id="site-nav"></div>
+  <main id="view" aria-live="polite" data-pre="timestamp"><section class="page page-timestamp">
+  <div class="tk-wrap">
+    <header class="tk-head">
+      <p class="mono-label">TOOL / 04</p>
+      <h1>Unix時間戳</h1>
+      <p class="tk-sub">即時顯示目前的 Unix 時間戳，並可在時間戳與日期之間雙向轉換，支援秒／毫秒／微秒／奈秒與任意時區，也能一鍵複製 Discord 時間戳格式。所有計算都在你的瀏覽器內完成。</p>
+    </header>
+
+    <div class="tk-stack">
+      <section class="tk-card" aria-labelledby="ts-s1">
+        <h2 id="ts-s1"><span class="tk-step">01</span>目前時間<small id="ts-now-tz"></small></h2>
+        <div class="ts-now">
+          <div class="ts-big"><span class="ts-lab">秒（10 位）</span><b id="ts-now-s">—</b><button class="tk-copy" type="button" data-copy-now="s">複製</button></div>
+          <div class="ts-big"><span class="ts-lab">毫秒（13 位）</span><b id="ts-now-ms">—</b><button class="tk-copy" type="button" data-copy-now="ms">複製</button></div>
+        </div>
+        <p class="ts-nowtext tk-mono" id="ts-now-text"></p>
+        <div class="tk-row">
+          <button class="tk-chip" id="ts-pause" type="button">暫停</button>
+          <button class="tk-chip" id="ts-load" type="button">帶入轉換器</button>
+          <button class="tk-chip" type="button" data-copy-now="dc">複製 Discord 格式</button>
+        </div>
+        <p class="tk-hint">快捷鍵（焦點不在輸入框時）：<kbd>N</kbd> 帶入現在　<kbd>C</kbd> 複製秒　<kbd>M</kbd> 複製毫秒　<kbd>D</kbd> 複製 Discord 格式　<kbd>空白鍵</kbd> 暫停／繼續</p>
+      </section>
+
+      <section class="tk-card" aria-labelledby="ts-s2">
+        <h2 id="ts-s2"><span class="tk-step">02</span>轉換器<small>改任一邊，另一邊會同步</small></h2>
+        <div class="tk-grid2">
+          <label class="fld"><span>時間戳<em id="ts-detect"></em></span>
+            <input id="ts-in" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="例如 1730000000 或 1730000000000" /></label>
+          <label class="fld"><span>時間戳單位</span>
+            <select id="ts-unit">
+              <option value="auto">自動判斷（輸出為秒）</option>
+              <option value="s">秒</option>
+              <option value="ms">毫秒</option>
+              <option value="us">微秒</option>
+              <option value="ns">奈秒</option>
+            </select></label>
+        </div>
+        <div class="tk-grid2">
+          <label class="fld"><span>日期時間<em>YYYY-MM-DD HH:mm:ss，可貼上含 Z 或 +08:00 的格式</em></span>
+            <span class="ts-datewrap"><input id="ts-date" type="text" autocomplete="off" spellcheck="false" placeholder="2026-11-04 06:06:00" />
+              <input id="ts-pick" type="datetime-local" step="1" aria-label="用日曆選擇日期時間" /></span></label>
+          <label class="fld"><span>時區</span>
+            <select id="ts-tz"></select></label>
+        </div>
+        <label class="fld" id="ts-tz-custom-wrap" hidden><span>其他時區（IANA 名稱）</span>
+          <input id="ts-tz-custom" type="text" list="ts-tz-list" autocomplete="off" spellcheck="false" placeholder="例如 America/Sao_Paulo" /><datalist id="ts-tz-list"></datalist></label>
+        <p class="tk-bad" id="ts-err" role="alert"></p>
+
+        <div class="ts-quick">
+          <p class="tk-hint">快速設定（依所選時區）</p>
+          <div class="tk-row" id="ts-presets">
+            <button class="tk-chip" type="button" data-p="now">現在</button>
+            <button class="tk-chip" type="button" data-p="today">今天 00:00</button>
+            <button class="tk-chip" type="button" data-p="today-end">今天 23:59:59</button>
+            <button class="tk-chip" type="button" data-p="yesterday">昨天 00:00</button>
+            <button class="tk-chip" type="button" data-p="tomorrow">明天 00:00</button>
+            <button class="tk-chip" type="button" data-p="week">本週一 00:00</button>
+            <button class="tk-chip" type="button" data-p="month">本月 1 日</button>
+            <button class="tk-chip" type="button" data-p="year">今年 1/1</button>
+            <button class="tk-chip" type="button" data-p="epoch">1970 紀元 (0)</button>
+            <button class="tk-chip" type="button" data-p="y2038">2038 年問題 (2147483647)</button>
+          </div>
+          <p class="tk-hint">加減時間</p>
+          <div class="tk-row" id="ts-adjust">
+            <button class="tk-chip" type="button" data-a="-2592000">−30 天</button>
+            <button class="tk-chip" type="button" data-a="-604800">−7 天</button>
+            <button class="tk-chip" type="button" data-a="-86400">−1 天</button>
+            <button class="tk-chip" type="button" data-a="-3600">−1 時</button>
+            <button class="tk-chip" type="button" data-a="-60">−1 分</button>
+            <button class="tk-chip" type="button" data-a="60">+1 分</button>
+            <button class="tk-chip" type="button" data-a="3600">+1 時</button>
+            <button class="tk-chip" type="button" data-a="86400">+1 天</button>
+            <button class="tk-chip" type="button" data-a="604800">+7 天</button>
+            <button class="tk-chip" type="button" data-a="2592000">+30 天</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="tk-card" aria-labelledby="ts-s3">
+        <h2 id="ts-s3"><span class="tk-step">03</span>各種格式<small>點「複製」即可</small></h2>
+        <div class="tk-list" id="ts-formats"></div>
+      </section>
+
+      <section class="tk-card" aria-labelledby="ts-s4">
+        <h2 id="ts-s4"><span class="tk-step">04</span>Discord 時間戳<small>貼進 Discord 訊息，會依每位讀者的時區與語言顯示</small></h2>
+        <div class="tk-list" id="ts-discord"></div>
+        <p class="tk-hint">預覽依你的瀏覽器語系與時區顯示，實際畫面以 Discord 為準。</p>
+      </section>
+    </div>
+  </div>
+</section>
+</main>
+  <div id="site-footer"></div>
+  <noscript><p style="padding:6rem 1.5rem;text-align:center">此網站需要啟用 JavaScript。</p></noscript>
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>

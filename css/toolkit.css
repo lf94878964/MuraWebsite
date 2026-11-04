@@ -1,0 +1,58 @@
+/* 小工具共用樣式（字數計算機、Unix 時間戳、密碼產生器）。各頁 CSS 用 @import 引入。 */
+.tk-wrap { max-width: 1040px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+.tk-head { display: grid; gap: .6rem; margin-bottom: 2rem; }
+.tk-head h1 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -.01em; line-height: 1.15; }
+.tk-sub { color: var(--text-2); max-width: 70ch; font-size: .95rem; }
+.tk-stack { display: grid; gap: 1.1rem; min-width: 0; }
+.tk-card { padding: 1.5rem; border-radius: 18px; background: var(--glass); border: 1px solid var(--glass-line); display: grid; gap: 1rem; min-width: 0; }
+.tk-card h2 { display: flex; align-items: baseline; gap: .7rem; font-size: 1.15rem; font-weight: 700; }
+.tk-card h2 small { font-size: .75rem; color: var(--text-3); font-weight: 400; }
+.tk-step { font-family: var(--font-mono); font-size: .75rem; color: var(--accent); letter-spacing: .1em; }
+
+.tk-wrap .fld { display: grid; gap: .35rem; font-size: .8rem; color: var(--text-2); min-width: 0; }
+.tk-wrap .fld em { font-style: normal; color: var(--text-3); margin-left: .5rem; }
+.tk-wrap input[type=text], .tk-wrap input[type=number], .tk-wrap input[type=search], .tk-wrap input[type=datetime-local], .tk-wrap select, .tk-wrap textarea {
+  width: 100%; font: inherit; font-size: .95rem; color: var(--text);
+  padding: .6rem .8rem; border-radius: 10px; background: var(--bg-2); border: 1px solid var(--line-2);
+  transition: border-color var(--t), box-shadow var(--t);
+}
+.tk-wrap textarea { resize: vertical; line-height: 1.7; }
+.tk-wrap input:focus-visible, .tk-wrap select:focus-visible, .tk-wrap textarea:focus-visible { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.tk-mono { font-family: var(--font-mono); }
+.tk-row { display: flex; flex-wrap: wrap; align-items: center; gap: .55rem; }
+.tk-grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .9rem; }
+.tk-hint { font-size: .78rem; color: var(--text-3); line-height: 1.75; }
+.tk-bad { font-size: .8rem; color: var(--danger); min-height: 1.2em; }
+.tk-ok { color: var(--ok); }
+
+.tk-chip {
+  font: inherit; font-size: .8rem; padding: .32rem .8rem; border-radius: 99px; cursor: pointer; white-space: nowrap;
+  color: var(--text-2); background: var(--glass); border: 1px solid var(--glass-line); transition: var(--t);
+}
+.tk-chip:hover:not(:disabled) { color: var(--accent); border-color: var(--accent-line); background: var(--accent-soft); }
+.tk-chip:disabled { opacity: .45; cursor: default; }
+.tk-chip.on { color: var(--accent); background: var(--accent-soft); border-color: var(--accent-line); }
+.tk-chip.danger:hover:not(:disabled) { color: var(--danger); border-color: var(--danger-line); background: var(--danger-soft); }
+
+.tk-copy {
+  font: inherit; font-size: .74rem; font-weight: 600; padding: .22rem .7rem; border-radius: 99px; cursor: pointer; flex-shrink: 0;
+  color: var(--accent); background: var(--accent-soft); border: 1px solid var(--accent-line); transition: var(--t);
+}
+.tk-copy:hover { background: var(--accent); color: var(--accent-ink); }
+.tk-copy.done { background: var(--accent); color: var(--accent-ink); }
+
+.tk-list { display: grid; border: 1px solid var(--line); border-radius: 12px; background: var(--bg-1); overflow: hidden; }
+.tk-item { display: grid; grid-template-columns: 8.5rem minmax(0, 1fr) auto; gap: .8rem; align-items: center; padding: .6rem .9rem; border-top: 1px solid var(--line); min-width: 0; }
+.tk-item:first-child { border-top: 0; }
+.tk-item > span:first-child { font-size: .78rem; color: var(--text-3); }
+.tk-item code { background: none; border: 0; padding: 0; color: var(--text); font-size: .86rem; word-break: break-all; }
+.tk-item .tk-pv { color: var(--text-2); font-size: .8rem; margin-left: .7rem; }
+
+@media (max-width: 560px) {
+  .tk-wrap { padding: 2rem 1rem 4rem; }
+  .tk-card { padding: 1.2rem 1rem; }
+  .tk-grid2 { grid-template-columns: 1fr; }
+  .tk-item { grid-template-columns: minmax(0, 1fr) auto; gap: .2rem .6rem; }
+  .tk-item > span:first-child { grid-column: 1 / -1; }
+  .tk-wrap input, .tk-wrap select, .tk-wrap textarea { font-size: 16px; } /* 避免 iOS 聚焦時自動放大 */
+}

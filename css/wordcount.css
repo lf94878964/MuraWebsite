@@ -1,0 +1,20 @@
+@import url('/css/toolkit.css');
+.wc-hero { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .7rem; }
+.wc-big { padding: .9rem 1rem; border-radius: 14px; background: var(--bg-1); border: 1px solid var(--line); display: grid; gap: .15rem; min-width: 0; }
+.wc-big b { font-family: var(--font-mono); font-size: clamp(1.4rem, 3.2vw, 1.9rem); font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; line-height: 1.2; overflow-wrap: anywhere; }
+.wc-big span { font-size: .76rem; color: var(--text-3); }
+.wc-detail { display: grid; gap: 1.1rem; }
+.wc-group { display: grid; gap: .5rem; }
+.wc-group h3 { font-size: .78rem; font-weight: 600; color: var(--text-3); letter-spacing: .06em; }
+.wc-cells { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: .55rem; }
+.wc-cell { display: flex; justify-content: space-between; align-items: baseline; gap: .6rem; padding: .5rem .8rem; border-radius: 10px; background: var(--bg-1); border: 1px solid var(--line); font-size: .84rem; }
+.wc-cell span { color: var(--text-2); }
+.wc-cell b { font-family: var(--font-mono); font-weight: 500; color: var(--text); font-variant-numeric: tabular-nums; text-align: right; }
+.wc-freq { display: grid; gap: .4rem; }
+.wc-bar { display: grid; grid-template-columns: 2.4rem minmax(0, 1fr) 4.5rem; gap: .7rem; align-items: center; font-size: .84rem; }
+.wc-bar > span:first-child { font-family: var(--font-mono); font-size: 1rem; text-align: center; color: var(--text); white-space: pre; }
+.wc-track { height: 8px; border-radius: 99px; background: var(--bg-3); overflow: hidden; }
+.wc-track i { display: block; height: 100%; border-radius: inherit; background: var(--accent); }
+.wc-bar b { font-family: var(--font-mono); font-weight: 500; color: var(--text-2); text-align: right; font-size: .8rem; }
+.wc-empty { font-size: .84rem; color: var(--text-3); }
+@media (max-width: 720px) { .wc-hero { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

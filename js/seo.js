@@ -50,10 +50,31 @@ export const PAGES = {
   },
   calculator: {
     path: '/tools/calculator',
-    title: `計算機${SEO_SUFFIX}`,
+    title: `數學計算機${SEO_SUFFIX}`,
     desc: '網頁版數學計算機，與 Discord 機器人使用同一個 SymPy 引擎：支援純量、向量、矩陣、極限、積分、級數、數論與統計函數，並附詳細計算步驟；計算在瀏覽器內完成。',
     image: 'calculator',
     embed: '支援純量、向量、矩陣、微積分、數論與統計函數，並附詳細計算步驟。\n-# 計算在瀏覽器內完成，與機器人 /計算機 使用同一個引擎。',
+  },
+  wordcount: {
+    path: '/tools/wordcount',
+    title: `字數計算機${SEO_SUFFIX}`,
+    desc: '免費線上字數計算機：即時統計總字數、字元數（含／不含空格）、中文字數、英文單字、數字、標點、段落與行數，並可一鍵複製純文字、清空與清除多餘空格空行；全程在瀏覽器內完成。',
+    image: 'tools',
+    embed: '即時統計字數、字元、中文字、英文單字、段落與行數，並可一鍵清除多餘空格與空行。',
+  },
+  timestamp: {
+    path: '/tools/timestamp',
+    title: `Unix時間戳${SEO_SUFFIX}`,
+    desc: '線上 Unix 時間戳轉換工具：即時顯示目前時間戳，支援秒、毫秒、微秒、奈秒與任意時區的雙向轉換，並可一鍵複製 Discord 時間戳格式。',
+    image: 'tools',
+    embed: '即時 Unix 時間戳、日期雙向轉換，並可一鍵複製 Discord 時間戳格式。',
+  },
+  password: {
+    path: '/tools/password',
+    title: `密碼產生器${SEO_SUFFIX}`,
+    desc: '線上隨機密碼產生器：可自訂 8～64 字元長度與大小寫、數字、特殊符號，使用瀏覽器密碼學安全亂數，並即時評估密碼強度；密碼不會上傳。',
+    image: 'tools',
+    embed: '自訂長度與字元種類，用安全亂數產生密碼並即時評估強度。',
   },
   status: {
     path: '/status',

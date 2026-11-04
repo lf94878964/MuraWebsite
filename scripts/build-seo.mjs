@@ -165,6 +165,9 @@ const routeFiles = {
   tools: 'tools.html',
   military: 'tools/military.html',
   calculator: 'tools/calculator.html',
+  wordcount: 'tools/wordcount.html',
+  timestamp: 'tools/timestamp.html',
+  password: 'tools/password.html',
   status: 'status.html',
   cooperate: 'cooperate.html',
   contact: 'contact.html',
@@ -175,24 +178,11 @@ for (const [key, file] of Object.entries(routeFiles)) {
   const route = ROUTES[key];
   const image = pageImage(key);
   const schema = key === 'home' ? SITE_SCHEMA : [breadcrumb([['首頁', '/'], [route.title, p.path]])];
-  if (key === 'military') {
+  if (route.nav === 'tools') {
     schema.unshift({
       '@context': 'https://schema.org',
       '@type': 'WebApplication',
-      name: '兵役計算機',
-      url: abs(p.path),
-      applicationCategory: 'UtilitiesApplication',
-      operatingSystem: 'Any',
-      inLanguage: 'zh-TW',
-      description: p.desc,
-      offers: { '@type': 'Offer', price: '0', priceCurrency: 'TWD' },
-    });
-  }
-  if (key === 'calculator') {
-    schema.unshift({
-      '@context': 'https://schema.org',
-      '@type': 'WebApplication',
-      name: '計算機',
+      name: route.title,
       url: abs(p.path),
       applicationCategory: 'UtilitiesApplication',
       operatingSystem: 'Any',
