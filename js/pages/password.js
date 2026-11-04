@@ -6,6 +6,8 @@ const SETS = {
   lower: 'abcdefghijklmnopqrstuvwxyz',
   digit: '0123456789',
   sym: '!@#$%^&*()-_=+[]{};:,.?/~',
+  // 全部可列印 ASCII 符號（供逐一開關）
+  allSym: '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~',
 };
 const AMBIG = new Set('0Oo1lI|`\'"'.split(''));
 
@@ -28,7 +30,7 @@ function buildPools(o) {
   if (o.upper) pools.push(clean(SETS.upper));
   if (o.lower) pools.push(clean(SETS.lower));
   if (o.digit) pools.push(clean(SETS.digit));
-  if (o.sym) pools.push(clean(o.symset || SETS.sym));
+  if (o.sym) pools.push(clean(o.symbols));
   return pools.filter((p) => p.length);
 }
 function generate(o, pools = buildPools(o)) {
@@ -36,7 +38,14 @@ function generate(o, pools = buildPools(o)) {
   const out = [];
   if (o.each) for (const p of pools) out.push(p[randInt(p.length)]);
   while (out.length < o.len) out.push(all[randInt(all.length)]);
-  return shuffle(out).slice(0, o.len).join('');
+  const symSet = new Set(o.symbols);
+  const isSym = (c) => o.sym && symSet.has(c);
+  let r = shuffle(out).slice(0, o.len);
+  if (o.noLeadSym && r.length && isSym(r[0])) {
+    const i = r.findIndex((c) => !isSym(c));
+    if (i > 0) [r[0], r[i]] = [r[i], r[0]]; // 只有勾了非符號類型時才會有可換的字元
+  }
+  return r.join('');
 }
 
 /** 強度：以字元池大小估算熵；並對重複／連續模式扣分 */
@@ -78,15 +87,29 @@ export function mount(root) {
   const num = $('#pw-num');
   const errEl = $('#pw-err');
   const opt = () => ({
-    len: Math.min(64, Math.max(8, Number(num.value) || 20)),
+    len: Math.min(256, Math.max(8, Number(num.value) || 20)),
     upper: $('#pw-upper').checked,
     lower: $('#pw-lower').checked,
     digit: $('#pw-digit').checked,
     sym: $('#pw-sym').checked,
     ambig: $('#pw-ambig').checked,
     each: $('#pw-each').checked,
-    symset: [...new Set($('#pw-symset').value.replace(/\s/g, ''))].join(''),
+    noLeadSym: $('#pw-noleadsym').checked,
+    symbols: symbolList(),
   });
+
+  /* ── 特殊符號選擇器 ── */
+  const picked = new Set(SETS.sym.split(''));
+  $('#pw-syms').innerHTML = [...SETS.allSym].map((c) => `<button class="pw-sym" type="button" data-sym="${escapeHtml(c)}" aria-pressed="${picked.has(c)}" aria-label="符號 ${escapeHtml(c)}">${escapeHtml(c)}</button>`).join('');
+  const extra = () => [...new Set([...$('#pw-symset').value].filter((c) => /[^\p{L}\p{N}\s]/u.test(c) && !SETS.allSym.includes(c)))];
+  function symbolList() { return [...picked, ...extra()].join(''); }
+  function syncSyms() {
+    root.querySelectorAll('.pw-sym').forEach((b) => b.setAttribute('aria-pressed', String(picked.has(b.dataset.sym))));
+    const n = symbolList().length;
+    $('#pw-symcount').textContent = `已選 ${n} 個`;
+    $('#pw-symbox').toggleAttribute('data-off', !$('#pw-sym').checked);
+  }
+  const PRESET = { default: SETS.sym, common: '.!?#$_&-', simple: '-_.', all: SETS.allSym, none: '' };
 
   function colorize(pw) {
     return [...pw].map((c) => {
@@ -127,17 +150,18 @@ export function mount(root) {
   }
 
   function regen(batch = true) {
+    syncSyms();
     const o = opt();
     const pools = buildPools(o);
     if (!pools.length) {
-      errEl.textContent = '請至少勾選一種字元類型。';
+      errEl.textContent = o.sym && !o.upper && !o.lower && !o.digit ? '已勾選特殊符號，但沒有任何可用符號；請在符號清單中選至少一個。' : '請至少勾選一種字元類型。';
       st.pw = '';
       paint();
       paintMeter(o, []);
       $('#pw-batch').innerHTML = '';
       return;
     }
-    errEl.textContent = o.each && pools.length > o.len ? '長度小於類型數量。' : '';
+    errEl.textContent = o.sym && o.symbols.length === 0 ? '已勾選特殊符號但沒有選任何符號，這次產生的密碼不含符號。' : '';
     st.pw = generate(o, pools);
     paint();
     paintMeter(o, pools);
@@ -161,6 +185,10 @@ export function mount(root) {
   $('#pw-batch-regen').addEventListener('click', () => { const o = opt(); paintBatch(o, buildPools(o)); });
   $('#pw-show').addEventListener('click', () => { st.hidden = !st.hidden; paint(); });
   root.addEventListener('click', (e) => {
+    const sb = e.target.closest('.pw-sym');
+    if (sb) { const c = sb.dataset.sym; picked.has(c) ? picked.delete(c) : picked.add(c); if (!$('#pw-sym').checked) $('#pw-sym').checked = true; regen(); return; }
+    const ps = e.target.closest('[data-symset]');
+    if (ps) { picked.clear(); [...PRESET[ps.dataset.symset]].forEach((c) => picked.add(c)); if (ps.dataset.symset !== 'none') $('#pw-sym').checked = true; regen(); return; }
     const b = e.target.closest('[data-cp]');
     if (b) copy(b.dataset.cp, b);
     const l = e.target.closest('[data-len]');
@@ -169,10 +197,10 @@ export function mount(root) {
   range.addEventListener('input', () => { num.value = range.value; regen(); });
   num.addEventListener('input', () => {
     const v = Number(num.value);
-    if (v >= 8 && v <= 64) { range.value = v; regen(); }
+    if (v >= 8 && v <= 256) { range.value = v; regen(); }
   });
   num.addEventListener('change', () => {
-    num.value = Math.min(64, Math.max(8, Number(num.value) || 20));
+    num.value = Math.min(256, Math.max(8, Number(num.value) || 20));
     range.value = num.value;
     regen();
   });

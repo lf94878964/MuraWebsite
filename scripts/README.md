@@ -16,3 +16,9 @@ node scripts/build-seo.mjs       # 然後做這個，再 commit / push
 - 計算由機器人原版引擎 `py/calc_engine.py`（即 `_engine.py`，未修改）在瀏覽器內以 Pyodide 執行，`py/calc_web.py` 是轉接層。
 - 機器人更新引擎時：覆蓋 `py/calc_engine.py`，把 `js/pages/calculator.js` 的 `ASSET_V` 加一，再執行 `python3 scripts/check-calculator.py`（需要 `pip install sympy`）檢查 `data/calculator-functions.json` 有沒有漏列新函數、範例結果是否仍一致。
 - 新增頁面後仍照常執行 `node scripts/build-seo.mjs`。
+
+## 小工具（純前端）
+
+`/tools/` 之下的字數計算機、Unix時間戳、密碼產生器、UUID產生器、QR Code產生器／掃描器都是純前端，沒有後端。
+QR 相關使用 `js/vendor/` 內的本機函式庫（授權見 `js/vendor/README.md`），新增小工具時：在 `pages/`、`css/`、`js/pages/` 各放一個檔案，
+到 `js/config.js`（NAV 與 ROUTES）、`js/seo.js`（PAGES）、`scripts/build-seo.mjs`（routeFiles）登記，並更新 `pages/tools.html` 與 `sitemap.xml`。

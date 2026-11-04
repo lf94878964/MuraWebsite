@@ -1,0 +1,75 @@
+<section class="page page-uuid">
+  <div class="tk-wrap">
+    <header class="tk-head">
+      <p class="mono-label">TOOL / 06</p>
+      <h1>UUID產生器</h1>
+      <p class="tk-sub">依 RFC 9562（取代 RFC 4122）產生標準 UUID：支援 v4 隨機、v7 時間排序、v1／v6 時間型、v3／v5 命名空間雜湊，以及 Nil／Max。可批次產生、轉換格式，也能貼上任何 UUID 解析版本、變體與時間。所有運算都在你的瀏覽器內完成。</p>
+    </header>
+
+    <div class="tk-stack">
+      <section class="tk-card" aria-labelledby="uu-s1">
+        <h2 id="uu-s1"><span class="tk-step">01</span>產生</h2>
+        <div class="uu-ver" id="uu-ver" role="radiogroup" aria-label="UUID 版本"></div>
+        <p class="tk-hint" id="uu-vdesc"></p>
+
+        <div class="uu-named" id="uu-named" hidden>
+          <div class="tk-grid2">
+            <label class="fld"><span>命名空間</span>
+              <select id="uu-ns">
+                <option value="dns">DNS（網域名稱）</option>
+                <option value="url">URL（網址）</option>
+                <option value="oid">OID</option>
+                <option value="x500">X.500 DN</option>
+                <option value="custom">自訂 UUID…</option>
+              </select></label>
+            <label class="fld"><span>名稱 <em>相同命名空間 + 相同名稱，永遠得到相同 UUID</em></span>
+              <input id="uu-name" type="text" autocomplete="off" spellcheck="false" placeholder="例如 example.com" /></label>
+          </div>
+          <label class="fld" id="uu-ns-custom-wrap" hidden><span>自訂命名空間 UUID</span>
+            <input id="uu-ns-custom" type="text" autocomplete="off" spellcheck="false" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" /></label>
+        </div>
+
+        <div class="tk-grid2">
+          <label class="fld"><span>數量 <em>1～1000</em></span>
+            <input id="uu-count" type="number" min="1" max="1000" value="1" inputmode="numeric" /></label>
+          <label class="fld"><span>格式</span>
+            <select id="uu-fmt">
+              <option value="std">標準　xxxxxxxx-xxxx-…</option>
+              <option value="nodash">無連字號　32 位十六進位</option>
+              <option value="braces">花括號　{xxxxxxxx-…}（.NET／Windows）</option>
+              <option value="urn">URN　urn:uuid:…</option>
+              <option value="b64">Base64（22 字元，URL 安全）</option>
+            </select></label>
+        </div>
+        <div class="tk-row">
+          <label class="uu-chk"><input type="checkbox" id="uu-upper" /><span>大寫</span></label>
+          <button class="tk-chip on" id="uu-gen" type="button">產生</button>
+          <button class="tk-chip" id="uu-copyall" type="button">複製全部</button>
+          <button class="tk-chip" id="uu-dl" type="button">下載 .txt</button>
+        </div>
+        <p class="tk-bad" id="uu-err" role="alert"></p>
+        <div class="uu-out" id="uu-out" aria-live="polite"></div>
+        <p class="tk-hint">快捷鍵（焦點不在輸入框時）：<kbd>G</kbd> 重新產生　<kbd>C</kbd> 複製全部。點任何一筆即可複製該筆。</p>
+      </section>
+
+      <section class="tk-card" aria-labelledby="uu-s2">
+        <h2 id="uu-s2"><span class="tk-step">02</span>解析 UUID<small>貼上任何格式皆可</small></h2>
+        <label class="fld"><span>UUID</span>
+          <input id="uu-in" type="text" autocomplete="off" spellcheck="false" placeholder="貼上 UUID，可含花括號、urn:uuid: 或不含連字號" /></label>
+        <div class="tk-list" id="uu-info" hidden></div>
+        <p class="tk-bad" id="uu-in-err" role="alert"></p>
+      </section>
+
+      <section class="tk-card" aria-labelledby="uu-s3">
+        <h2 id="uu-s3"><span class="tk-step">03</span>該選哪個版本？</h2>
+        <div class="tk-list uu-help">
+          <div class="tk-item"><span>v4</span><span>最通用的隨機 UUID（122 位隨機）。資料庫主鍵若量很大，隨機順序會讓索引較分散。</span><span></span></div>
+          <div class="tk-item"><span>v7</span><span>前 48 位是 Unix 毫秒時間，之後隨機：可依產生時間排序，對資料庫索引友善，新系統的首選。</span><span></span></div>
+          <div class="tk-item"><span>v1 / v6</span><span>時間戳（100 奈秒）+ 節點。這裡的節點是隨機產生，不會洩漏網卡 MAC；v6 把時間欄位重排以便排序。</span><span></span></div>
+          <div class="tk-item"><span>v3 / v5</span><span>由「命名空間 + 名稱」決定，結果固定可重現。v5 用 SHA-1，v3 用 MD5，新用途建議 v5。</span><span></span></div>
+          <div class="tk-item"><span>Nil / Max</span><span>全 0 與全 f 的特殊值，常用來表示「空值」或「上限」。</span><span></span></div>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>

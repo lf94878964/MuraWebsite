@@ -72,9 +72,30 @@ export const PAGES = {
   password: {
     path: '/tools/password',
     title: `密碼產生器${SEO_SUFFIX}`,
-    desc: '線上隨機密碼產生器：可自訂 8～64 字元長度與大小寫、數字、特殊符號，使用瀏覽器密碼學安全亂數，並即時評估密碼強度；密碼不會上傳。',
+    desc: '線上隨機密碼產生器：可自訂 8～256 字元長度與大小寫、數字、特殊符號，使用瀏覽器密碼學安全亂數，並即時評估密碼強度；密碼不會上傳。',
     image: 'tools',
     embed: '自訂長度與字元種類，用安全亂數產生密碼並即時評估強度。',
+  },
+  uuid: {
+    path: '/tools/uuid',
+    title: `UUID產生器${SEO_SUFFIX}`,
+    desc: '線上 UUID 產生器：依 RFC 9562 產生 v4 隨機、v7 時間排序、v1／v6、v3／v5 命名空間 UUID 與 Nil／Max，可批次產生、轉換格式，並能解析 UUID 的版本與時間；全程在瀏覽器內完成。',
+    image: 'tools',
+    embed: '產生 v4／v7／v1／v5 等標準 UUID，可批次產生並解析版本與時間。',
+  },
+  qrcode: {
+    path: '/tools/qrcode',
+    title: `QR Code產生器${SEO_SUFFIX}`,
+    desc: '免費線上 QR Code 產生器：支援文字、網址與 Wi-Fi，可自訂顏色、背景浮水印（含透明度）與中央小圖，自動驗證可掃描性並下載 PNG；全程在瀏覽器內完成。',
+    image: 'tools',
+    embed: '自訂顏色、背景浮水印與中央小圖的 QR Code 產生器，可下載 PNG。',
+  },
+  qrscan: {
+    path: '/tools/qrscan',
+    title: `QR Code掃描器${SEO_SUFFIX}`,
+    desc: '線上 QR Code 掃描器：用相機即時掃描，或上傳、拖放、貼上圖片取出內容與連結；影像只在瀏覽器內處理，不會上傳。',
+    image: 'tools',
+    embed: '用相機或上傳圖片掃描 QR Code，取出連結與內容。',
   },
   status: {
     path: '/status',

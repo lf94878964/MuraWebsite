@@ -1,0 +1,113 @@
+<section class="page page-qrcode">
+  <div class="tk-wrap">
+    <header class="tk-head">
+      <p class="mono-label">TOOL / 07</p>
+      <h1>QR Code產生器</h1>
+      <p class="tk-sub">輸入文字、網址或 Wi-Fi 資訊，即時產生 QR Code。可自訂顏色、加入背景浮水印（含透明度）與中央小圖，並自動驗證能否被掃描。全部在你的瀏覽器內完成，圖片與內容不會上傳。</p>
+    </header>
+
+    <div class="qr-layout">
+      <div class="tk-stack qr-controls">
+        <section class="tk-card" aria-labelledby="qr-s1">
+          <h2 id="qr-s1"><span class="tk-step">01</span>內容</h2>
+          <div class="tk-row" role="tablist" aria-label="內容類型">
+            <button class="tk-chip on" type="button" role="tab" aria-selected="true" data-kind="text">文字／網址</button>
+            <button class="tk-chip" type="button" role="tab" aria-selected="false" data-kind="wifi">Wi-Fi</button>
+          </div>
+          <div id="qr-kind-text">
+            <label class="fld"><span>內容<em id="qr-bytes"></em></span>
+              <textarea id="qr-text" rows="4" spellcheck="false" placeholder="https://example.com 或任何文字，支援中文與 emoji"></textarea></label>
+          </div>
+          <div id="qr-kind-wifi" hidden>
+            <div class="tk-grid2">
+              <label class="fld"><span>網路名稱（SSID）</span><input id="qr-ssid" type="text" autocomplete="off" spellcheck="false" /></label>
+              <label class="fld"><span>密碼</span><input id="qr-wpass" type="text" autocomplete="off" spellcheck="false" /></label>
+              <label class="fld"><span>加密方式</span>
+                <select id="qr-wsec"><option value="WPA">WPA／WPA2／WPA3</option><option value="WEP">WEP</option><option value="nopass">無密碼</option></select></label>
+              <label class="qr-chk"><input type="checkbox" id="qr-whidden" /><span>隱藏的網路</span></label>
+            </div>
+          </div>
+        </section>
+
+        <section class="tk-card" aria-labelledby="qr-s2">
+          <h2 id="qr-s2"><span class="tk-step">02</span>外觀</h2>
+          <div class="tk-grid2">
+            <label class="fld"><span>QR Code 顏色</span>
+              <span class="qr-color"><input id="qr-fg" type="color" value="#000000" /><code id="qr-fg-v">#000000</code></span></label>
+            <label class="fld"><span>背景顏色<em>預設純白</em></span>
+              <span class="qr-color"><input id="qr-bg" type="color" value="#ffffff" /><code id="qr-bg-v">#ffffff</code></span></label>
+          </div>
+          <div class="tk-row">
+            <button class="tk-chip" id="qr-swap" type="button">互換顏色</button>
+            <button class="tk-chip" id="qr-reset-color" type="button">還原黑白</button>
+            <label class="qr-chk"><input type="checkbox" id="qr-transp" /><span>背景透明（PNG）</span></label>
+          </div>
+          <div class="tk-grid2">
+            <label class="fld"><span>圖案樣式</span>
+              <select id="qr-shape"><option value="square">方形（最穩定）</option><option value="round">圓角</option><option value="dot">圓點</option></select></label>
+            <label class="fld"><span>容錯等級</span>
+              <select id="qr-ecc"><option value="L">L　約 7%</option><option value="M" selected>M　約 15%</option><option value="Q">Q　約 25%</option><option value="H">H　約 30%</option></select></label>
+            <label class="fld"><span>圖片大小<em id="qr-size-v"></em></span>
+              <input id="qr-size" type="range" min="256" max="2048" step="64" value="1024" /></label>
+            <label class="fld"><span>留白（模組數）<em id="qr-margin-v"></em></span>
+              <input id="qr-margin" type="range" min="0" max="10" step="1" value="4" /></label>
+          </div>
+          <p class="tk-hint" id="qr-ecc-note"></p>
+        </section>
+
+        <section class="tk-card" aria-labelledby="qr-s3">
+          <h2 id="qr-s3"><span class="tk-step">03</span>背景浮水印<small>可選</small></h2>
+          <div class="tk-row">
+            <label class="tk-chip qr-file">上傳背景圖<input id="qr-bgimg" type="file" accept="image/*" hidden /></label>
+            <button class="tk-chip danger" id="qr-bgimg-clear" type="button" disabled>移除</button>
+            <span class="tk-hint" id="qr-bgimg-name">預設：純白背景</span>
+          </div>
+          <label class="fld"><span>浮水印不透明度<em id="qr-bgop-v"></em></span>
+            <input id="qr-bgop" type="range" min="0" max="100" step="1" value="30" disabled /></label>
+          <p class="tk-hint">背景圖會鋪滿並疊在背景顏色上；不透明度越低越淡，越容易掃描。</p>
+        </section>
+
+        <section class="tk-card" aria-labelledby="qr-s4">
+          <h2 id="qr-s4"><span class="tk-step">04</span>中央小圖<small>預設無</small></h2>
+          <div class="tk-row" role="radiogroup" aria-label="中央內容">
+            <button class="tk-chip on" type="button" role="radio" aria-checked="true" data-center="none">無</button>
+            <button class="tk-chip" type="button" role="radio" aria-checked="false" data-center="image">圖片</button>
+            <button class="tk-chip" type="button" role="radio" aria-checked="false" data-center="text">文字／emoji</button>
+          </div>
+          <div id="qr-c-image" hidden>
+            <div class="tk-row">
+              <label class="tk-chip qr-file">選擇圖片<input id="qr-logo" type="file" accept="image/*" hidden /></label>
+              <span class="tk-hint" id="qr-logo-name">尚未選擇</span>
+            </div>
+          </div>
+          <div id="qr-c-text" hidden>
+            <label class="fld"><span>文字<em>建議 1～3 個字或一個 emoji</em></span>
+              <input id="qr-ctext" type="text" maxlength="6" autocomplete="off" placeholder="例如 ★ 或 Mura" /></label>
+          </div>
+          <div id="qr-c-opts" hidden>
+            <label class="fld"><span>小圖大小<em id="qr-csize-v"></em></span>
+              <input id="qr-csize" type="range" min="10" max="30" step="1" value="22" /></label>
+            <div class="tk-row">
+              <label class="qr-chk"><input type="checkbox" id="qr-cplate" checked /><span>加底板（與背景同色，更好掃描）</span></label>
+              <label class="qr-chk"><input type="checkbox" id="qr-ccircle" /><span>圓形</span></label>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <aside class="qr-side">
+        <section class="tk-card qr-preview" aria-labelledby="qr-s5">
+          <h2 id="qr-s5">預覽</h2>
+          <div class="qr-stage"><canvas id="qr-canvas" width="300" height="300" aria-label="QR Code 預覽"></canvas><p class="qr-empty" id="qr-empty">請輸入內容</p></div>
+          <p class="qr-verify" id="qr-verify" aria-live="polite"></p>
+          <p class="tk-bad" id="qr-err" role="alert"></p>
+          <div class="tk-row">
+            <button class="tk-chip on" id="qr-dl" type="button" disabled>下載 PNG</button>
+            <button class="tk-chip" id="qr-copy" type="button" disabled>複製圖片</button>
+          </div>
+          <p class="tk-hint" id="qr-info"></p>
+        </section>
+      </aside>
+    </div>
+  </div>
+</section>

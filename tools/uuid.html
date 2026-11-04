@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#000000" />
+  <!-- seo:start -->
+  <title>UUID產生器 — 千恋＊万花機器人</title>
+  <meta name="description" content="線上 UUID 產生器：依 RFC 9562 產生 v4 隨機、v7 時間排序、v1／v6、v3／v5 命名空間 UUID 與 Nil／Max，可批次產生、轉換格式，並能解析 UUID 的版本與時間；全程在瀏覽器內完成。" />
+  <link rel="canonical" href="https://murasamebot.com/tools/uuid" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="千恋＊万花機器人" />
+  <meta property="og:locale" content="zh_TW" />
+  <meta property="og:title" content="UUID產生器 — 千恋＊万花機器人" />
+  <meta property="og:description" content="線上 UUID 產生器：依 RFC 9562 產生 v4 隨機、v7 時間排序、v1／v6、v3／v5 命名空間 UUID 與 Nil／Max，可批次產生、轉換格式，並能解析 UUID 的版本與時間；全程在瀏覽器內完成。" />
+  <meta property="og:url" content="https://murasamebot.com/tools/uuid" />
+  <meta property="og:image" content="https://images-ext-1.discordapp.net/external/qedYzKKm-vM-qF5sOOs411o40ZRV7iJqPh6niCeSyFo/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1379034361579438161/415a24c2ad4b19048f120dd9089e55f4.png?format=webp&amp;quality=lossless" />
+  <meta property="og:image:alt" content="千恋＊万花機器人" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="UUID產生器 — 千恋＊万花機器人" />
+  <meta name="twitter:description" content="線上 UUID 產生器：依 RFC 9562 產生 v4 隨機、v7 時間排序、v1／v6、v3／v5 命名空間 UUID 與 Nil／Max，可批次產生、轉換格式，並能解析 UUID 的版本與時間；全程在瀏覽器內完成。" />
+  <meta name="twitter:image" content="https://images-ext-1.discordapp.net/external/qedYzKKm-vM-qF5sOOs411o40ZRV7iJqPh6niCeSyFo/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1379034361579438161/415a24c2ad4b19048f120dd9089e55f4.png?format=webp&amp;quality=lossless" />
+  <script id="discord:component-embed" type="application/vnd.discord.component-embed+json">{"component":{"type":17,"accent_color":16743586,"components":[{"type":9,"components":[{"type":10,"content":"## UUID產生器\n產生 v4／v7／v1／v5 等標準 UUID，可批次產生並解析版本與時間。"}],"accessory":{"type":11,"media":{"url":"https://images-ext-1.discordapp.net/external/qedYzKKm-vM-qF5sOOs411o40ZRV7iJqPh6niCeSyFo/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1379034361579438161/415a24c2ad4b19048f120dd9089e55f4.png?format=webp\u0026quality=lossless"}}},{"type":14,"divider":true,"spacing":1},{"type":1,"components":[{"type":2,"style":5,"label":"邀請機器人","url":"https://discord.com/oauth2/authorize?client_id=1379034361579438161\u0026permissions=1127517969186039\u0026integration_type=0\u0026scope=bot+applications.commands"},{"type":2,"style":5,"label":"加入支援群","url":"https://discord.gg/nNn8GsF5bA"},{"type":2,"style":5,"label":"開啟網頁","url":"https://murasamebot.com/tools/uuid"}]}]}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"UUID產生器","url":"https://murasamebot.com/tools/uuid","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","inLanguage":"zh-TW","description":"線上 UUID 產生器：依 RFC 9562 產生 v4 隨機、v7 時間排序、v1／v6、v3／v5 命名空間 UUID 與 Nil／Max，可批次產生、轉換格式，並能解析 UUID 的版本與時間；全程在瀏覽器內完成。","offers":{"@type":"Offer","price":"0","priceCurrency":"TWD"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://murasamebot.com/"},{"@type":"ListItem","position":2,"name":"UUID產生器","item":"https://murasamebot.com/tools/uuid"}]}</script>
+  <!-- seo:end -->
+  <link rel="icon" type="image/png" href="https://images-ext-1.discordapp.net/external/qedYzKKm-vM-qF5sOOs411o40ZRV7iJqPh6niCeSyFo/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1379034361579438161/415a24c2ad4b19048f120dd9089e55f4.png?format=webp&quality=lossless" />
+  <script>
+    (function () {
+      // 1. 套用主題（放在最前面，避免閃白）
+      try { document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark'); } catch (e) {}
+      // 2. 還原 404.html 暫存的原始路徑
+      try {
+        var r = sessionStorage.getItem('redirect');
+        if (r) { history.replaceState(null, '', r); sessionStorage.removeItem('redirect'); }
+      } catch (e) {}
+      // 3. 彩蛋路徑（正式轉址由 _redirects 處理；這裡是備援，例如本機預覽時）
+      var p = location.pathname.replace(/\/+$/, '');
+      if (p === '/ciallo') location.replace('https://www.youtube.com/watch?v=QDia3e12czc');
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/base.css" />
+  <!-- page-css -->
+  <link rel="stylesheet" href="/css/uuid.css" />
+</head>
+<body>
+  <div id="site-nav"></div>
+  <main id="view" aria-live="polite" data-pre="uuid"><section class="page page-uuid">
+  <div class="tk-wrap">
+    <header class="tk-head">
+      <p class="mono-label">TOOL / 06</p>
+      <h1>UUID產生器</h1>
+      <p class="tk-sub">依 RFC 9562（取代 RFC 4122）產生標準 UUID：支援 v4 隨機、v7 時間排序、v1／v6 時間型、v3／v5 命名空間雜湊，以及 Nil／Max。可批次產生、轉換格式，也能貼上任何 UUID 解析版本、變體與時間。所有運算都在你的瀏覽器內完成。</p>
+    </header>
+
+    <div class="tk-stack">
+      <section class="tk-card" aria-labelledby="uu-s1">
+        <h2 id="uu-s1"><span class="tk-step">01</span>產生</h2>
+        <div class="uu-ver" id="uu-ver" role="radiogroup" aria-label="UUID 版本"></div>
+        <p class="tk-hint" id="uu-vdesc"></p>
+
+        <div class="uu-named" id="uu-named" hidden>
+          <div class="tk-grid2">
+            <label class="fld"><span>命名空間</span>
+              <select id="uu-ns">
+                <option value="dns">DNS（網域名稱）</option>
+                <option value="url">URL（網址）</option>
+                <option value="oid">OID</option>
+                <option value="x500">X.500 DN</option>
+                <option value="custom">自訂 UUID…</option>
+              </select></label>
+            <label class="fld"><span>名稱 <em>相同命名空間 + 相同名稱，永遠得到相同 UUID</em></span>
+              <input id="uu-name" type="text" autocomplete="off" spellcheck="false" placeholder="例如 example.com" /></label>
+          </div>
+          <label class="fld" id="uu-ns-custom-wrap" hidden><span>自訂命名空間 UUID</span>
+            <input id="uu-ns-custom" type="text" autocomplete="off" spellcheck="false" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" /></label>
+        </div>
+
+        <div class="tk-grid2">
+          <label class="fld"><span>數量 <em>1～1000</em></span>
+            <input id="uu-count" type="number" min="1" max="1000" value="1" inputmode="numeric" /></label>
+          <label class="fld"><span>格式</span>
+            <select id="uu-fmt">
+              <option value="std">標準　xxxxxxxx-xxxx-…</option>
+              <option value="nodash">無連字號　32 位十六進位</option>
+              <option value="braces">花括號　{xxxxxxxx-…}（.NET／Windows）</option>
+              <option value="urn">URN　urn:uuid:…</option>
+              <option value="b64">Base64（22 字元，URL 安全）</option>
+            </select></label>
+        </div>
+        <div class="tk-row">
+          <label class="uu-chk"><input type="checkbox" id="uu-upper" /><span>大寫</span></label>
+          <button class="tk-chip on" id="uu-gen" type="button">產生</button>
+          <button class="tk-chip" id="uu-copyall" type="button">複製全部</button>
+          <button class="tk-chip" id="uu-dl" type="button">下載 .txt</button>
+        </div>
+        <p class="tk-bad" id="uu-err" role="alert"></p>
+        <div class="uu-out" id="uu-out" aria-live="polite"></div>
+        <p class="tk-hint">快捷鍵（焦點不在輸入框時）：<kbd>G</kbd> 重新產生　<kbd>C</kbd> 複製全部。點任何一筆即可複製該筆。</p>
+      </section>
+
+      <section class="tk-card" aria-labelledby="uu-s2">
+        <h2 id="uu-s2"><span class="tk-step">02</span>解析 UUID<small>貼上任何格式皆可</small></h2>
+        <label class="fld"><span>UUID</span>
+          <input id="uu-in" type="text" autocomplete="off" spellcheck="false" placeholder="貼上 UUID，可含花括號、urn:uuid: 或不含連字號" /></label>
+        <div class="tk-list" id="uu-info" hidden></div>
+        <p class="tk-bad" id="uu-in-err" role="alert"></p>
+      </section>
+
+      <section class="tk-card" aria-labelledby="uu-s3">
+        <h2 id="uu-s3"><span class="tk-step">03</span>該選哪個版本？</h2>
+        <div class="tk-list uu-help">
+          <div class="tk-item"><span>v4</span><span>最通用的隨機 UUID（122 位隨機）。資料庫主鍵若量很大，隨機順序會讓索引較分散。</span><span></span></div>
+          <div class="tk-item"><span>v7</span><span>前 48 位是 Unix 毫秒時間，之後隨機：可依產生時間排序，對資料庫索引友善，新系統的首選。</span><span></span></div>
+          <div class="tk-item"><span>v1 / v6</span><span>時間戳（100 奈秒）+ 節點。這裡的節點是隨機產生，不會洩漏網卡 MAC；v6 把時間欄位重排以便排序。</span><span></span></div>
+          <div class="tk-item"><span>v3 / v5</span><span>由「命名空間 + 名稱」決定，結果固定可重現。v5 用 SHA-1，v3 用 MD5，新用途建議 v5。</span><span></span></div>
+          <div class="tk-item"><span>Nil / Max</span><span>全 0 與全 f 的特殊值，常用來表示「空值」或「上限」。</span><span></span></div>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+</main>
+  <div id="site-footer"></div>
+  <noscript><p style="padding:6rem 1.5rem;text-align:center">此網站需要啟用 JavaScript。</p></noscript>
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>

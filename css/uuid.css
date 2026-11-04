@@ -1,0 +1,15 @@
+@import url('/css/toolkit.css');
+.uu-ver { display: flex; flex-wrap: wrap; gap: .5rem; }
+.uu-chk { display: inline-flex; align-items: center; gap: .45rem; font-size: .85rem; color: var(--text-2); cursor: pointer; margin-right: .6rem; }
+.uu-chk input { width: 17px; height: 17px; accent-color: var(--accent); }
+.uu-out { display: grid; border: 1px solid var(--line); border-radius: 12px; background: var(--bg-1); max-height: 22rem; overflow: auto; }
+.uu-out:empty { display: none; }
+.uu-row { display: block; width: 100%; text-align: left; font: inherit; font-family: var(--font-mono); font-size: .92rem; color: var(--text); background: none; border: 0; border-top: 1px solid var(--line); padding: .55rem .9rem; cursor: pointer; overflow-wrap: anywhere; word-break: break-all; transition: var(--t); }
+.uu-row:first-child { border-top: 0; }
+.uu-row:hover { background: var(--accent-soft); color: var(--accent); }
+.uu-row.done { background: var(--accent); color: var(--accent-ink); }
+.uu-help .tk-item { grid-template-columns: 5.5rem minmax(0, 1fr) 0; }
+.uu-help .tk-item > span:first-child { font-family: var(--font-mono); color: var(--accent); }
+.uu-help .tk-item > span:nth-child(2) { color: var(--text-2); font-size: .85rem; line-height: 1.7; }
+.uu-named { display: grid; gap: .9rem; }
+@media (max-width: 560px) { .uu-help .tk-item { grid-template-columns: 1fr; } .uu-help .tk-item > span:last-child { display: none; } }
