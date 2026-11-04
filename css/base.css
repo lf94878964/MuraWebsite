@@ -324,6 +324,11 @@ kbd {
   -webkit-backdrop-filter: blur(24px) saturate(170%);
   backdrop-filter: blur(24px) saturate(170%);
   border-bottom: 1px solid var(--line);
+  /* 項目變多時選單要能捲動：高度不超過視窗，內容超出就在選單內滑動 */
+  max-height: calc(100vh - var(--nav-h));
+  max-height: calc(100dvh - var(--nav-h));
+  overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
+  padding-bottom: max(1.2rem, env(safe-area-inset-bottom));
 }
 .mobile-menu.open { display: flex; animation: drop .22s var(--ease); }
 .mobile-menu .nav-link { padding: .7rem 1rem; font-size: .95rem; border-radius: 10px; }
