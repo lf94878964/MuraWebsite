@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#000000" />
+  <!-- seo:start -->
+  <title>小工具 — 千恋＊万花機器人</title>
+  <meta name="description" content="千恋＊万花機器人的網頁小工具：從 Discord 機器人移植的實用計算工具，全程在瀏覽器內運算。" />
+  <link rel="canonical" href="https://murasamebot.com/tools" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="千恋＊万花機器人" />
+  <meta property="og:locale" content="zh_TW" />
+  <meta property="og:title" content="小工具 — 千恋＊万花機器人" />
+  <meta property="og:description" content="千恋＊万花機器人的網頁小工具：從 Discord 機器人移植的實用計算工具，全程在瀏覽器內運算。" />
+  <meta property="og:url" content="https://murasamebot.com/tools" />
+  <meta property="og:image" content="https://images-ext-1.discordapp.net/external/qedYzKKm-vM-qF5sOOs411o40ZRV7iJqPh6niCeSyFo/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1379034361579438161/415a24c2ad4b19048f120dd9089e55f4.png?format=webp&amp;quality=lossless" />
+  <meta property="og:image:alt" content="千恋＊万花機器人" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="小工具 — 千恋＊万花機器人" />
+  <meta name="twitter:description" content="千恋＊万花機器人的網頁小工具：從 Discord 機器人移植的實用計算工具，全程在瀏覽器內運算。" />
+  <meta name="twitter:image" content="https://images-ext-1.discordapp.net/external/qedYzKKm-vM-qF5sOOs411o40ZRV7iJqPh6niCeSyFo/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1379034361579438161/415a24c2ad4b19048f120dd9089e55f4.png?format=webp&amp;quality=lossless" />
+  <script id="discord:component-embed" type="application/vnd.discord.component-embed+json">{"component":{"type":17,"accent_color":16743586,"components":[{"type":9,"components":[{"type":10,"content":"## 小工具\n從機器人移植到網頁的實用工具，全程在瀏覽器內運算。"}],"accessory":{"type":11,"media":{"url":"https://images-ext-1.discordapp.net/external/qedYzKKm-vM-qF5sOOs411o40ZRV7iJqPh6niCeSyFo/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1379034361579438161/415a24c2ad4b19048f120dd9089e55f4.png?format=webp\u0026quality=lossless"}}},{"type":14,"divider":true,"spacing":1},{"type":1,"components":[{"type":2,"style":5,"label":"邀請機器人","url":"https://discord.com/oauth2/authorize?client_id=1379034361579438161\u0026permissions=1127517969186039\u0026integration_type=0\u0026scope=bot+applications.commands"},{"type":2,"style":5,"label":"加入支援群","url":"https://discord.gg/nNn8GsF5bA"},{"type":2,"style":5,"label":"開啟網頁","url":"https://murasamebot.com/tools"}]}]}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首頁","item":"https://murasamebot.com/"},{"@type":"ListItem","position":2,"name":"小工具","item":"https://murasamebot.com/tools"}]}</script>
+  <!-- seo:end -->
+  <link rel="icon" type="image/png" href="https://images-ext-1.discordapp.net/external/qedYzKKm-vM-qF5sOOs411o40ZRV7iJqPh6niCeSyFo/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1379034361579438161/415a24c2ad4b19048f120dd9089e55f4.png?format=webp&quality=lossless" />
+  <script>
+    (function () {
+      // 1. 套用主題（放在最前面，避免閃白）
+      try { document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark'); } catch (e) {}
+      // 2. 還原 404.html 暫存的原始路徑
+      try {
+        var r = sessionStorage.getItem('redirect');
+        if (r) { history.replaceState(null, '', r); sessionStorage.removeItem('redirect'); }
+      } catch (e) {}
+      // 3. 彩蛋路徑（正式轉址由 _redirects 處理；這裡是備援，例如本機預覽時）
+      var p = location.pathname.replace(/\/+$/, '');
+      if (p === '/ciallo') location.replace('https://www.youtube.com/watch?v=QDia3e12czc');
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/base.css" />
+  <!-- page-css -->
+  <link rel="stylesheet" href="/css/tools.css" />
+</head>
+<body>
+  <div id="site-nav"></div>
+  <main id="view" aria-live="polite" data-pre="tools"><section class="page page-tools">
+  <div class="tools-wrap">
+    <header class="tools-head">
+      <p class="mono-label">TOOLS</p>
+      <h1>小工具</h1>
+      <p>從機器人移植到網頁的實用工具，計算全程在你的瀏覽器內完成。</p>
+    </header>
+    <div class="tool-grid">
+      <a class="tool-card" href="/tools/calculator" data-route="calculator">
+        <span class="tool-idx">01</span>
+        <h2>數學計算機</h2>
+        <p>與機器人 /計算機 同一個 SymPy 引擎：純量、向量、矩陣、極限、積分、級數、數論與統計函數，附詳細步驟，並列出所有可用函數。</p>
+        <span class="tool-go">開啟工具</span>
+      </a>
+      <a class="tool-card" href="/tools/military" data-route="military">
+        <span class="tool-idx">02</span>
+        <h2>兵役計算機</h2>
+        <p>輸入身高體重並勾選疾病，依國防部《體位區分標準》修正草案（10/31 施行新制）判定常備役、替代役或免役。</p>
+        <span class="tool-go">開啟工具</span>
+      </a>
+      <a class="tool-card" href="/tools/wordcount" data-route="wordcount">
+        <span class="tool-idx">03</span>
+        <h2>字數計算機</h2>
+        <p>即時統計總字數、字元（含／不含空格）、中文字、英文單字、數字、標點、段落與行數，並可一鍵複製、清空與整理空格空行。</p>
+        <span class="tool-go">開啟工具</span>
+      </a>
+      <a class="tool-card" href="/tools/timestamp" data-route="timestamp">
+        <span class="tool-idx">04</span>
+        <h2>Unix時間戳</h2>
+        <p>即時 Unix 時間戳，秒／毫秒／微秒／奈秒與任意時區雙向轉換，常用時間按鈕與 Discord 時間戳格式一鍵複製。</p>
+        <span class="tool-go">開啟工具</span>
+      </a>
+      <a class="tool-card" href="/tools/password" data-route="password">
+        <span class="tool-idx">05</span>
+        <h2>密碼產生器</h2>
+        <p>自訂 8～256 字元長度，可逐一指定允許的特殊符號，使用安全亂數產生密碼，即時評估強度並一鍵複製。</p>
+        <span class="tool-go">開啟工具</span>
+      </a>
+      <a class="tool-card" href="/tools/uuid" data-route="uuid">
+        <span class="tool-idx">06</span>
+        <h2>UUID產生器</h2>
+        <p>依 RFC 9562 產生 v4 隨機、v7 時間排序、v1／v6、v3／v5 命名空間 UUID，可批次產生、轉換格式並解析版本與時間。</p>
+        <span class="tool-go">開啟工具</span>
+      </a>
+      <a class="tool-card" href="/tools/qrcode" data-route="qrcode">
+        <span class="tool-idx">07</span>
+        <h2>QR Code產生器</h2>
+        <p>輸入文字、網址或 Wi-Fi，自訂顏色、背景浮水印（含透明度）與中央小圖，自動驗證可掃描並下載 PNG。</p>
+        <span class="tool-go">開啟工具</span>
+      </a>
+      <a class="tool-card" href="/tools/qrscan" data-route="qrscan">
+        <span class="tool-idx">08</span>
+        <h2>QR Code掃描器</h2>
+        <p>用相機即時掃描，或上傳、拖放、貼上圖片，取出連結與內容；影像只在你的瀏覽器處理。</p>
+        <span class="tool-go">開啟工具</span>
+      </a>
+    </div>
+  </div>
+</section>
+</main>
+  <div id="site-footer"></div>
+  <noscript><p style="padding:6rem 1.5rem;text-align:center">此網站需要啟用 JavaScript。</p></noscript>
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>
