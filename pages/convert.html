@@ -1,0 +1,82 @@
+<section class="page page-convert">
+  <div class="tk-wrap">
+    <header class="tk-head">
+      <p class="mono-label">TOOL / 04</p>
+      <h1>檔案轉換器</h1>
+      <p class="tk-sub">在瀏覽器內轉換圖片（PNG、JPG、WebP…）、PDF、音訊（MP3、WAV…）與影片（MP4、WebM、GIF…），也能把多個 PDF 或多張圖片合併成一個 PDF。檔案不會上傳到任何伺服器。</p>
+    </header>
+
+    <div class="tk-stack">
+      <section class="tk-card" aria-labelledby="cv-s1">
+        <h2 id="cv-s1"><span class="tk-step">01</span>加入檔案<small id="cv-count"></small></h2>
+        <label class="cv-drop" id="cv-drop" tabindex="0">
+          <input id="cv-file" type="file" multiple hidden />
+          <b>點此選擇檔案</b><span>或拖放到這裡；圖片也可直接貼上（Ctrl+V）</span>
+          <small>支援：PNG JPG WebP GIF BMP AVIF SVG ／ PDF ／ MP3 WAV OGG M4A FLAC ／ MP4 WebM MOV MKV AVI 等</small>
+        </label>
+        <div class="cv-list" id="cv-list"></div>
+        <div class="tk-row"><button class="tk-chip danger" id="cv-clear" type="button" disabled>清空清單</button></div>
+      </section>
+
+      <section class="tk-card" aria-labelledby="cv-s2">
+        <h2 id="cv-s2"><span class="tk-step">02</span>轉換設定</h2>
+        <div class="cv-all" id="cv-all-wrap" hidden>
+          <p class="tk-hint">全部轉成（只套用到能轉換的檔案，之後仍可在每個檔案上單獨更改）</p>
+          <div class="tk-row" id="cv-all"></div>
+        </div>
+        <label class="cv-merge" id="cv-merge-wrap" hidden><input type="checkbox" id="cv-merge" /><span><b>合併成一個 PDF</b><small>依清單順序，把所有圖片與 PDF 合併為單一檔案（可用 ↑↓ 調整順序）</small></span></label>
+
+        <div class="cv-opts" id="cv-o-img" hidden>
+          <h3>圖片</h3>
+          <div class="tk-grid2">
+            <label class="fld"><span>品質（JPG／WebP）<em id="cv-q-v"></em></span><input id="cv-q" type="range" min="10" max="100" value="90" /></label>
+            <label class="fld"><span>最長邊</span>
+              <select id="cv-max"><option value="0">維持原尺寸</option><option value="3840">3840 px</option><option value="2560">2560 px</option><option value="1920">1920 px</option><option value="1280">1280 px</option><option value="800">800 px</option><option value="400">400 px</option></select></label>
+            <label class="fld"><span>透明處的底色（轉 JPG／BMP／PDF 時）</span>
+              <input id="cv-bg" type="color" value="#ffffff" /></label>
+          </div>
+        </div>
+        <div class="cv-opts" id="cv-o-pdfimg" hidden>
+          <h3>PDF 轉圖片／文字</h3>
+          <label class="fld"><span>解析度<em id="cv-dpi-v"></em></span><input id="cv-dpi" type="range" min="50" max="300" step="10" value="150" /></label>
+          <p class="tk-hint">150 dpi 適合螢幕閱讀，300 dpi 適合列印；越高越慢、檔案越大。</p>
+        </div>
+        <div class="cv-opts" id="cv-o-pdf" hidden>
+          <h3>轉成 PDF／合併 PDF</h3>
+          <div class="tk-grid2">
+            <label class="fld"><span>頁面大小</span>
+              <select id="cv-psize"><option value="fit">依圖片尺寸</option><option value="a4">A4（直式自動轉橫式）</option><option value="letter">Letter</option></select></label>
+            <label class="fld"><span>邊界<em id="cv-pmargin-v"></em></span><input id="cv-pmargin" type="range" min="0" max="60" step="2" value="0" /></label>
+          </div>
+        </div>
+        <div class="cv-opts" id="cv-o-av" hidden>
+          <h3>影音</h3>
+          <div class="tk-grid2">
+            <label class="fld"><span>影片畫質</span>
+              <select id="cv-vq"><option value="22">高畫質（檔案較大）</option><option value="27" selected>標準</option><option value="33">小檔案</option></select></label>
+            <label class="fld"><span>影片最大高度</span>
+              <select id="cv-vh"><option value="0">維持原尺寸</option><option value="1080">1080p</option><option value="720">720p</option><option value="480">480p</option><option value="360">360p</option></select></label>
+            <label class="fld"><span>音訊位元率</span>
+              <select id="cv-ab"><option value="320">320 kbps</option><option value="192">192 kbps</option><option value="128" selected>128 kbps</option><option value="96">96 kbps</option><option value="64">64 kbps</option></select></label>
+            <label class="fld"><span>GIF 寬度／幀率／最長秒數</span>
+              <span class="cv-gif"><select id="cv-gw"><option>320</option><option selected>480</option><option>640</option></select><select id="cv-gf"><option>8</option><option selected>12</option><option>15</option></select><input id="cv-gt" type="number" min="1" max="60" value="10" /></span></label>
+          </div>
+          <p class="tk-hint" id="cv-av-note">影音轉檔使用 FFmpeg（WebAssembly）。第一次使用需下載約 32 MB 的轉檔引擎，之後會由瀏覽器快取；轉檔速度取決於你的裝置，長影片可能需要幾分鐘。</p>
+        </div>
+      </section>
+
+      <section class="tk-card" aria-labelledby="cv-s3">
+        <h2 id="cv-s3"><span class="tk-step">03</span>轉換與下載</h2>
+        <div class="tk-row">
+          <button class="tk-chip on" id="cv-run" type="button" disabled>開始轉換</button>
+          <button class="tk-chip danger" id="cv-stop" type="button" hidden>停止</button>
+          <button class="tk-chip" id="cv-zip" type="button" hidden>全部下載（ZIP）</button>
+        </div>
+        <p class="tk-hint" id="cv-status" aria-live="polite"></p>
+        <div class="cv-prog" id="cv-prog" hidden><i id="cv-bar"></i></div>
+        <p class="tk-bad" id="cv-err" role="alert"></p>
+        <div class="cv-out" id="cv-out"></div>
+      </section>
+    </div>
+  </div>
+</section>

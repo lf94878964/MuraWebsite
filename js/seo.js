@@ -97,6 +97,20 @@ export const PAGES = {
     image: 'tools',
     embed: '用相機或上傳圖片掃描 QR Code，取出連結與內容。',
   },
+  convert: {
+    path: '/tools/convert',
+    title: `檔案轉換器${SEO_SUFFIX}`,
+    desc: '免費線上檔案轉換器：在瀏覽器內轉換 PNG、JPG、WebP、PDF、MP3、MP4 等格式，並能把多個 PDF 或多張圖片合併成一個 PDF；檔案不會上傳。',
+    image: 'tools',
+    embed: '轉換圖片、PDF、音訊與影片，並可合併多個 PDF 或圖片；檔案不會上傳。',
+  },
+  pdf: {
+    path: '/tools/pdf',
+    title: `PDF編輯器${SEO_SUFFIX}`,
+    desc: '免費線上 PDF 編輯器：合併、拆分、旋轉、刪除與重新排序頁面，並能把 PDF 極致壓縮；所有處理都在瀏覽器內完成，檔案不會上傳。',
+    image: 'tools',
+    embed: '合併、拆分、旋轉、排序與極致壓縮 PDF；檔案不會上傳。',
+  },
   status: {
     path: '/status',
     title: `當前狀態${SEO_SUFFIX}`,

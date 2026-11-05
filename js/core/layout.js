@@ -29,12 +29,12 @@ function linkHTML(item, active, spa, mobile = false) {
     return (
       `<div class="m-row">${a}` +
       `<button class="m-toggle" type="button" aria-expanded="false" aria-controls="${id}" aria-label="展開${item.label}選單"><span aria-hidden="true"></span></button></div>` +
-      `<div class="nav-sub-list" id="${id}" hidden>${kids}</div>`
+      `<div class="nav-sub-list" id="${id}" style="--rows:${Math.ceil(item.children.length / 2)}" hidden>${kids}</div>`
     );
   }
   return (
     `<div class="nav-item has-menu">${a}` +
-    `<div class="nav-menu glass" role="menu" aria-label="${item.label}">${kids}</div></div>`
+    `<div class="nav-menu glass" role="menu" aria-label="${item.label}" style="--rows:${Math.ceil(item.children.length / 2)}">${kids}</div></div>`
   );
 }
 

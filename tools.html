@@ -54,57 +54,74 @@
       <p class="mono-label">TOOLS</p>
       <h1>小工具</h1>
       <p>從機器人移植到網頁的實用工具，計算全程在你的瀏覽器內完成。</p>
+      <div class="tool-search">
+        <input id="tool-q" type="search" placeholder="搜尋小工具，例如 pdf、qr、密碼、mp4…" aria-label="搜尋小工具" autocomplete="off" spellcheck="false" />
+        <span class="tool-q-hint" id="tool-count" aria-live="polite"></span>
+      </div>
     </header>
-    <div class="tool-grid">
-      <a class="tool-card" href="/tools/calculator" data-route="calculator">
+    <div class="tool-grid" id="tool-grid">
+      <a class="tool-card" href="/tools/calculator" data-route="calculator" data-kw="數學 計算機 calculator math 矩陣 積分 微分 極限 sympy 統計">
         <span class="tool-idx">01</span>
         <h2>數學計算機</h2>
         <p>與機器人 /計算機 同一個 SymPy 引擎：純量、向量、矩陣、極限、積分、級數、數論與統計函數，附詳細步驟，並列出所有可用函數。</p>
         <span class="tool-go">開啟工具</span>
       </a>
-      <a class="tool-card" href="/tools/military" data-route="military">
+      <a class="tool-card" href="/tools/military" data-route="military" data-kw="兵役 體位 役男 bmi 徵兵 替代役">
         <span class="tool-idx">02</span>
         <h2>兵役計算機</h2>
         <p>輸入身高體重並勾選疾病，依國防部《體位區分標準》修正草案（10/31 施行新制）判定常備役、替代役或免役。</p>
         <span class="tool-go">開啟工具</span>
       </a>
-      <a class="tool-card" href="/tools/wordcount" data-route="wordcount">
+      <a class="tool-card" href="/tools/wordcount" data-route="wordcount" data-kw="字數 字元 統計 word count 段落 英文 中文 文字">
         <span class="tool-idx">03</span>
         <h2>字數計算機</h2>
         <p>即時統計總字數、字元（含／不含空格）、中文字、英文單字、數字、標點、段落與行數，並可一鍵複製、清空與整理空格空行。</p>
         <span class="tool-go">開啟工具</span>
       </a>
-      <a class="tool-card" href="/tools/timestamp" data-route="timestamp">
+      <a class="tool-card" href="/tools/convert" data-route="convert" data-kw="檔案 轉換 轉檔 convert png jpg jpeg webp gif bmp pdf mp3 mp4 wav 影片 音訊 圖片 合併 ffmpeg">
         <span class="tool-idx">04</span>
+        <h2>檔案轉換器</h2>
+        <p>轉換圖片（PNG、JPG、WebP…）、PDF、音訊（MP3、WAV…）與影片（MP4、WebM、GIF…），也能把多個 PDF 或圖片合併成一個 PDF。</p>
+        <span class="tool-go">開啟工具</span>
+      </a>
+      <a class="tool-card" href="/tools/pdf" data-route="pdf" data-kw="pdf 編輯 合併 拆分 旋轉 排序 壓縮 縮小 merge split compress 刪除頁面">
+        <span class="tool-idx">05</span>
+        <h2>PDF編輯器</h2>
+        <p>合併、拆分、旋轉、刪除與重新排序 PDF 頁面，並能逐頁轉成低解析度圖片再重組，把檔案極致壓縮。</p>
+        <span class="tool-go">開啟工具</span>
+      </a>
+      <a class="tool-card" href="/tools/timestamp" data-route="timestamp" data-kw="unix 時間戳 timestamp epoch 時間 日期 discord 時區 轉換">
+        <span class="tool-idx">06</span>
         <h2>Unix時間戳</h2>
         <p>即時 Unix 時間戳，秒／毫秒／微秒／奈秒與任意時區雙向轉換，常用時間按鈕與 Discord 時間戳格式一鍵複製。</p>
         <span class="tool-go">開啟工具</span>
       </a>
-      <a class="tool-card" href="/tools/password" data-route="password">
-        <span class="tool-idx">05</span>
-        <h2>密碼產生器</h2>
-        <p>自訂 8～256 字元長度，可逐一指定允許的特殊符號，使用安全亂數產生密碼，即時評估強度並一鍵複製。</p>
-        <span class="tool-go">開啟工具</span>
-      </a>
-      <a class="tool-card" href="/tools/uuid" data-route="uuid">
-        <span class="tool-idx">06</span>
-        <h2>UUID產生器</h2>
-        <p>依 RFC 9562 產生 v4 隨機、v7 時間排序、v1／v6、v3／v5 命名空間 UUID，可批次產生、轉換格式並解析版本與時間。</p>
-        <span class="tool-go">開啟工具</span>
-      </a>
-      <a class="tool-card" href="/tools/qrcode" data-route="qrcode">
+      <a class="tool-card" href="/tools/qrcode" data-route="qrcode" data-kw="qr qrcode 二維碼 條碼 產生器 generator wifi 浮水印 logo">
         <span class="tool-idx">07</span>
         <h2>QR Code產生器</h2>
         <p>輸入文字、網址或 Wi-Fi，自訂顏色、背景浮水印（含透明度）與中央小圖，自動驗證可掃描並下載 PNG。</p>
         <span class="tool-go">開啟工具</span>
       </a>
-      <a class="tool-card" href="/tools/qrscan" data-route="qrscan">
+      <a class="tool-card" href="/tools/qrscan" data-route="qrscan" data-kw="qr 掃描 scan 掃描器 相機 camera 二維碼 條碼 讀取 連結">
         <span class="tool-idx">08</span>
         <h2>QR Code掃描器</h2>
         <p>用相機即時掃描，或上傳、拖放、貼上圖片，取出連結與內容；影像只在你的瀏覽器處理。</p>
         <span class="tool-go">開啟工具</span>
       </a>
+      <a class="tool-card" href="/tools/password" data-route="password" data-kw="密碼 password 產生器 隨機 強度 安全 符號">
+        <span class="tool-idx">09</span>
+        <h2>密碼產生器</h2>
+        <p>自訂 8～256 字元長度，可逐一指定允許的特殊符號，使用安全亂數產生密碼，即時評估強度並一鍵複製。</p>
+        <span class="tool-go">開啟工具</span>
+      </a>
+      <a class="tool-card" href="/tools/uuid" data-route="uuid" data-kw="uuid guid 產生器 v4 v7 識別碼 批次">
+        <span class="tool-idx">10</span>
+        <h2>UUID產生器</h2>
+        <p>依 RFC 9562 產生 v4 隨機、v7 時間排序、v1／v6、v3／v5 命名空間 UUID，可批次產生、轉換格式並解析版本與時間。</p>
+        <span class="tool-go">開啟工具</span>
+      </a>
     </div>
+    <p class="tool-empty" id="tool-empty" hidden>找不到符合的小工具，換個關鍵字試試。</p>
   </div>
 </section>
 </main>

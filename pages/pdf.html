@@ -1,0 +1,98 @@
+<section class="page page-pdf">
+  <div class="tk-wrap tk-wide">
+    <header class="tk-head">
+      <p class="mono-label">TOOL / 05</p>
+      <h1>PDF編輯器</h1>
+      <p class="tk-sub">合併、拆分、旋轉、刪除、重新排序頁面，並能把 PDF 極致壓縮（逐頁轉成低解析度圖片再重組）。所有處理都在你的瀏覽器內完成，PDF 不會上傳。</p>
+    </header>
+
+    <div class="tk-stack">
+      <section class="tk-card" aria-labelledby="pe-s1">
+        <h2 id="pe-s1"><span class="tk-step">01</span>加入 PDF<small id="pe-info"></small></h2>
+        <label class="pe-drop" id="pe-drop" tabindex="0">
+          <input id="pe-file" type="file" accept="application/pdf,.pdf" multiple hidden />
+          <b>點此選擇 PDF</b><span>可一次選多個，會依序接在一起；也可以拖放到這裡</span>
+        </label>
+        <div class="pe-docs" id="pe-docs"></div>
+        <p class="tk-bad" id="pe-err" role="alert"></p>
+      </section>
+
+      <section class="tk-card" aria-labelledby="pe-s2">
+        <h2 id="pe-s2"><span class="tk-step">02</span>頁面<small id="pe-sel"></small></h2>
+        <div class="pe-bar">
+          <div class="tk-row">
+            <button class="tk-chip" type="button" data-t="all">全選</button>
+            <button class="tk-chip" type="button" data-t="none">取消選取</button>
+            <button class="tk-chip" type="button" data-t="inv">反選</button>
+            <button class="tk-chip" type="button" data-t="odd">奇數頁</button>
+            <button class="tk-chip" type="button" data-t="even">偶數頁</button>
+          </div>
+          <div class="tk-row">
+            <button class="tk-chip" type="button" data-t="rotl">↺ 左轉</button>
+            <button class="tk-chip" type="button" data-t="rotr">↻ 右轉</button>
+            <button class="tk-chip" type="button" data-t="rot180">旋轉 180°</button>
+            <button class="tk-chip" type="button" data-t="rev">反轉順序</button>
+            <button class="tk-chip danger" type="button" data-t="del">刪除選取</button>
+            <button class="tk-chip" type="button" data-t="undo" id="pe-undo" disabled>復原</button>
+          </div>
+        </div>
+        <div class="pe-grid" id="pe-grid" aria-label="頁面清單"></div>
+        <p class="tk-hint">點頁面可選取；拖曳可重新排序（或用卡片上的 ◀ ▶）。卡片上的 ↺ ↻ 🗑 針對單頁。</p>
+      </section>
+
+      <section class="tk-card" aria-labelledby="pe-s3">
+        <h2 id="pe-s3"><span class="tk-step">03</span>輸出</h2>
+        <div class="tk-row" role="tablist" aria-label="輸出方式">
+          <button class="tk-chip on" type="button" role="tab" aria-selected="true" data-tab="save">儲存／合併</button>
+          <button class="tk-chip" type="button" role="tab" aria-selected="false" data-tab="split">拆分</button>
+          <button class="tk-chip" type="button" role="tab" aria-selected="false" data-tab="shrink">壓縮</button>
+        </div>
+
+        <div id="pe-t-save" class="pe-tab">
+          <div class="tk-grid2">
+            <label class="fld"><span>檔名</span><input id="pe-name" type="text" value="edited.pdf" autocomplete="off" /></label>
+            <label class="pe-chk"><input type="checkbox" id="pe-onlysel" /><span>只輸出選取的頁面</span></label>
+          </div>
+          <div class="tk-row"><button class="tk-chip on" id="pe-save" type="button" disabled>下載 PDF</button></div>
+        </div>
+
+        <div id="pe-t-split" class="pe-tab" hidden>
+          <div class="tk-grid2">
+            <label class="fld"><span>拆分方式</span>
+              <select id="pe-smode">
+                <option value="each">每頁一個檔案</option>
+                <option value="n">每 N 頁一個檔案</option>
+                <option value="ranges">自訂範圍（逗號分隔，每段一個檔案）</option>
+                <option value="sel">把選取的頁面抽出成一個檔案</option>
+              </select></label>
+            <label class="fld" id="pe-sn-wrap" hidden><span>N（頁）</span><input id="pe-sn" type="number" min="1" value="5" /></label>
+            <label class="fld" id="pe-sr-wrap" hidden><span>範圍<em>例：1-3, 5, 8-（8 到最後）</em></span><input id="pe-sr" type="text" placeholder="1-3, 5, 8-" autocomplete="off" spellcheck="false" /></label>
+          </div>
+          <p class="tk-hint">頁碼依上方目前的排列順序計算。產生多個檔案時會打包成 ZIP。</p>
+          <div class="tk-row"><button class="tk-chip on" id="pe-split" type="button" disabled>拆分並下載</button></div>
+        </div>
+
+        <div id="pe-t-shrink" class="pe-tab" hidden>
+          <div class="tk-row" id="pe-presets">
+            <button class="tk-chip" type="button" data-pre="extreme">極致（72 dpi・灰階・品質 35）</button>
+            <button class="tk-chip on" type="button" data-pre="strong">強（96 dpi・品質 45）</button>
+            <button class="tk-chip" type="button" data-pre="balanced">平衡（130 dpi・品質 60）</button>
+            <button class="tk-chip" type="button" data-pre="high">高畫質（200 dpi・品質 80）</button>
+            <button class="tk-chip" type="button" data-pre="lossless">無損優化（保留文字）</button>
+          </div>
+          <div id="pe-custom" class="tk-grid2">
+            <label class="fld"><span>解析度<em id="pe-dpi-v"></em></span><input id="pe-dpi" type="range" min="36" max="300" step="2" value="96" /></label>
+            <label class="fld"><span>JPEG 品質<em id="pe-jq-v"></em></span><input id="pe-jq" type="range" min="10" max="95" step="1" value="45" /></label>
+            <label class="pe-chk"><input type="checkbox" id="pe-gray" /><span>轉成灰階（再省 30～60%）</span></label>
+          </div>
+          <p class="tk-hint" id="pe-shrink-note"></p>
+          <div class="tk-row"><button class="tk-chip on" id="pe-shrink" type="button" disabled>壓縮並下載</button></div>
+        </div>
+
+        <div class="pe-prog" id="pe-prog" hidden><i id="pe-bar"></i></div>
+        <p class="tk-hint" id="pe-status" aria-live="polite"></p>
+        <div class="pe-result" id="pe-result" hidden></div>
+      </section>
+    </div>
+  </div>
+</section>

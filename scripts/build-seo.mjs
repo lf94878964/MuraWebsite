@@ -169,6 +169,8 @@ const routeFiles = {
   timestamp: 'tools/timestamp.html',
   password: 'tools/password.html',
   uuid: 'tools/uuid.html',
+  convert: 'tools/convert.html',
+  pdf: 'tools/pdf.html',
   qrcode: 'tools/qrcode.html',
   qrscan: 'tools/qrscan.html',
   status: 'status.html',

@@ -355,8 +355,9 @@ kbd {
 .nav-item.has-menu:hover > .nav-link::after,
 .nav-item.has-menu:focus-within > .nav-link::after { transform: rotate(225deg) translate(-1px, -1px); }
 .nav-menu {
-  position: absolute; top: 100%; left: 50%; min-width: 220px; margin-top: 10px; padding: 6px;
-  display: grid; gap: 2px; border-radius: 16px;
+  position: absolute; top: 100%; left: 50%; width: max-content; min-width: 220px; margin-top: 10px; padding: 6px;
+  /* 兩欄，依序由上到下填滿：左欄前一半、右欄後一半 */
+  display: grid; grid-auto-flow: column; grid-template-rows: repeat(var(--rows, 5), auto); grid-template-columns: repeat(2, minmax(210px, 1fr)); gap: 2px 6px; border-radius: 16px;
   -webkit-backdrop-filter: blur(24px) saturate(170%); backdrop-filter: blur(24px) saturate(170%);
   background: color-mix(in srgb, var(--bg) 90%, transparent); box-shadow: 0 24px 60px -24px rgba(0, 0, 0, .7), 0 0 0 1px var(--glass-line);
   opacity: 0; visibility: hidden; transform: translate(-50%, -6px);
@@ -386,10 +387,12 @@ kbd {
   transform: rotate(45deg); transition: transform var(--t);
 }
 .m-toggle[aria-expanded="true"] span { transform: rotate(225deg) translate(-2px, -2px); }
-.mobile-menu .nav-sub-list { display: grid; gap: 2px; margin: 0 0 .3rem 1rem; padding-left: .8rem; border-left: 1px solid var(--accent-line); }
+.mobile-menu .nav-sub-list { display: grid; grid-auto-flow: column; grid-template-rows: repeat(var(--rows, 5), auto); grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px 4px; margin: 0 0 .3rem .6rem; padding-left: .5rem; border-left: 1px solid var(--accent-line); }
 .mobile-menu .nav-sub-list[hidden] { display: none; }
 .mobile-menu .nav-sub-list:not([hidden]) { animation: drop .2s var(--ease); }
-.mobile-menu .nav-sub { padding: .55rem .8rem; }
+.mobile-menu .nav-sub { padding: .55rem .6rem; min-width: 0; }
+.mobile-menu .nav-sub-name { font-size: .84rem; overflow-wrap: anywhere; }
+.mobile-menu .nav-sub-desc { display: none; }
 
 /* ───── 頁面容器 ───── */
 #view { min-height: 100vh; padding-top: var(--nav-h); }

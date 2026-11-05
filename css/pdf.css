@@ -1,0 +1,42 @@
+@import url('/css/toolkit.css');
+.tk-wrap.tk-wide { max-width: 1180px; }
+.pe-drop { display: grid; gap: .3rem; justify-items: center; text-align: center; padding: 1.6rem 1rem; border-radius: 14px; border: 2px dashed var(--line-2); background: var(--bg-1); cursor: pointer; color: var(--text-2); font-size: .85rem; transition: var(--t); }
+.pe-drop b { color: var(--text); font-size: 1rem; }
+.pe-drop:hover, .pe-drop.over, .pe-drop:focus-visible { border-color: var(--accent); background: var(--accent-soft); outline: none; }
+.pe-docs { display: grid; gap: .4rem; }
+.pe-docs:empty { display: none; }
+.pe-doc { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: .8rem; align-items: center; padding: .5rem .8rem; border-radius: 10px; background: var(--bg-1); border: 1px solid var(--line); font-size: .86rem; }
+.pe-doc b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; }
+.pe-doc small { color: var(--text-3); }
+.pe-doc button { font: inherit; width: 1.9rem; height: 1.9rem; border-radius: 8px; cursor: pointer; color: var(--text-2); background: var(--glass); border: 1px solid var(--glass-line); }
+.pe-doc button:hover { color: var(--danger); border-color: var(--danger-line); }
+.pe-bar { display: grid; gap: .6rem; }
+.pe-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: .8rem; min-height: 4rem; }
+.pe-grid:empty::before { content: '還沒有頁面。先加入 PDF。'; color: var(--text-3); font-size: .9rem; grid-column: 1 / -1; }
+.pg { position: relative; display: grid; gap: .4rem; padding: .5rem; border-radius: 12px; background: var(--bg-1); border: 2px solid var(--line); cursor: pointer; user-select: none; transition: border-color var(--t), background var(--t), transform var(--t); }
+.pg:hover { border-color: var(--line-2); }
+.pg.sel { border-color: var(--accent); background: var(--accent-soft); }
+.pg.drag { opacity: .35; }
+.pg.over { border-color: var(--ok); transform: scale(1.02); }
+.pg-th { height: 170px; display: grid; place-items: center; overflow: hidden; border-radius: 6px; background: repeating-conic-gradient(#8881 0 25%, transparent 0 50%) 0 0 / 14px 14px; }
+.pg-th img { display: block; background: #fff; box-shadow: 0 2px 10px #0006; transition: transform .2s; }
+.pg-th .ld { color: var(--text-3); font-size: .75rem; }
+.pg-no { position: absolute; top: .55rem; left: .6rem; font-family: var(--font-mono); font-size: .68rem; font-weight: 700; padding: .05rem .4rem; border-radius: 6px; color: #fff; background: #000a; }
+.pg-chk { position: absolute; top: .55rem; right: .6rem; width: 18px; height: 18px; border-radius: 5px; border: 2px solid #fff9; background: #0006; display: grid; place-items: center; color: transparent; font-size: .7rem; }
+.pg.sel .pg-chk { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.pg-src { font-size: .68rem; color: var(--text-3); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: center; }
+.pg-act { display: flex; justify-content: center; gap: .2rem; }
+.pg-act button { font: inherit; font-size: .8rem; width: 1.9rem; height: 1.7rem; border-radius: 7px; cursor: pointer; color: var(--text-2); background: var(--glass); border: 1px solid var(--glass-line); padding: 0; }
+.pg-act button:hover { color: var(--accent); border-color: var(--accent-line); }
+.pg-act button[data-pa=del]:hover { color: var(--danger); border-color: var(--danger-line); }
+.pe-tab { display: grid; gap: .9rem; }
+.pe-tab[hidden], .tk-card .fld[hidden] { display: none; }
+.pe-chk { display: inline-flex; align-items: center; gap: .5rem; font-size: .88rem; color: var(--text-2); cursor: pointer; align-self: end; padding-bottom: .5rem; }
+.pe-chk input { width: 17px; height: 17px; accent-color: var(--accent); }
+.pe-tab input[type=range] { width: 100%; accent-color: var(--accent); }
+.pe-prog { height: 8px; border-radius: 99px; background: var(--bg-2); overflow: hidden; }
+.pe-prog[hidden], .pe-result[hidden] { display: none; }
+.pe-prog i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .2s; }
+.pe-result { display: grid; gap: .3rem; padding: .9rem 1.1rem; border-radius: 12px; background: var(--bg-1); border: 1px solid var(--line); font-size: .9rem; }
+.pe-result b { color: var(--ok); font-size: 1.05rem; }
+.pe-result .warn { color: var(--danger); }
