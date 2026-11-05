@@ -1,0 +1,17 @@
+# Cloudflare Pages / Workers Assets 標頭設定
+# 全站：基本安全標頭。相機只允許本站使用（QR Code 掃描器需要）。
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: camera=(self), microphone=(), geolocation=(), payment=(), usb=()
+
+# 第三方程式庫（pdf.js、pdf-lib、ffmpeg 包裝、QR）幾乎不會變動：讓瀏覽器快取 30 天
+/js/vendor/*
+  Cache-Control: public, max-age=2592000
+
+# 預先轉好的資料與圖片：快取 1 天
+/image/*
+  Cache-Control: public, max-age=86400
+/data/*
+  Cache-Control: public, max-age=3600

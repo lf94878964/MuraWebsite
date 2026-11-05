@@ -2,6 +2,7 @@
 import { mountChrome } from './core/layout.js';
 import { start, go } from './core/router.js';
 import { ROUTES } from './config.js';
+import { initFx } from './core/fx.js';
 
 const chrome = mountChrome({
   active: null,
@@ -9,4 +10,11 @@ const chrome = mountChrome({
   onNavigate: (key) => go(key),
 });
 
-start({ onRoute: (key) => chrome.setActive(ROUTES[key]?.nav || key, key) });
+const fx = initFx({ go });
+
+start({
+  onRoute: (key) => {
+    chrome.setActive(ROUTES[key]?.nav || key, key);
+    fx.refresh();
+  },
+});

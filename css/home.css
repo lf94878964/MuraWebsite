@@ -79,14 +79,14 @@
 }
 
 /* 使用者評論輪轉 */
-.reviews { border-top: 1px solid var(--line); padding: 5rem 0 5.5rem; overflow: hidden; }
+.reviews { border-top: 1px solid var(--line); padding: 5rem 0 5.5rem; overflow: hidden; content-visibility: auto; contain-intrinsic-size: auto 340px; }
 .reviews[hidden] { display: none; }
 .reviews-viewport {
   overflow: hidden;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
-.reviews-track { --dur: 60s; display: flex; width: max-content; animation: reviews-scroll var(--dur) linear infinite; }
+.reviews-track { --dur: 60s; display: flex; width: max-content; will-change: transform; animation: reviews-scroll var(--dur) linear infinite; }
 .reviews-viewport:hover .reviews-track, .reviews-viewport:focus-within .reviews-track { animation-play-state: paused; }
 .reviews-set { display: flex; gap: 1rem; padding-right: 1rem; }
 @keyframes reviews-scroll { to { transform: translateX(-50%); } }
@@ -112,4 +112,6 @@
   .reviews-track { animation: none; }
   .reviews-set[data-clone] { display: none; }
 }
+/* 手機上持續移動的卡片不做背景模糊，省電也更順 */
+@media (max-width: 900px) { .review-card { -webkit-backdrop-filter: none; backdrop-filter: none; background: var(--bg-2); } }
 @media (max-width: 560px) { .review-card { width: 300px; } .reviews { padding: 3.5rem 0 4rem; } }

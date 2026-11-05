@@ -121,6 +121,17 @@ export async function go(key, { push = true, replace = false, scroll = true } = 
   onRouteChange(key);
 }
 
+/** 預先載入某個頁面所需的片段、樣式與腳本（滑鼠移上去或觸碰時呼叫），讓點下去時幾乎瞬間切換。 */
+const warmed = new Set();
+export function prefetch(key) {
+  const route = ROUTES[key];
+  if (!route || warmed.has(key) || key === currentKey) return;
+  warmed.add(key);
+  fetchText(route.fragment).catch(() => warmed.delete(key));
+  loadCSS(route.css);
+  if (route.module) import(route.module).catch(() => {});
+}
+
 export function start({ onRoute } = {}) {
   if (onRoute) onRouteChange = onRoute;
   const view = viewEl();
@@ -140,6 +151,21 @@ export function start({ onRoute } = {}) {
       if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   });
+
+  // 預載：游標停留 65ms、鍵盤聚焦或手指按下時，先把目標頁面準備好
+  let warmTimer = 0;
+  const target = (e) => {
+    const el = e.target.closest?.('a[data-spa], a[data-route], [data-route]');
+    return el && (el.dataset.key || el.dataset.route);
+  };
+  document.addEventListener('pointerover', (e) => {
+    if (e.pointerType === 'touch') return;
+    const k = target(e);
+    clearTimeout(warmTimer);
+    if (k) warmTimer = setTimeout(() => prefetch(k), 65);
+  }, { passive: true });
+  document.addEventListener('pointerdown', (e) => { const k = target(e); if (k) prefetch(k); }, { passive: true });
+  document.addEventListener('focusin', (e) => { const k = target(e); if (k) prefetch(k); });
 
   window.addEventListener('popstate', () => {
     go(keyFromLocation() || 'home', { push: false, scroll: false });
